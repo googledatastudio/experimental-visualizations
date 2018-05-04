@@ -1,0 +1,18 @@
+
+{
+  "dataStudioVisualization": {
+    "name": "circlePacking",
+    "logoUrl": "http://logo",
+    "company": "Google Data Studio Developer Relations",
+    "supportUrl": "https://datastudio.google.com",
+    "description": "A circle packing visualization.",
+    "visualizations": [{
+      "name": "circlePacking",
+      "description": "Circle packing visualization",
+      "resource": {
+        "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/circlePacking.js",
+        "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/circlePacking.json"
+      }
+    }]
+  }
+}
