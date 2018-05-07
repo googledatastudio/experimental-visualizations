@@ -1,0 +1,17 @@
+{
+  "dataStudioVisualization": {
+    "name": "calendar",
+    "logoUrl": "http://logo",
+    "company": "Google Data Studio Developer Relations",
+    "supportUrl": "https://datastudio.google.com",
+    "description": "A calendar visualization.",
+    "visualizations": [{
+      "name": "calendar",
+      "description": "Calendar visualization",
+      "resource": {
+        "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/calendar.js",
+        "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/calendar.json"
+      }
+    }]
+  }
+}

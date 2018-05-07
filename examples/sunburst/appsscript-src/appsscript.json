@@ -1,0 +1,17 @@
+{
+  "dataStudioVisualization": {
+    "name": "sunburst",
+    "logoUrl": "http://logo",
+    "company": "Google Data Studio Developer Relations",
+    "supportUrl": "https://datastudio.google.com",
+    "description": "A sunburst visualization.",
+    "visualizations": [{
+      "name": "sunburst",
+      "description": "Sunburst visualization",
+      "resource": {
+        "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/sunburst.js",
+        "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/sunburst.json"
+      }
+    }]
+  }
+}
