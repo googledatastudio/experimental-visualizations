@@ -1,22 +1,17 @@
 # Sunburst Visualization
 
-This is an incomplete set of instructions for using and deploying community
-visualizations for Google's [Data Studio](https://datastudio.google.com). More
-complete instructions can be found in the [developer
-guides](https://developers.google.com/datastudio/visualization).
+This directory provides sample visualization code for [Data Studio Community
+Visualizations](https://datastudio.com/datastudio/visualization).
 
-## Creating the sunburst.js file
-1. cat [d3.js](https://d3js.org) into a new file called `sunburst.js`
-2. add an empty line to `sunburst.js`
-3. append the Data Studio visualization helper library into `sunburst.js`
-4. add an empty line to `sunburst.js`
-5. cat the [viz code](./src/index.js) into `sunburst.js` 
+The [build.sh](./build.sh) script provides an example of a bash script to build
+and deploy the visualization. The script depends on
+[clasp](https://github.com/google/clasp), a command-line utility for developing
+Google apps script projects, and
+[gsutil](https://cloud.google.com/storage/docs/gsutil), a command-line
+application for accessing Google cloud storage.
 
-## Deploying the viz
-1. Upload `sunburst.js` and [sunburst.json](./src/sunburst.json) to a GCP
-   bucket.
-2. Create an apps script project using [the provided
-   manifest](./appsscript-src/appsscript.json)
+This repository does not contain
+[gdscv](https://developers.google.com/datastudio/visualization/trusted-testing/library-reference)<sup>1</sup>,
+or d3.js, which are both required for the visualization to run. 
 
-
-
+1.  The link will return a 404 if you are not part of trusted testing.

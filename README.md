@@ -10,7 +10,7 @@ visualization
 homepage](https://developers.google.com/datastudio/visualization/).
 
 ## How to use the repository 
-Each of the examples in the [examples](/examples) directory has a
-README.md file that explains how to use the code. This repo assumes that the
-reader has completed and is familiar with the material in the [community
-visualizations guide](https://developers.google.com/datastudio/visualization/).
+The experimental-visualization repository contains example code for Data Studio
+community visualizations, and is intended to supplment the [community
+visualization
+documentation](https://developers.google.com/datastudio/visualization).
