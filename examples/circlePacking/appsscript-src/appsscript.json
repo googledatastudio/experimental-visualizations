@@ -1,18 +1,25 @@
-
 {
-  "dataStudioVisualization": {
-    "name": "circlePacking",
-    "logoUrl": "http://logo",
-    "company": "Google Data Studio Developer Relations",
-    "supportUrl": "https://datastudio.google.com",
-    "description": "A circle packing visualization.",
-    "visualizations": [{
-      "name": "circlePacking",
-      "description": "Circle packing visualization",
-      "resource": {
+  "dataStudioComponent": {
+    "name": "Circle Packing Visualization",
+    "organization": "Data Studio Developer Relations",
+    "description": "Visualization",
+    "logoUrl": "https://url",
+    "organizationUrl": "https://url",
+    "supportUrl": "https://url",
+    "privacyPolicyUrl": "https://url",
+    "termsOfServiceUrl": "https://url",
+    "packageUrl": "https://url",
+    "supportUrl": "https://developers.google.com/datastudio/visualization",
+    "components": [
+      {
+        "name": "circlePacking",
+        "description": "Circle Packing Visualization.",
+        "iconUrl": "https://url",
+        "resource": {
         "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/circlePacking.js",
         "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/circlePacking.json"
+        }
       }
-    }]
+    ]
   }
 }
