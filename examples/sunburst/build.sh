@@ -8,8 +8,8 @@ rm -rf deploy
 mkdir -p deploy
 
 # create the combined js file
-# TODO: ensure that gdscv and d3 have the correct paths 
-cat ./lib/gdscv.min.js > deploy/sunburst.js
+# TODO: ensure that dscc and d3 have the correct paths 
+cat ./lib/dscc.min.js > deploy/sunburst.js
 echo >> deploy/sunburst.js
 cat ./lib/d3.min.js >> deploy/sunburst.js
 cat ./src/index.js >> deploy/sunburst.js

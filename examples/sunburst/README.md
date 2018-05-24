@@ -11,7 +11,7 @@ Google apps script projects, and
 application for accessing Google cloud storage.
 
 This repository does not contain
-[gdscv](https://developers.google.com/datastudio/visualization/trusted-testing/library-reference)<sup>1</sup>,
+[dscc](https://github.com/googledatastudio/ds-component/blob/master/lib/dscc.min.js<sup>1</sup>,
 or d3.js, which are both required for the visualization to run. 
 
 1.  The link will return a 404 if you are not part of trusted testing.
