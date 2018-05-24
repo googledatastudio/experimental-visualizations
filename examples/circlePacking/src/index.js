@@ -1,5 +1,5 @@
 // subscribe to data & get the viz
-gdscv.subscribeToData(drawChart);
+dscc.subscribeToData(drawChart);
 
 function drawChart(data){
   renderViz(buildHierarchy(convertData(data)));

@@ -1,5 +1,5 @@
-gdscv.subscribeToData(function (vizData) {
-  var width = gdscv.getWidth();
+dscc.subscribeToData(function (vizData) {
+  var width = dscc.getWidth();
   var height = 136;
   var cellSize = 17;
 

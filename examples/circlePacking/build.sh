@@ -8,8 +8,8 @@ rm -rf deploy
 mkdir -p deploy
 
 # create the combined js file
-# TODO: ensure that gdscv and d3 have the correct paths 
-cat ./lib/gdscv.min.js > deploy/circlePacking.js
+# TODO: ensure that dscc and d3 have the correct paths 
+cat ./lib/dscc.min.js > deploy/circlePacking.js
 echo >> deploy/circlePacking.js
 cat ./lib/d3.min.js >> deploy/circlePacking.js
 cat ./src/index.js >> deploy/circlePacking.js
