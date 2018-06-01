@@ -1,0 +1,12 @@
+{
+  "propertyConfig": {
+    "data": {
+      "minDimensions": 1,
+      "maxDimensions": 10,
+      "minMetrics": 1,
+      "maxMetrics": 10,
+      "maxRows": 500
+    },
+    "style": []
+  }
+}
