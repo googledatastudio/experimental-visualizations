@@ -1,12 +1,39 @@
 {
   "propertyConfig": {
-    "data": {
-      "maxDimensions": 4,
-      "minDimensions": 1,
-      "minMetrics": 1,
-      "maxMetrics": 1,
-      "maxRows": 500
-    },
+    "data": [
+      {
+        "id": "concepts",
+        "heading": "concepts",
+        "elements": [ 
+          {
+            "id": "dimension",
+            "label": "dimension",
+            "type": "DIMENSION",
+            "option": {
+              "require": 1,
+              "count": 4 
+            }
+          },
+          {
+            "id": "metric",
+            "label": "metric",
+            "type": "METRIC",
+            "option": {
+              "require": 1,
+              "count": 1 
+            }
+          },
+          {
+            "id": "row",
+            "label": "max_rows",
+            "type": "ROW",
+            "option": {
+              "count": 500 
+            }
+          }
+        ]
+      }
+    ],
     "style": []
   }
 }
