@@ -1,0 +1,18 @@
+{
+  "name": "Community Visualization Examples",
+  "logoUrl": "https://url",
+  "organization": "Data Studio Developer Relations",
+  "supportUrl": "https://datastudio.google.com",
+  "packageUrl": "https://datastudio.google.com",
+  "description": "Sample visualizations",
+  "component": {
+    "name": "d3errorbar",
+    "description": "d3 bar chart with error bars",
+    "resource": {
+      "js": "yulanlin-sand/showcase/d3errorbar/d3errorbar.js",
+      "config": "yulanlin-sand/showcase/d3errorbar/d3errorbar.json"
+    },
+    "devMode": true,
+    "iconUrl": "https://url"
+  }
+}

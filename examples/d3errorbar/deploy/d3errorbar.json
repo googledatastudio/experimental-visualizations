@@ -1,0 +1,113 @@
+{
+  "propertyConfig": {
+    "data": [
+      {
+        "id": "concepts",
+        "heading": "Concepts",
+        "elements": [
+          {
+            "id": "index",
+            "label": "index field",
+            "type": "DIMENSION",
+            "option": {
+              "require": 1,
+              "count": 1 
+            }
+          },
+          {
+            "id": "dimensions",
+            "label": "Dimensions",
+            "type": "DIMENSION",
+            "option": {
+              "require": 1,
+              "count": 1 
+            }
+          },
+          {
+            "id": "metrics",
+            "label": "Metric",
+            "type": "METRIC",
+            "option": {
+              "require": 1,
+              "count": 1
+            }
+          },
+          {
+            "id": "row",
+            "label": "Max number of rows",
+            "type": "ROW",
+            "option": {
+              "count": 1000
+            }
+          }
+
+        ]
+      }
+    ],
+    "style": [
+      {
+        "id": "colors",
+        "heading": "Colors",
+        "elements":[
+          {
+            "id": "barColor",
+            "label": "Bar color",
+            "type": "FILL_COLOR",
+            "defaultValue": "#18F2B2"
+          },
+          {
+            "id": "barOpacity",
+            "label": "Bar opacity",
+            "type": "OPACITY",
+            "defaultValue": "0.8"
+          }
+
+        ]
+      },
+      {
+        "id": "labelOptions",
+        "heading": "Label options",
+        "elements":[
+          {
+            "id": "showLabels",
+            "label": "Show bar labels?",
+            "type": "CHECKBOX"
+          },
+          {
+            "id": "labelFontSize",
+            "label": "Bar label font size",
+            "type": "FONT_SIZE",
+            "defaultValue": "20"
+          },
+          {
+            "id": "labelColor",
+            "label": "Bar label color",
+            "type": "FONT_COLOR",
+            "defaultValue": "#000000"
+          },
+          {
+            "id": "labelOffset",
+            "label": "Bar label offset",
+            "type": "INTERVAL"
+          }
+        ]
+      },
+      {
+        "id": "errorOptions",
+        "heading": "Error bar options",
+        "elements":[
+          {
+            "id": "showError",
+            "label": "Show error bars?",
+            "type": "CHECKBOX"
+          },
+          {
+            "id": "errorWeight",
+            "label": "Error bar line weight",
+            "type": "LINE_WEIGHT"
+          }
+        ]
+      }
+    ]
+  }
+}
