@@ -1,0 +1,33 @@
+{
+  "propertyConfig": {
+    "data": [{
+      "id": "data",
+      "heading": "",
+      "elements": [{
+        "id": "dimensions",
+        "label": "Dimensions",
+        "type": "DIMENSION",
+        "option": {
+          "require": 1,
+          "count": 10
+        }
+      }, {
+        "id": "metrics",
+        "label": "Metrics",
+        "type": "METRIC",
+        "option": {
+          "require": 1,
+          "count": 10
+        }
+      }, {
+        "id": "row",
+        "label": "max_rows",
+        "type": "ROW",
+        "option": {
+          "count": 500
+        }
+      }]
+    }],
+    "style": []
+  }
+}
