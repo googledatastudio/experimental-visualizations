@@ -1,87 +1,87 @@
 {
   "propertyConfig": {
-		"data": [
-			{
-				"id": "concepts",
-				"heading": "Concepts",
-				"elements": [
-					{
-						"id": "dimensions",
-						"label": "Dimensions",
-						"type": "DIMENSION",
-						"option": {
-							"require": 2,
-							"count": 2
-						}
-					},
-					{
-						"id": "metrics",
-						"label": "Metric",
-						"type": "METRIC",
-						"option": {
-							"require": 1,
-							"count": 1
-						}
-					},
-					{
-						"id": "row",
-						"label": "Max number of rows",
-						"type": "ROW",
-						"option": {
-							"count": 200
-						}
-					}
+    "data": [
+      {
+        "id": "concepts",
+        "heading": "Concepts",
+        "elements": [
+          {
+            "id": "dimensions",
+            "label": "Dimensions",
+            "type": "DIMENSION",
+            "option": {
+              "require": 2,
+              "count": 2
+            }
+          },
+          {
+            "id": "metrics",
+            "label": "Metric",
+            "type": "METRIC",
+            "option": {
+              "require": 1,
+              "count": 1
+            }
+          },
+          {
+            "id": "row",
+            "label": "Max number of rows",
+            "type": "ROW",
+            "option": {
+              "count": 200
+            }
+          }
 
-				]
-			}
-		],
-		"style": [
-			{
-				"id": "colors",
-				"heading": "Colors",
-				"elements":[
-					{
-						"id": "node_color",
-						"label": "Node Color",
-						"type": "FILL_COLOR",
-						"defaultValue": "#000000"
-					},
-					{
-						"id": "link_color",
-						"label": "Link color",
-						"type": "BORDER_COLOR",
-						"defaultValue": "#000"
-					},
-					{
-						"id": "link_opacity",
-						"label": "Link opacity",
-						"type": "OPACITY",
-						"defaultValue": "0.2"
-					}
+        ]
+      }
+    ],
+    "style": [
+      {
+        "id": "colors",
+        "heading": "Colors",
+        "elements":[
+          {
+            "id": "node_color",
+            "label": "Node Color",
+            "type": "FILL_COLOR",
+            "defaultValue": "#000000"
+          },
+          {
+            "id": "link_color",
+            "label": "Link color",
+            "type": "BORDER_COLOR",
+            "defaultValue": "#000"
+          },
+          {
+            "id": "link_opacity",
+            "label": "Link opacity",
+            "type": "OPACITY",
+            "defaultValue": "0.2"
+          }
 
-				]
-			},
-			{
-				"id": "labels",
-				"heading": "Node labels",
-				"elements":[
-					{
-						"id": "show_labels",
-						"label": "Show node labels?",
-						"type": "CHECKBOX"
-					},
-					{
-						"id": "node_font_size",
-						"label": "Node label font size",
-						"type": "FONT_SIZE",
-						"defaultValue": "20"
-					},
-					{
-						"id": "node_font_color",
-						"label": "Node label color",
-						"type": "FONT_COLOR",
-						"defaultValue": "#000000"
-					},
+        ]
+      },
+      {
+        "id": "labels",
+        "heading": "Node labels",
+        "elements":[
+          {
+            "id": "show_labels",
+            "label": "Show node labels?",
+            "type": "CHECKBOX"
+          },
+          {
+            "id": "node_font_size",
+            "label": "Node label font size",
+            "type": "FONT_SIZE",
+            "defaultValue": "20"
+          },
+          {
+            "id": "node_font_color",
+            "label": "Node label color",
+            "type": "FONT_COLOR",
+            "defaultValue": "#000000"
+          },
           {
             "id": "left_offset",
             "label": "Left label offset",
@@ -94,8 +94,8 @@
             "type": "INTERVAL",
             "defaultValue": "20"
           }
-				]
-			}
-		]
-	}
+        ]
+      }
+    ]
+  }
 }
