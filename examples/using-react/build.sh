@@ -10,4 +10,4 @@ cp build/static/js/*.js "deploy/$VIS_NAME.js"
 cp "src/$VIS_NAME.json" "deploy/$VIS_NAME.json"
 cp "src/$VIS_NAME.css" "deploy/$VIS_NAME.css"
 
-gsutil.par cp -a public-read deploy/* "gs://$GCS_BUCKET"
+gsutil cp -a public-read deploy/* "gs://$GCS_BUCKET"
