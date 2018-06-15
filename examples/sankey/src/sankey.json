@@ -20,7 +20,7 @@
 						"type": "METRIC",
 						"option": {
 							"require": 1,
-							"count": 1 
+							"count": 1
 						}
 					},
 					{
@@ -92,7 +92,7 @@
             "id": "right_offset",
             "label": "Right label offset",
             "type": "INTERVAL",
-            "defaultValue": "20" 
+            "defaultValue": "20"
           }
 				]
 			}
