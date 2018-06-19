@@ -1,0 +1,52 @@
+{
+  "propertyConfig": {
+    "data": [
+      {
+        "id": "concepts",
+        "heading": "Concepts",
+        "elements": [
+          {
+            "id": "dimensions",
+            "label": "Dimension",
+            "type": "DIMENSION",
+            "option": {
+              "require": 1,
+              "count": 1
+            }
+          },
+          {
+            "id": "metrics",
+            "label": "Metric",
+            "type": "METRIC",
+            "option": {
+              "require": 1,
+              "count": 1
+            }
+          },
+          {
+            "id": "row",
+            "label": "Max number of rows",
+            "type": "MAX_RESULTS",
+            "option": {
+              "count": 500
+            }
+          }
+        ]
+      }
+    ],
+    "style": [
+      {
+        "id": "colors",
+        "heading": "Colors",
+        "elements": [
+          {
+            "id": "barColor",
+            "label": "Bar Color",
+            "type": "FILL_COLOR",
+            "defaultValue": "#6B7FD7"
+          }
+        ]
+      }
+    ]
+  }
+}
