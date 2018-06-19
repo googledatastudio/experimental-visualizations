@@ -1,3 +1,4 @@
 examples/using-react/deploy
 examples/using-react/build
 examples/using-react/node_modules/
+node_modules/
