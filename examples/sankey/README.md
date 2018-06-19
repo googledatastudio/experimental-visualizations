@@ -1,18 +1,7 @@
-# Sankey Community Visualization Example
+# Sankey
 
-This directory provides sample visualization code for [Data Studio Community
-Visualizations](https://datastudio.com/datastudio/visualization). This
-visualization is a sankey visualization that takes two dimensions and a metric.
-Go to [this
-report](https://datastudio.google.com/reporting/1Tq70g44T0-KX9CCn2UT39edNi1yI4C9D/page/vYZT)
-to see the visualization live with Google analytics data.
-
-The [build.sh](./build.sh) script provides an example of a bash script to build
-and deploy the visualization. The script depends on [gsutil](https://cloud.google.com/storage/docs/gsutil),
-a command-line application for accessing Google cloud storage.
-
-This repository does not contain
-[dscc](https://github.com/googledatastudio/ds-component/blob/master/lib/dscc.min.js<sup>1</sup>,
-or d3.js, which are both required for the visualization to run.
-
-1.  The link will return a 404 if you are not part of trusted testing.
+# TODOs
+- make margin a selectable thing through style
+- make tooltips a styleable thing
+- deal with labels falling off the page
+- deal with rectangles having negative height 
