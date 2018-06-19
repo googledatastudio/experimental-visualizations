@@ -5,14 +5,16 @@
   "supportUrl": "https://datastudio.google.com",
   "packageUrl": "https://datastudio.google.com",
   "description": "sample d3js visualization",
-  "components": [{
-    "name": "d3sample",
-    "description": "sample d3js viz",
-    "resource": {
-      "js": "YOUR_GCS_BUCKET_PATH/d3basic.js",
-      "config": "YOUR_GCS_BUCKET_PATH/d3basic.json"
-    },
-    "devMode": true,
-    "iconUrl": "https://url"
-  }]
+  "components": [
+    {
+      "name": "d3sample",
+      "description": "sample d3js viz",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET_PATH/d3basic.js",
+        "config": "YOUR_GCS_BUCKET_PATH/d3basic.json"
+      },
+      "devMode": true,
+      "iconUrl": "https://url"
+    }
+  ]
 }
