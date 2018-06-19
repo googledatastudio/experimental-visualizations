@@ -1,6 +1,5 @@
 // generate the sankey data from a tabular format
 function parseData(data) {
-  console.log(data);
 
   // assuming only 2 dimensions
   var dimensions = data.fields.filter(function(d) {
@@ -127,7 +126,7 @@ function drawSankey(nodes, links, style) {
       })
       .attr('x', function(d) {
         return style.left_offset
-          ? d.x0 + +style.left_offset
+          ? d.x0 + parseInt(style.left_offset, 10)
           : d.x0 + margin.right / 2;
       })
       .attr('y', function(d) {
