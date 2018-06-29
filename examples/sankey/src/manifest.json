@@ -8,12 +8,12 @@
   "components": [
     {
       "name": "sankey",
-      "description": "Sunburst visualization",
+      "description": "Sankey visualization",
       "resource": {
-        "js": "YOUR_GCS_BUCKET_PATH/sankey.js",
-        "config": "YOUR_GCS_BUCKET_PATH/sankey.json"
+        "js": "GCS_PARENT_BUCKET/sankey.js",
+        "config": "GCS_PARENT_BUCKET/sankey.json"
       },
-      "devMode": true,
+      "devMode": DEVMODE_BOOL,
       "iconUrl": "https://url"
     }
   ]

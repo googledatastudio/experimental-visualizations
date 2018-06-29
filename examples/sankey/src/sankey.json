@@ -26,9 +26,9 @@
           {
             "id": "row",
             "label": "Max number of rows",
-            "type": "ROW",
+            "type": "MAX_RESULTS",
             "option": {
-              "count": 500
+              "count": 1000
             }
           }
         ]
