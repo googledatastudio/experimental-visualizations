@@ -28,10 +28,9 @@
             "label": "Max number of rows",
             "type": "MAX_RESULTS",
             "option": {
-              "count": 1000 
+              "count": 1000
             }
           }
-
         ]
       }
     ],
@@ -39,7 +38,7 @@
       {
         "id": "colors",
         "heading": "Colors",
-        "elements":[
+        "elements": [
           {
             "id": "node_color",
             "label": "Node Color",
@@ -58,13 +57,12 @@
             "type": "OPACITY",
             "defaultValue": "0.2"
           }
-
         ]
       },
       {
         "id": "labels",
         "heading": "Node labels",
-        "elements":[
+        "elements": [
           {
             "id": "show_labels",
             "label": "Show node labels?",
