@@ -1,3 +1,6 @@
+
+dscc.subscribeToData(parseData);
+
 // generate the sankey data from a tabular format
 function parseData(data) {
 
@@ -167,4 +170,3 @@ function drawSankey(nodes, links, style) {
   }
 }
 
-dscc.subscribeToData(parseData);

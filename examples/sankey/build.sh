@@ -1,12 +1,14 @@
 #!/bin/bash
-GCS_BUCKET="YOUR_GCS_BUCKET_PATH"
+# fill in your own dev/prod buckets here
+DEV_BUCKET="PATH_TO_DEV_BUCKET"
+PROD_BUCKET="PATH_TO_PROD_BUCKET"
 
 rm -rf deploy
 mkdir -p deploy
-# TODO: make sure that the path to dscc is correct
-cat dscc.min.js > deploy/sankey.js
+
+# ensure that this path is correct
+cat src/dscc.min.js > deploy/sankey.js
 echo >> deploy/sankey.js
-# TODO: make sure that the path to d3 and d3-sankey is correct
 cat src/d3.min.js >> deploy/sankey.js
 echo >> deploy/sankey.js
 cat src/d3-sankey.min.js >> deploy/sankey.js
@@ -14,6 +16,15 @@ echo >> deploy/sankey.js
 cat src/index.js >> deploy/sankey.js
 
 cp src/sankey.json deploy/sankey.json
-cp src/manifest.json deploy/manifest.json
 
-gsutil cp -a public-read deploy/* "gs://$GCS_BUCKET" 
+# default to dev unless prod arg passed
+if [ $1 == "-prod" ]
+then
+  echo "deploying to $PROD_BUCKET"
+  cat src/manifest.json | sed -e "s|GCS_PARENT_BUCKET|gs://$PROD_BUCKET|" -e "s/DEVMODE_BOOL/false/" > deploy/manifest.json
+  gsutil cp -a public-read deploy/* "gs://$PROD_BUCKET" 
+else
+  echo "deploying to $DEV_BUCKET"
+  cat src/manifest.json | sed -e "s|GCS_PARENT_BUCKET|$DEV_BUCKET|" -e "s/DEVMODE_BOOL/true/" > deploy/manifest.json
+  gsutil cp -a public-read deploy/* "gs://$DEV_BUCKET" 
+fi
