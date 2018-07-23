@@ -10,7 +10,6 @@ ctx.canvas.height = dscc.getHeight() - 100;
 canvasElement.id = 'myViz';
 document.body.appendChild(canvasElement);
 
-
 // Subscribe to Data and Style changes.
 dscc.subscribeToData(drawRectangle);
 
