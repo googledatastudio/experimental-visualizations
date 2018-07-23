@@ -1,0 +1,19 @@
+{
+  "name": "Community Visualization Examples",
+  "logoUrl": "https://url",
+  "organization": "Data Studio Developer Relations",
+  "supportUrl": "https://datastudio.google.com",
+  "packageUrl": "https://datastudio.google.com",
+  "description": "Sample visualizations",
+  "devMode": true,
+  "components": [{
+    "name": "d3errorbar",
+    "description": "d3 bar chart with error bars",
+    "resource": {
+      "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.js",
+      "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.json",
+      "css": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.css"
+    },
+    "iconUrl": "https://url"
+  }]
+}

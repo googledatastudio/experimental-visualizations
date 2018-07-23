@@ -6,11 +6,11 @@
       "elements": [
         {
           "id": "dimensions",
-          "label": "Dimension",
+          "label": "Dimensions",
           "type": "DIMENSION",
           "options": {
             "min": 1,
-            "max":1
+            "max": 1
           }
         },
         {
@@ -23,27 +23,26 @@
           }
         },
         {
-          "id": "row",
-          "label": "Max number of rows",
+          "id": "maxResults",
+          "label": "Max rows",
           "type": "MAX_RESULTS",
           "options": {
             "value": 500
           }
         }
-
       ]
     }
   ],
   "style": [
     {
-      "id": "colors",
+      "id": "color",
       "heading": "Colors",
       "elements": [
         {
+          "type": "FONT_COLOR",
           "id": "barColor",
           "label": "Bar Color",
-          "type": "FILL_COLOR",
-          "defaultValue": "#6B7FD7"
+          "defaultValue": "#000"
         }
       ]
     }

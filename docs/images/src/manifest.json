@@ -1,0 +1,25 @@
+{
+  "name": "My Visualizations",
+  "organization": "MyOrg",
+  "description": "My first visualization package.",
+  "logoUrl": "https://logo",
+  "organizationUrl": "https://url",
+  "supportUrl": "https://url",
+  "privacyPolicyUrl": "https://url",
+  "termsOfServiceUrl": "https://url",
+  "packageUrl": "https://url",
+  "supportUrl": "https://url",
+  "components": [
+    {
+      "name": "myViz",
+      "description": "My first Community Visualization",
+      "iconUrl": "https://url",
+      "devMode": true,
+      "resource": {
+          "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.js",
+          "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.json",
+          "css": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.css"
+      }
+    }
+  ]
+}

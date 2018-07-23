@@ -1,0 +1,18 @@
+{
+  "name": "Showcase Community Visualizations",
+  "logoUrl": "https://url",
+  "organization": "Data Studio Developer Relations",
+  "supportUrl": "https://datastudio.google.com",
+  "packageUrl": "https://datastudio.google.com",
+  "description": "Showcase visualizations",
+  "components": [{
+    "name": "sankey",
+    "description": "Sankey visualization",
+    "resource": {
+      "js": "GCS_PARENT_BUCKET/sankey.js",
+      "config": "GCS_PARENT_BUCKET/sankey.json"
+    },
+    "devMode": DEVMODE_BOOL,
+    "iconUrl": "https://url"
+  }]
+}

@@ -9,12 +9,13 @@
     {
       "name": "d3sample",
       "description": "sample d3js viz",
-      "resource": {
-        "js": "YOUR_GCS_BUCKET_PATH/d3basic.js",
-        "config": "YOUR_GCS_BUCKET_PATH/d3basic.json"
-      },
+      "iconUrl": "https://url",
       "devMode": true,
-      "iconUrl": "https://url"
+      "resource": {
+          "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/d3basic.js",
+          "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/d3basic.json",
+          "css": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/d3basic.css"
+      }
     }
   ]
 }

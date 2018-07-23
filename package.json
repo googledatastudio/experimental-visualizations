@@ -1,32 +1,18 @@
 {
-  "name": "experimental-visualizations",
+  "name": "community-viz",
   "version": "1.0.0",
-  "description": "This repository contains code samples for [Data Studio Community Visualizations](https://developers.google.com/datastudio/visualization/).",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "example": "examples"
-  },
+  "license": "MIT",
   "scripts": {
-    "prettier": "prettier --write \"**/*.js*\""
+    "prettier": "prettier --write \"**/*.js\""
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5",
-    "bracketSpacing": false,
-    "arrowParens": "always"
+    "bracketSpacing": false
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/googledatastudio/experimental-visualizations.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/googledatastudio/experimental-visualizations/issues"
-  },
-  "homepage": "https://github.com/googledatastudio/experimental-visualizations#readme",
   "devDependencies": {
-    "prettier": "^1.13.5"
+    "@google/clasp": "^1.4.1",
+    "prettier": "^1.12.1"
   }
 }
