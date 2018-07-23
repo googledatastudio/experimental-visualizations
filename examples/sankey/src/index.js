@@ -1,7 +1,9 @@
+
 dscc.subscribeToData(parseData);
 
 // generate the sankey data from a tabular format
 function parseData(data) {
+
   // assuming only 2 dimensions
   var dimensions = data.fields.filter(function(d) {
     return d.concept === 'DIMENSION';
@@ -167,3 +169,4 @@ function drawSankey(nodes, links, style) {
       });
   }
 }
+
