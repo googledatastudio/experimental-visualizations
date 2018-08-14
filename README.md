@@ -11,19 +11,21 @@ codelab](https://codelabs.developers.google.com/codelabs/community-visualization
 
 Demonstrates:
 1. How to build a community visualization
-2. How to interact with data
-3. The basics of using style
+2. How to interact with rows of data passed from Data Studio 
+3. The basics of exposing visualization style parameters through Data Studio's
+   UI
 
 # sankey
 Working sample code from the [sankey
 showcase report](https://datastudio.google.com/c/reporting/1hdqhp5dK31BcFInZzmaQOEQdVB54D4gz/page/j9DU)
 
 1. How to use external viz libraries (d3.js)
-2. Using different style elements 
+2. Exposing more advanced visualization style parameters through Data Studio's
+   UI
 
 
 # using-react
 
 1. Using ds-component through npm
-2. Using react with community visualization
+2. Using react with Data Studio community visualization
 
