@@ -10,9 +10,6 @@ ctx.canvas.height = dscc.getHeight() - 100;
 canvasElement.id = 'myViz';
 document.body.appendChild(canvasElement);
 
-// Subscribe to Data and Style changes.
-dscc.subscribeToData(drawRectangle);
-
 var barWidth = 50;
 var barGap = 10;
 var maxBarHeight = 300;
@@ -22,22 +19,13 @@ function drawRectangle(vizData) {
   // Place the canvas element on the page.
   var ctx = canvasElement.getContext('2d');
 
-  // Get Dimension and Metric Ids from the fields object.
-  // The field id is needed to access data values.
-  // There is only 1 metric and 1 dimension as defined in the visualization config.
-  var dimensionId = vizData.fields.find(function(d) {
-    return d.concept === 'DIMENSION';
-  }).id;
-  var metricId = vizData.fields.find(function(d) {
-    return d.concept === 'METRIC';
-  }).id;
-
   // Clear the canvas.
   ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
+  // 'barMetric' comes from the id defined in myViz.json
   var rowsTotal = 0;
   for (var i = 0; i < vizData.rows.length; i++) {
-    rowsTotal += vizData.rows[i][metricId];
+    rowsTotal += vizData.rows[i]['barMetric'][0];
   }
 
   // Use the Bar Color style element value to set the rectangle color.
@@ -46,14 +34,16 @@ function drawRectangle(vizData) {
   // Calculate height and draw bars for each row of data.
   for (var i = 0; i < vizData.rows.length; i++) {
     var barHeight = Math.round(
-      -1 * maxBarHeight * (vizData.rows[i][metricId] / rowsTotal)
+      -1 * maxBarHeight * (vizData.rows[i]['barMetric'][0] / rowsTotal)
     );
     var barX = (ctx.canvas.width / vizData.rows.length) * i + barWidth / 2;
     // Draw bars.
     ctx.fillRect(barX, maxBarHeight, barWidth, barHeight);
+
     // Add dimension labels below bars.
+    // 'barDimension' comes from the id defined in myViz.json
     ctx.fillText(
-      vizData.rows[i][dimensionId],
+      vizData.rows[i]['barDimension'][0],
       barX + barWidth / 4,
       maxBarHeight + 20
     );
@@ -61,11 +51,11 @@ function drawRectangle(vizData) {
 
   // Update the title element using dimension/metric names.
   var titleElement = document.getElementById('myVizTitle');
-  var metricName = vizData.fields.find(function(d) {
-    return d.id === metricId;
-  }).name;
-  var dimensionName = vizData.fields.find(function(d) {
-    return d.id === dimensionId;
-  }).name;
+  var metricName = vizData.fields['barMetric'][0].name;
+  var dimensionName = vizData.fields['barDimension'][0].name;
+
   titleElement.innerText = metricName + ' by ' + dimensionName;
 }
+
+// Subscribe to Data and Style changes.
+dscc.subscribeToData(drawRectangle);

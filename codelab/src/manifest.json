@@ -7,8 +7,8 @@
   "description": "Sample visualizations",
   "devMode": true,
   "components": [{
-    "name": "d3errorbar",
-    "description": "d3 bar chart with error bars",
+    "name": "codelab",
+    "description": "codelab sample code",
     "resource": {
       "js": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.js",
       "config": "MY_GOOGLE_CLOUD_STORAGE_BUCKET/myViz.json",
