@@ -3,22 +3,12 @@ dscc.subscribeToData(parseData);
 // generate the sankey data from a tabular format
 function parseData(data) {
   // assuming only 2 dimensions
-  var dimensions = data.fields.filter(function(d) {
-    return d.concept === 'DIMENSION';
-  });
-  var dimensionId1 = dimensions[0].id;
-  var dimensionId2 = dimensions[1].id;
-
-  // assuming only one metric
-  var metricId = data.fields.find(function(d) {
-    return d.concept === 'METRIC';
-  }).id;
 
   var dimNodes1 = data.rows.map(function(row) {
-    return row[dimensionId1];
+    return row['dimensions'][0];
   });
   var dimNodes2 = data.rows.map(function(row) {
-    return row[dimensionId2];
+    return row['dimensions'][1];
   });
 
   var uniqueNodes = Array.from(new Set(dimNodes1.concat(dimNodes2)));
@@ -30,9 +20,9 @@ function parseData(data) {
   // this assumes uniqueness of dim x dim in rows
   var links = data.rows.map(function(row) {
     return {
-      source: uniqueNodes.indexOf(row[dimensionId1]),
-      target: uniqueNodes.indexOf(row[dimensionId2]),
-      value: row[metricId],
+      source: uniqueNodes.indexOf(row['dimensions'][0]),
+      target: uniqueNodes.indexOf(row['dimensions'][1]),
+      value: row['metrics'][0],
     };
   });
 
