@@ -1,0 +1,28 @@
+{
+  "config": {
+    "gcsDevBucket": "YOUR_DEV_BUCKET",
+    "gcsProdBucket": "YOUR_PROD_BUCKET",
+    "jsFile": "index.js",
+    "jsonFile": "index.json",
+    "manifestFile": "manifest.json"
+  },
+  "scripts": {
+    "build:dev": "node scripts/build.js --prod false",
+    "build:prod": "node scripts/build.js --prod true",
+    "push:dev": "node scripts/push.js --prod false",
+    "push:prod": "node scripts/push.js --prod true"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.2",
+    "bluebird": "^3.5.2",
+    "commander": "^2.19.0",
+    "webpack-merge": "4.1.4",
+    "copy-webpack-plugin": "^4.5.3",
+    "webpack-plugin-replace": "^1.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "@google/dscc": "0.2.1"
+  }
+}
