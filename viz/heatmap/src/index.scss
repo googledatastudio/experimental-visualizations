@@ -1,0 +1,6 @@
+@import "@material/button/mdc-button";
+
+.clear-button {
+  @include mdc-button-ink-color(black);
+  @include mdc-states(gray);
+}
