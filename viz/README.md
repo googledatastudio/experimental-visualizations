@@ -13,4 +13,3 @@ team. Visualizations that are not working are subject to removal.
 
 For visualizations that are maintained in other locations, add a link below.
 
-- [GDS-Word-Cloud](https://github.com/pcperini/GDS-Word-Cloud): Easy word clouds in Google Data Studio
