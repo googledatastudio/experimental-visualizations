@@ -12,7 +12,6 @@
     "bracketSpacing": false
   },
   "devDependencies": {
-    "@google/clasp": "^1.4.1",
     "prettier": "^1.12.1"
   }
 }
