@@ -6343,7 +6343,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! /home/yulanlin/Code/heatmap-css/src/index.js */\"./src/index.js\");\nmodule.exports = __webpack_require__(/*! /home/yulanlin/Code/heatmap-css/src/index.scss */\"./src/index.scss\");\n\n\n//# sourceURL=webpack:///multi_./src/index.js_./src/index.scss?");
+eval("__webpack_require__(/*! /usr/local/google/home/yulanlin/Code/gh-cv/experimental-visualizations/viz/heatmap/src/index.js */\"./src/index.js\");\nmodule.exports = __webpack_require__(/*! /usr/local/google/home/yulanlin/Code/gh-cv/experimental-visualizations/viz/heatmap/src/index.scss */\"./src/index.scss\");\n\n\n//# sourceURL=webpack:///multi_./src/index.js_./src/index.scss?");
 
 /***/ })
 
