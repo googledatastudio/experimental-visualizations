@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prettier": "prettier --write \"**/*.js\""
+    "prettier": "prettier --write \"**/*.js\"",
+    "prettier:check": "prettier --check \"**/*.js\"",
+    "lint": "eslint **/*.js --quiet"
   },
   "prettier": {
     "singleQuote": true,
@@ -13,5 +15,9 @@
   },
   "devDependencies": {
     "prettier": "^1.12.1"
+  },
+  "dependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.13.0"
   }
 }
