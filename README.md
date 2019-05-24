@@ -1,15 +1,18 @@
-# About this repo
+# Community visualizations for Google Data Studio
 
-This repository is a place to share visualization and workflow code for Data
+## About this repo
+
+<a href="https://travis-ci.org/googledatastudio/experimental-visualizations"><img src="https://travis-ci.org/googledatastudio/experimental-visualizations.svg?branch=master" alt="Build Status"></a>
+
+
+This repository is a place for communty contributed code for Data
 Studio [community visualizations].
-## Workflows
 
 ## Viz
 
 The [viz](./viz) folder contains examples of community visualization code.
 
-Each viz should be in its own directory, with a README that describes how to
-deploy the code.
+Each viz should be in its own directory, with a README that describes the visualization.
 
 ## Other open source community visualizations
 
