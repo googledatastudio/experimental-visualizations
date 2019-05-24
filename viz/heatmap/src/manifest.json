@@ -1,0 +1,24 @@
+{
+  "name": "Heatmap Visualization",
+  "organization": "Data Studio Developer Relations",
+  "description": "d3.js heatmap",
+  "logoUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
+  "organizationUrl": "https://developers.google.com/datastudio/visualization",
+  "supportUrl": "https://developers.google.com/datastudio/visualization",
+  "privacyPolicyUrl": "https://developers.google.com/datastudio/visualization",
+  "termsOfServiceUrl": "https://developers.google.com/datastudio/visualization",
+  "packageUrl": "https://developers.google.com/datastudio/visualization",
+  "devMode": "false",
+  "components": [
+    {
+      "name": "heatmap",
+      "description": "d3.js heatmap",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/viz/heatmap/src/heatmap-icon.png",
+      "resource": {
+        "js": "gs://public-community-viz-showcase-reports/heatmap/index.js",
+        "config": "gs://public-community-viz-showcase-reports/heatmap/index.json",
+        "css": "gs://public-community-viz-showcase-reports/heatmap/index.css"
+      }
+    }
+  ]
+}
