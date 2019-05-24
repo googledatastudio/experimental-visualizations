@@ -13,6 +13,10 @@ color by).
 
 See it live in a [report].
 
+## Authors
+
+This code was written by the [Data Studio Developer Relations team][community visualization].
+
 [heatmap]: https://en.wikipedia.org/wiki/Heat_map
 [thumbnail]: src/heatmap_thumbnail.png
 [community visualization]: http://developers.google.com/datastudio/visualization
