@@ -52,6 +52,9 @@ function click(d) {
 
 }
 
+const styleVal = (message, styleId) => {
+  return message.style[styleId].value !== undefined ? message.style[styleId].value : message.style[styleI].defaultValue;
+}
 const updateLabels = (message) => {
 
   const xScale = vizState.xScale;
@@ -60,10 +63,11 @@ const updateLabels = (message) => {
   const margin = vizState.margin;
   const width = vizState.width;
   const height = vizState.height;
-  const fontFamily = message.style.fontFamily.value || message.style.fontFamily.defaultValue;
-  const showTitle = message.style.showTitle.value !== undefined ? message.style.showTitle.value : message.style.showTitle.defaultValue;
-  const showLabels = message.style.showLabels.value !== undefined ? message.style.showLabels.value : message.style.showLabels.defaultValue;
-  const fontSize = message.style.fontSize.value !== undefined ? message.style.fontSize.value : message.style.fontSize.defaultValue;
+  const fontFamily = styleVal(message, 'fontFamily');
+  const showTitle = styleVal(message, 'showTitle');
+  const showLabels = styleVal(message, 'showLabels');
+  const fontSize = styleVal(message, 'fontSize')
+  
   svg
     .selectAll('g.text')
     .remove();
