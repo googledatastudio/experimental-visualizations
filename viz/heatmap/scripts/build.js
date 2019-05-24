@@ -1,4 +1,3 @@
-
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -9,7 +8,7 @@ const webpackOptions = {
   entry: [
     // this is the viz source code
     path.resolve('./src', 'index.js'),
-    path.resolve('./src', 'index.scss')
+    path.resolve('./src', 'index.scss'),
   ],
   output: {
     filename: 'index.js',
@@ -26,24 +25,23 @@ const webpackOptions = {
               name: 'index.css',
             },
           },
-          { loader: 'extract-loader' },
-          { loader: 'css-loader' },
+          {loader: 'extract-loader'},
+          {loader: 'css-loader'},
           {
             loader: 'postcss-loader',
             options: {
-              plugins: () => [autoprefixer()]
-            }
+              plugins: () => [autoprefixer()],
+            },
           },
           {
             loader: 'sass-loader',
             options: {
-              includePaths: [path.resolve('./node_modules/')]
-            }
+              includePaths: [path.resolve('./node_modules/')],
+            },
           },
-
-        ]
+        ],
       },
-    ]
+    ],
   },
   plugins: [
     new CopyWebpackPlugin([
@@ -59,14 +57,13 @@ const webpackOptions = {
   ],
 };
 
-const build = async (webpackOptions) => {
+const build = async webpackOptions => {
   const compiler = webpack(webpackOptions);
   compiler.run((err, stats) => {
     // console.log(err);
     // console.log(stats);
-  })
-
+  });
 };
 
 console.log(path.resolve('./node_modules/'));
-build(webpackOptions)
+build(webpackOptions);
