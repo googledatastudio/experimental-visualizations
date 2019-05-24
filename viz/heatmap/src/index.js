@@ -2,28 +2,28 @@ const dscc = require('@google/dscc');
 const d3 = Object.assign({}, require('d3'), require('d3-axis'), require('d3-scale-chromatic'));
 const local = require('./localMessage.js');
 
-const constants = {
+const vizState = {
   'selected': new Set()
 };
 
 const clearFilter = () => {
   const FILTER = dscc.InteractionType.FILTER;
-  if ('canvas' in constants) {
-    const canvas = constants.canvas;
+  if ('canvas' in vizState) {
+    const canvas = vizState.canvas;
     const actionId = 'onClick';
-    constants.selected.clear();
+    vizState.selected.clear();
     canvas.selectAll('rect').style('stroke', 'none');
     dscc.clearInteraction(actionId, FILTER);
   }
 }
 
 function click(d) {
-  if (constants.enableInteractions === true) {
-    const selected = constants.selected;
+  if (vizState.enableInteractions === true) {
+    const selected = vizState.selected;
 
     const FILTER = dscc.InteractionType.FILTER;
     const actionId = 'onClick';
-    const dimIds = constants.dimensions.map((d => d.id))
+    const dimIds = vizState.categories.map((d => d.id))
 
     if (selected.has(d)) {
       selected.delete(d)
@@ -38,7 +38,7 @@ function click(d) {
     if (selected.size > 0) {
       const filterVals = []
       for (let item of selected) {
-        filterVals.push(item.dimensions)
+        filterVals.push(item.categories)
       }
       const filterData = {
         'concepts': dimIds,
@@ -54,12 +54,12 @@ function click(d) {
 
 const updateLabels = (message) => {
 
-  const xScale = constants.xScale;
-  const yScale = constants.yScale;
-  const svg = constants.svg;
-  const margin = constants.margin;
-  const width = constants.width;
-  const height = constants.height;
+  const xScale = vizState.xScale;
+  const yScale = vizState.yScale;
+  const svg = vizState.svg;
+  const margin = vizState.margin;
+  const width = vizState.width;
+  const height = vizState.height;
   const fontFamily = message.style.fontFamily.value || message.style.fontFamily.defaultValue;
   const showTitle = message.style.showTitle.value !== undefined ? message.style.showTitle.value : message.style.showTitle.defaultValue;
   const showLabels = message.style.showLabels.value !== undefined ? message.style.showLabels.value : message.style.showLabels.defaultValue;
@@ -85,7 +85,7 @@ const updateLabels = (message) => {
       .style('font-family', fontFamily)
       .style('font-size', `${fontSize}px`);
 
-    var yLabels = svg
+    const yLabels = svg
       .append('g')
       .selectAll('text')
       .data(yScale.domain())
@@ -102,8 +102,8 @@ const updateLabels = (message) => {
   }
 
   if (showTitle) {
-    const xName = message.fields.dimensions[0].name;
-    const yName = message.fields.dimensions[1].name;
+    const xName = message.fields.categories[0].name;
+    const yName = message.fields.categories[1].name;
     const metricName = message.fields.metric[0].name;
 
     var chartTitle = svg
@@ -117,9 +117,9 @@ const updateLabels = (message) => {
       .style('font-family', fontFamily);
   }
 
-  constants.showLabels = showLabels;
-  constants.fontFamily = fontFamily;
-  constants.showTitle = showTitle;
+  vizState.showLabels = showLabels;
+  vizState.fontFamily = fontFamily;
+  vizState.showTitle = showTitle;
 }
 
 const drawHeatmap = (message) => {
@@ -127,7 +127,7 @@ const drawHeatmap = (message) => {
   const width = dscc.getWidth();
   const height = dscc.getHeight() - 100;
   const data = message.tables.DEFAULT;
-  const margin = constants.margin;
+  const margin = vizState.margin;
   const enableInteractions = message.interactions.onClick.value.type === "FILTER" ? true : false;
 
   d3.select('body')
@@ -169,13 +169,13 @@ const drawHeatmap = (message) => {
 
   var xScale = d3
     .scaleBand()
-    .domain(data.map((d) => d.dimensions[0]))
+    .domain(data.map((d) => d.categories[0]))
     .range([0, width - margin.left - margin.right])
     .paddingInner(0.3);
 
   var yScale = d3
     .scaleBand()
-    .domain(data.map((d) => d.dimensions[1]))
+    .domain(data.map((d) => d.categories[1]))
     .range([0, height - margin.top - margin.bottom])
     .paddingInner(0.3);
 
@@ -184,8 +184,8 @@ const drawHeatmap = (message) => {
     .data(data)
     .enter()
     .append('rect')
-    .attr('x', (d) => xScale(d.dimensions[0]))
-    .attr('y', (d) => yScale(d.dimensions[1]))
+    .attr('x', (d) => xScale(d.categories[0]))
+    .attr('y', (d) => yScale(d.categories[1]))
     .attr('width', xScale.bandwidth())
     .attr('height', yScale.bandwidth())
     .style('fill', (d) => d3.interpolateRdBu((1 - colorScale(d.metric[0]))))
@@ -194,32 +194,32 @@ const drawHeatmap = (message) => {
     .append('title')
     .text((d) => d.metric[0]);
 
-  constants['svg'] = svg;
-  constants['canvas'] = canvas;
-  constants['width'] = width;
-  constants['height'] = height;
-  constants['yScale'] = yScale;
-  constants['xScale'] = xScale;
-  constants['data'] = data;
-  constants['interactions'] = enableInteractions;
+  vizState['svg'] = svg;
+  vizState['canvas'] = canvas;
+  vizState['width'] = width;
+  vizState['height'] = height;
+  vizState['yScale'] = yScale;
+  vizState['xScale'] = xScale;
+  vizState['data'] = data;
+  vizState['interactions'] = enableInteractions;
 
 
 }
 
 // write viz code here
 const draw = (message) => {
-  constants.dimensions = message.fields.dimensions;
-  constants.margin = { left: 60, right: 50, top: 50, bottom: 50 };
+  vizState.categories = message.fields.categories;
+  vizState.margin = { left: 60, right: 50, top: 50, bottom: 50 };
 
   const emptyCanvas = d3.select('svg').empty();
 
   const width = dscc.getWidth();
   const height = dscc.getHeight() - 100;
-  const widthChange = width !== constants.width;
-  const heightChange = height !== constants.height;
+  const widthChange = width !== vizState.width;
+  const heightChange = height !== vizState.height;
 
   const enableInteractions = message.interactions.onClick.value.type === "FILTER" ? true : false;
-  constants.enableInteractions = enableInteractions;
+  vizState.enableInteractions = enableInteractions;
   let clearInteractions;
   if (enableInteractions) {
     clearInteractions = message.interactions.onClick.value.data === undefined;
@@ -229,12 +229,12 @@ const draw = (message) => {
   }
 
 
-  const fontFamilyChange = message.style.fontFamily.value != constants.fontFamily;
-  const fontSizeChange = message.style.fontSize.value != constants.fontSize;
-  const titleChange = message.style.showTitle.value != constants.showTitle;
-  const labelChange = message.style.showLabels.value != constants.showLabels;
-  const interactionsChange = enableInteractions != constants['interactions'];
-  const dataChange = JSON.stringify(message.tables.DEFAULT) != JSON.stringify(constants['data']);
+  const fontFamilyChange = message.style.fontFamily.value != vizState.fontFamily;
+  const fontSizeChange = message.style.fontSize.value != vizState.fontSize;
+  const titleChange = message.style.showTitle.value != vizState.showTitle;
+  const labelChange = message.style.showLabels.value != vizState.showLabels;
+  const interactionsChange = enableInteractions != vizState['interactions'];
+  const dataChange = JSON.stringify(message.tables.DEFAULT) != JSON.stringify(vizState['data']);
 
 
   if (emptyCanvas || widthChange || heightChange || interactionsChange || dataChange) {
@@ -249,10 +249,5 @@ const draw = (message) => {
 };
 
 
-// renders locally
-if (false) {
-  draw(local.message);
-} else {
-  dscc.subscribeToData(draw, { transform: dscc.objectTransform });
-}
+dscc.subscribeToData(draw, { transform: dscc.objectTransform });
 

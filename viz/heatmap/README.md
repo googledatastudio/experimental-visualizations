@@ -1,6 +1,8 @@
 # Heatmap community visualization
 
-A heatmap [community visualization] built with d3.js
+A matrix [heatmap] [community visualization] built with d3.js.
+
+![Community visualization heatmap][thumbnail]
 
 Deployed version:
 `gs://public-community-viz-showcase-reports/heatmap`
@@ -11,5 +13,7 @@ color by).
 
 See it live in a [report].
 
+[heatmap]: https://en.wikipedia.org/wiki/Heat_map
+[thumbnail]: src/heatmap_thumbnail.png
 [community visualization]: http://developers.google.com/datastudio/visualization
 [report]: https://datastudio.google.com/c/u/0/reporting/1rvY8wWp3uhlj6daGi_Y2XXvuf7bBcjsi/page/7sUq

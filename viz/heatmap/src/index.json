@@ -5,8 +5,8 @@
       "label": "Concepts",
       "elements": [
         {
-          "id": "dimensions",
-          "label": "Dimensions",
+          "id": "categories",
+          "label": "Categories",
           "type": "DIMENSION",
           "options": {
             "min": 2,
