@@ -1,7 +1,7 @@
 {
   "dsccViz": {
-    "gcsDevBucket": "gs://public-community-viz-reports/timeline-v2",
-    "gcsProdBucket": "gs://yulanlin-cv-dev/timeline-v2",
+    "gcsDevBucket": "gs://yulanlin-cv-dev/timeline-v2",
+    "gcsProdBucket": "gs://public-community-viz-showcase-reports/timeline-v2",
     "jsFile": "index.js",
     "jsonFile": "index.json",
     "cssFile": "index.css",
