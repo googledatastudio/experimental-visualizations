@@ -1,0 +1,28 @@
+text {
+  font-size: 15px;
+}
+
+
+line {
+  stroke: #E8EAED;
+  stroke-width: 1px;
+}
+
+circle {
+  opacity: 0.8;
+  stroke-width: 1;
+
+}
+
+
+h3 {
+  color: #3C4043;
+  font-size: 20px;
+}
+
+g.tick text {
+  fill: #3C4043;
+
+}
+
+
