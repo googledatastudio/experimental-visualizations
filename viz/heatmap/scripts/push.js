@@ -8,4 +8,4 @@ const deploy = async bucketName => {
   console.log(`Viz deployed to: ${bucketName}`);
 };
 
-deploy('gs://public-community-viz-showcase-reports/heatmap');
+deploy('gs://yulanlin-cv-dev/heatmap');

@@ -15,9 +15,9 @@
       "description": "d3.js heatmap",
       "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/viz/heatmap/src/heatmap-icon.png",
       "resource": {
-        "js": "gs://public-community-viz-showcase-reports/heatmap/index.js",
-        "config": "gs://public-community-viz-showcase-reports/heatmap/index.json",
-        "css": "gs://public-community-viz-showcase-reports/heatmap/index.css"
+        "js": "gs://yulanlin-cv-dev/heatmap/index.js",
+        "config": "gs://yulanlin-cv-dev/heatmap/index.json",
+        "css": "gs://yulanlin-cv-dev/heatmap/index.css"
       }
     }
   ]

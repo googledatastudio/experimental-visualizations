@@ -58,7 +58,7 @@ function click(d) {
 const styleVal = (message, styleId) => {
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
-    : message.style[styleI].defaultValue;
+    : message.style[styleId].defaultValue;
 };
 const updateLabels = message => {
   const xScale = vizState.xScale;
