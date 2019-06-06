@@ -11,12 +11,10 @@ This visualization was created for the Google Cloud [blog post] introducing Data
 
 The visualization assumes a datasource with 4 columns:
 
-| Field Name | Description                                    |
-| ---------- | ---------------                                |
-| Index      | Unique ID per row used to deaggregate the data |
-| Date       | Date (in 'YYYY-MM-DD' string format)           |
-| Title      | ~1 sentence description                        |
-| Category   | Used to color dots and distribute them                                               |
+1. Index: Unique row ID used to deaggregate the data
+1. Date: Date (in 'YYYY-MM-DD' string format)
+1. Title: ~1 sentence description
+1. Category: Used to color dots and distribute them vertically
 
 ## Deployed version
 
