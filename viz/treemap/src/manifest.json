@@ -1,0 +1,24 @@
+{
+  "name": "Treemap",
+  "organization": "Data Studio Developer Relations",
+  "description": "Treemap visualization built with d3.js",
+  "logoUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
+  "organizationUrl": "https://developers.google.com/datastudio/visualization",
+  "supportUrl": "https://developers.google.com/datastudio/visualization",
+  "privacyPolicyUrl": "https://developers.google.com/datastudio/visualization",
+  "termsOfServiceUrl": "https://developers.google.com/datastudio/visualization",
+  "packageUrl": "https://developers.google.com/datastudio/visualization",
+  "devMode": "DEVMODE_BOOL",
+  "components": [
+    {
+      "name": "treemap",
+      "description": "Treemap visualization",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/viz/treemap/src/treemap.png",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}
