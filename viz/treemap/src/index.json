@@ -1,0 +1,78 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "Concepts",
+      "elements": [
+        {
+          "id": "levels",
+          "label": "Dimensions",
+          "type": "DIMENSION",
+          "options": {
+            "min": 2,
+            "max": 2
+          }
+        },
+        {
+          "id": "area",
+          "label":"Area",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "styles",
+      "label": "Style Options",
+      "elements": [
+        {
+          "type": "CHECKBOX",
+          "id": "showL1Labels",
+          "label": "Show Level 1 labels?",
+          "defaultValue": "false"
+        },
+        {
+          "type": "CHECKBOX",
+          "id": "showL2Labels",
+          "label": "Show Level 2 labels?",
+          "defaultValue": "false"
+        },
+        {
+          "type": "INTERVAL",
+          "id": "textXOffset",
+          "label": "Horizontal text offset",
+          "defaultValue": "0"
+        },
+        {
+          "type": "INTERVAL",
+          "id": "textYOffset",
+          "label": "Vertical text offset",
+          "defaultValue": "0"
+        },
+        {
+          "type": "FONT_SIZE",
+          "id": "fontSize",
+          "label": "Font Size",
+          "defaultValue": "10"
+        },
+        {
+          "type": "FONT_COLOR",
+          "id": "fontColor",
+          "label": "Font Color",
+          "defaultValue": "#000000"
+        },
+        {
+          "type": "FONT_FAMILY",
+          "id": "fontFamily",
+          "label": "Font Family",
+          "defaultValue": "Arial"
+          }
+      ]
+    }
+  ]
+}
