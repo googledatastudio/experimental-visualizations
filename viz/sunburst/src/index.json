@@ -2,7 +2,7 @@
   "data": [
     {
       "id": "concepts",
-      "heading": "concepts",
+      "label": "concepts",
       "elements": [
         {
           "id": "dimension",
