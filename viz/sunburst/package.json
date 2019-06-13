@@ -14,7 +14,9 @@
     "push:prod": "dscc-scripts viz push -d prod",
     "update_message": "dscc-scripts viz update_message -f object",
     "start": "dscc-scripts viz start",
-    "test": "jest"
+    "build": "tsc",
+    "test": "jest",
+    "prettier": "prettier --write \"{src,test}/**/*.{ts,js}\""
   },
   "devDependencies": {
     "@google/dscc": "^0.3.8",
