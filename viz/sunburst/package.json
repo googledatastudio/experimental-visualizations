@@ -1,7 +1,7 @@
 {
   "dsccViz": {
     "gcsDevBucket": "gs://yulanlin-cv-dev/sunburst",
-    "gcsProdBucket": "gs://yulanlin-cv-dev/sunburst",
+    "gcsProdBucket": "gs://public-community-viz-showcase-reports/sunburst",
     "jsFile": "index.js",
     "jsonFile": "index.json",
     "cssFile": "index.css",
@@ -13,7 +13,6 @@
     "push:dev": "dscc-scripts viz push -d dev",
     "push:prod": "dscc-scripts viz push -d prod",
     "update_message": "dscc-scripts viz update_message -f object",
-    "start": "dscc-scripts viz start",
     "test": "jest",
     "prettier": "prettier --write \"{src,test}/**/*.{ts,js}\""
   },

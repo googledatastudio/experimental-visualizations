@@ -1,5 +1,11 @@
 const dscc = require('@google/dscc');
-const d3 = Object.assign({}, require('d3'), require('d3-scale-chromatic'), require('d3-hierarchy'), require('d3-array'));
+const d3 = Object.assign(
+  {},
+  require('d3'),
+  require('d3-scale-chromatic'),
+  require('d3-hierarchy'),
+  require('d3-array')
+);
 import * as utils from './utils';
 const local = require('./localMessage');
 
@@ -25,9 +31,9 @@ const drawViz = (data: any) => {
 
   const radius = Math.min(width / 2, height / 2);
 
-  const colorScale = d3.scaleOrdinal(d3.schemeCategory10).domain(
-    data.tables.DEFAULT.map((row: any) => row.dimension[0])
-  );
+  const colorScale = d3
+    .scaleOrdinal(d3.schemeCategory10)
+    .domain(data.tables.DEFAULT.map((row: any) => row.dimension[0]));
 
   const assignColor = (d: any) => {
     if (d.depth === 1) {
@@ -39,11 +45,10 @@ const drawViz = (data: any) => {
     } else if (d.depth === 4) {
       return colorScale(d.parent.parent.parent.data.name);
     }
-
-  }
+  };
 
   const root = d3.hierarchy({
-    children: utils.buildHierarchy(data.tables.DEFAULT, data.fields)
+    children: utils.buildHierarchy(data.tables.DEFAULT, data.fields),
   });
 
   root.sum((d: any) => d.value);
@@ -52,28 +57,25 @@ const drawViz = (data: any) => {
 
   const arc = d3.arc();
 
-  const path = svg.append('g')
+  const path = svg
+    .append('g')
     .attr('transform', `translate(${width / 2}, ${height / 2})`)
     .selectAll('path')
     .data(root.descendants().slice(1))
     .enter()
     .append('path')
     .attr('d', (d: any) => {
-      return arc(
-        {
-          innerRadius: d.y0,
-          outerRadius: d.y1,
-          startAngle: d.x0,
-          endAngle: d.x1
-        }
-      )
+      return arc({
+        innerRadius: d.y0,
+        outerRadius: d.y1,
+        startAngle: d.x0,
+        endAngle: d.x1,
+      });
     })
     .attr('fill', (d: any) => assignColor(d))
     .attr('stroke', 'white');
 
-  path.append('title')
-    .text((d: any) => d.data.name);
-
+  path.append('title').text((d: any) => d.data.name);
 };
 
 // renders locally
