@@ -14,7 +14,7 @@ Note: this visualization will not work if the two dimensions have overlapping va
 Component ID of the deployed version of this visualization:
 
 ```
-gs://public-community-viz-showcase-reports/sankey.
+gs://public-community-viz-showcase-reports/sankey
 ```
 
 See the visualization [deployed].
