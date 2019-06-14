@@ -3,13 +3,7 @@ const d3 = Object.assign({}, require('d3'), require('d3-scale-chromatic'), requi
 import * as utils from './utils';
 const local = require('./localMessage');
 
-//import * as test from '../test/testData';
-
-// change this to 'true' for local development
-// change this to 'false' before deploying
-export const LOCAL = true;
-
-
+const LOCAL = false;
 
 // write viz code here
 const drawViz = (data: any) => {
@@ -48,23 +42,15 @@ const drawViz = (data: any) => {
 
   }
 
-  const root = d3.hierarchy(utils.createRoot(data));
+  const root = d3.hierarchy({
+    children: utils.buildHierarchy(data.tables.DEFAULT, data.fields)
+  });
 
   root.sum((d: any) => d.value);
   const layout = d3.partition().size([2 * Math.PI, radius]);
   layout(root);
 
   const arc = d3.arc();
-
-  const clicked = (d: any) => {
-    console.log(d);
-    let FILTER = dscc.InteractionType.FILTER;
-    let interactionData = {
-      concepts: [d.data.dimId],
-      values: [[d.data.name]]
-    };
-    dscc.sendInteraction("onClick", FILTER, interactionData);
-  }
 
   const path = svg.append('g')
     .attr('transform', `translate(${width / 2}, ${height / 2})`)
@@ -83,9 +69,7 @@ const drawViz = (data: any) => {
       )
     })
     .attr('fill', (d: any) => assignColor(d))
-    .attr('stroke', 'white')
-    .on('click', (d: any) => clicked(d));
-
+    .attr('stroke', 'white');
 
   path.append('title')
     .text((d: any) => d.data.name);

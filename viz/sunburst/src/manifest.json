@@ -8,7 +8,6 @@
   "privacyPolicyUrl": "https://url",
   "termsOfServiceUrl": "https://url",
   "packageUrl": "https://url",
-  "supportUrl": "https://url",
   "devMode": "DEVMODE_BOOL",
   "components": [
     {

@@ -8,22 +8,29 @@
     "print": "printMessage.js"
   },
   "scripts": {
-    "build:dev": "dscc-scripts viz build -d dev",
-    "build:prod": "dscc-scripts viz build -d prod",
+    "build:dev": "ts-node scripts/build.ts dev",
+    "build:prod": "ts-node scripts/build.ts prod",
     "push:dev": "dscc-scripts viz push -d dev",
     "push:prod": "dscc-scripts viz push -d prod",
     "update_message": "dscc-scripts viz update_message -f object",
     "start": "dscc-scripts viz start",
-    "build": "tsc",
     "test": "jest",
     "prettier": "prettier --write \"{src,test}/**/*.{ts,js}\""
   },
   "devDependencies": {
     "@google/dscc": "^0.3.8",
     "@google/dscc-scripts": "^1.0.0",
+    "@types/bluebird": "^3.5.27",
+    "@types/copy-webpack-plugin": "^5.0.0",
     "@types/jest": "^24.0.13",
+    "@types/mz": "^0.0.32",
+    "@types/node": "^12.0.8",
+    "@types/open": "^6.1.0",
     "jest": "^24.8.0",
+    "mz": "^2.7.0",
     "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.2",
+    "ts-node": "^8.2.0",
     "typescript": "^3.5.1"
   },
   "dependencies": {

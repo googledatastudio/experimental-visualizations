@@ -7,4 +7,11 @@ test('test message works', () => {
   expect(ut.createRoot(testMsg)).toEqual(outputMsg);
 })
 
-console.log(JSON.stringify(ut.buildHierarchy(td.dim4Message.tables.DEFAULT), null, 2));
+test('test new parsing works', () => {
+  const testMsg = td.dim4Message;
+  const outputMsg = td.d4createRoot;
+  const hierarchy = {
+    children: ut.buildHierarchy(testMsg.tables.DEFAULT, testMsg.fields)
+  };
+  expect(hierarchy).toEqual(outputMsg);
+})
