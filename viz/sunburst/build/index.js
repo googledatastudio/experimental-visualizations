@@ -3644,20 +3644,21 @@
         var e,
           r,
           i = this._,
-          o = ((r = i),
-          (n + '')
-            .trim()
-            .split(/^|\s+/)
-            .map(function(n) {
-              var t = '',
-                e = n.indexOf('.');
-              if (
-                (e >= 0 && ((t = n.slice(e + 1)), (n = n.slice(0, e))),
-                n && !r.hasOwnProperty(n))
-              )
-                throw new Error('unknown type: ' + n);
-              return {type: n, name: t};
-            })),
+          o =
+            ((r = i),
+            (n + '')
+              .trim()
+              .split(/^|\s+/)
+              .map(function(n) {
+                var t = '',
+                  e = n.indexOf('.');
+                if (
+                  (e >= 0 && ((t = n.slice(e + 1)), (n = n.slice(0, e))),
+                  n && !r.hasOwnProperty(n))
+                )
+                  throw new Error('unknown type: ' + n);
+                return {type: n, name: t};
+              })),
           u = -1,
           a = o.length;
         if (!(arguments.length < 2)) {
@@ -6307,27 +6308,28 @@
         return Yr(Pr(n), t);
       }));
     var Dr = Array.prototype,
-      Ir = (Dr.slice,
-      Dr.map,
-      function(n, t, e) {
-        (n = +n),
-          (t = +t),
-          (e =
-            (i = arguments.length) < 2
-              ? ((t = n), (n = 0), 1)
-              : i < 3
-              ? 1
-              : +e);
-        for (
-          var r = -1,
-            i = 0 | Math.max(0, Math.ceil((t - n) / e)),
-            o = new Array(i);
-          ++r < i;
+      Ir =
+        (Dr.slice,
+        Dr.map,
+        function(n, t, e) {
+          (n = +n),
+            (t = +t),
+            (e =
+              (i = arguments.length) < 2
+                ? ((t = n), (n = 0), 1)
+                : i < 3
+                ? 1
+                : +e);
+          for (
+            var r = -1,
+              i = 0 | Math.max(0, Math.ceil((t - n) / e)),
+              o = new Array(i);
+            ++r < i;
 
-        )
-          o[r] = n + r * e;
-        return o;
-      });
+          )
+            o[r] = n + r * e;
+          return o;
+        });
     Math.sqrt(50), Math.sqrt(10), Math.sqrt(2);
     var Lr = Math.cos,
       Br = Math.sin,
@@ -6900,27 +6902,28 @@
         return [r, i];
       },
       Mi = Array.prototype,
-      Ei = (Mi.slice,
-      Mi.map,
-      function(n, t, e) {
-        (n = +n),
-          (t = +t),
-          (e =
-            (i = arguments.length) < 2
-              ? ((t = n), (n = 0), 1)
-              : i < 3
-              ? 1
-              : +e);
-        for (
-          var r = -1,
-            i = 0 | Math.max(0, Math.ceil((t - n) / e)),
-            o = new Array(i);
-          ++r < i;
+      Ei =
+        (Mi.slice,
+        Mi.map,
+        function(n, t, e) {
+          (n = +n),
+            (t = +t),
+            (e =
+              (i = arguments.length) < 2
+                ? ((t = n), (n = 0), 1)
+                : i < 3
+                ? 1
+                : +e);
+          for (
+            var r = -1,
+              i = 0 | Math.max(0, Math.ceil((t - n) / e)),
+              o = new Array(i);
+            ++r < i;
 
-        )
-          o[r] = n + r * e;
-        return o;
-      }),
+          )
+            o[r] = n + r * e;
+          return o;
+        }),
       Ci = Math.sqrt(50),
       Ri = Math.sqrt(10),
       Ni = Math.sqrt(2);
@@ -9569,27 +9572,28 @@
     })(Bc);
     zc.right, zc.left;
     var qc = Array.prototype,
-      Fc = (qc.slice,
-      qc.map,
-      function(n, t, e) {
-        (n = +n),
-          (t = +t),
-          (e =
-            (i = arguments.length) < 2
-              ? ((t = n), (n = 0), 1)
-              : i < 3
-              ? 1
-              : +e);
-        for (
-          var r = -1,
-            i = 0 | Math.max(0, Math.ceil((t - n) / e)),
-            o = new Array(i);
-          ++r < i;
+      Fc =
+        (qc.slice,
+        qc.map,
+        function(n, t, e) {
+          (n = +n),
+            (t = +t),
+            (e =
+              (i = arguments.length) < 2
+                ? ((t = n), (n = 0), 1)
+                : i < 3
+                ? 1
+                : +e);
+          for (
+            var r = -1,
+              i = 0 | Math.max(0, Math.ceil((t - n) / e)),
+              o = new Array(i);
+            ++r < i;
 
-        )
-          o[r] = n + r * e;
-        return o;
-      });
+          )
+            o[r] = n + r * e;
+          return o;
+        });
     Math.sqrt(50), Math.sqrt(10), Math.sqrt(2);
     var jc = function(n) {
       for (var t, e, r, i = n.length, o = -1, u = 0; ++o < i; )
@@ -11822,27 +11826,28 @@
         return null === n ? NaN : +n;
       },
       Ql = Array.prototype,
-      Jl = (Ql.slice,
-      Ql.map,
-      function(n, t, e) {
-        (n = +n),
-          (t = +t),
-          (e =
-            (i = arguments.length) < 2
-              ? ((t = n), (n = 0), 1)
-              : i < 3
-              ? 1
-              : +e);
-        for (
-          var r = -1,
-            i = 0 | Math.max(0, Math.ceil((t - n) / e)),
-            o = new Array(i);
-          ++r < i;
+      Jl =
+        (Ql.slice,
+        Ql.map,
+        function(n, t, e) {
+          (n = +n),
+            (t = +t),
+            (e =
+              (i = arguments.length) < 2
+                ? ((t = n), (n = 0), 1)
+                : i < 3
+                ? 1
+                : +e);
+          for (
+            var r = -1,
+              i = 0 | Math.max(0, Math.ceil((t - n) / e)),
+              o = new Array(i);
+            ++r < i;
 
-        )
-          o[r] = n + r * e;
-        return o;
-      }),
+          )
+            o[r] = n + r * e;
+          return o;
+        }),
       nh = Math.sqrt(50),
       th = Math.sqrt(10),
       eh = Math.sqrt(2),
@@ -19200,62 +19205,63 @@
     const r = e(8),
       i = Object.assign({}, e(5), e(2), e(3), e(6)),
       o = e(13),
-      u = (e(14),
-      n => {
-        const t = 20,
-          e = 20,
-          u = 20,
-          a = 20,
-          c = r.getHeight() - t - e,
-          f = r.getWidth() - u - a;
-        i.select('body')
-          .selectAll('svg')
-          .remove();
-        var s = i
-          .select('body')
-          .append('svg')
-          .attr('transform', `translate(${u}, ${t})`)
-          .attr('width', f)
-          .attr('height', c);
-        const l = Math.min(f / 2, c / 2),
-          h = i
-            .scaleOrdinal(i.schemeCategory10)
-            .domain(n.tables.DEFAULT.map(n => n.dimension[0])),
-          d = i.hierarchy({
-            children: o.buildHierarchy(n.tables.DEFAULT, n.fields),
-          });
-        d.sum(n => n.value), i.partition().size([2 * Math.PI, l])(d);
-        const p = i.arc();
-        s.append('g')
-          .attr('transform', `translate(${f / 2}, ${c / 2})`)
-          .selectAll('path')
-          .data(d.descendants().slice(1))
-          .enter()
-          .append('path')
-          .attr('d', n =>
-            p({
-              innerRadius: n.y0,
-              outerRadius: n.y1,
-              startAngle: n.x0,
-              endAngle: n.x1,
-            })
-          )
-          .attr('fill', n =>
-            (n =>
-              1 === n.depth
-                ? h(n.data.name)
-                : 2 === n.depth
-                ? h(n.parent.data.name)
-                : 3 === n.depth
-                ? h(n.parent.parent.data.name)
-                : 4 === n.depth
-                ? h(n.parent.parent.parent.data.name)
-                : void 0)(n)
-          )
-          .attr('stroke', 'white')
-          .append('title')
-          .text(n => n.data.name);
-      });
+      u =
+        (e(14),
+        n => {
+          const t = 20,
+            e = 20,
+            u = 20,
+            a = 20,
+            c = r.getHeight() - t - e,
+            f = r.getWidth() - u - a;
+          i.select('body')
+            .selectAll('svg')
+            .remove();
+          var s = i
+            .select('body')
+            .append('svg')
+            .attr('transform', `translate(${u}, ${t})`)
+            .attr('width', f)
+            .attr('height', c);
+          const l = Math.min(f / 2, c / 2),
+            h = i
+              .scaleOrdinal(i.schemeCategory10)
+              .domain(n.tables.DEFAULT.map(n => n.dimension[0])),
+            d = i.hierarchy({
+              children: o.buildHierarchy(n.tables.DEFAULT, n.fields),
+            });
+          d.sum(n => n.value), i.partition().size([2 * Math.PI, l])(d);
+          const p = i.arc();
+          s.append('g')
+            .attr('transform', `translate(${f / 2}, ${c / 2})`)
+            .selectAll('path')
+            .data(d.descendants().slice(1))
+            .enter()
+            .append('path')
+            .attr('d', n =>
+              p({
+                innerRadius: n.y0,
+                outerRadius: n.y1,
+                startAngle: n.x0,
+                endAngle: n.x1,
+              })
+            )
+            .attr('fill', n =>
+              (n =>
+                1 === n.depth
+                  ? h(n.data.name)
+                  : 2 === n.depth
+                  ? h(n.parent.data.name)
+                  : 3 === n.depth
+                  ? h(n.parent.parent.data.name)
+                  : 4 === n.depth
+                  ? h(n.parent.parent.parent.data.name)
+                  : void 0)(n)
+            )
+            .attr('stroke', 'white')
+            .append('title')
+            .text(n => n.data.name);
+        });
     r.subscribeToData(u, {transform: r.objectTransform});
   },
   function(n, t, e) {
@@ -19330,19 +19336,20 @@
         });
         var e,
           r = t.filter(u),
-          i = ((e = function(n, t) {
-            return a(n.type) - a(t.type);
-          }),
-          r
-            .map(function(n, t) {
-              return {item: n, index: t};
-            })
-            .sort(function(n, t) {
-              return e(n.item, t.item) || n.index - t.index;
-            })
-            .map(function(n) {
-              return n.item;
-            })),
+          i =
+            ((e = function(n, t) {
+              return a(n.type) - a(t.type);
+            }),
+            r
+              .map(function(n, t) {
+                return {item: n, index: t};
+              })
+              .sort(function(n, t) {
+                return e(n.item, t.item) || n.index - t.index;
+              })
+              .map(function(n) {
+                return n.item;
+              })),
           o = [];
         return (
           i.forEach(function(n) {
