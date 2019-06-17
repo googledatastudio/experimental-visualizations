@@ -1,4 +1,4 @@
-# Data Studio Community Visualization Local Development Template
+# Data Studio Community Visualization Sunburst Chart
 
 Data Studio [community visualizations][community viz] allow you to write custom
 JavaScript visualizations for [Google Data Studio][datastudio].
