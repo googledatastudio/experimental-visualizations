@@ -1,6 +1,7 @@
 const dscc = require('@google/dscc');
 const d3 = Object.assign({}, require('d3'), require('d3-sankey'));
 const local = require('./localMessage.js');
+import * as ut from './utils.js';
 
 // change this to 'true' for local development
 // change this to 'false' before deploying
@@ -33,14 +34,17 @@ const parseData = data => {
   return {nodes, links};
 };
 
-// write viz code here
-const drawViz = message => {
+const draw = message => {
   const sankeyData = parseData(message.tables.DEFAULT);
   const style = message.style;
 
   // remove the canvas if it exists
   d3.select('body')
     .selectAll('svg')
+    .remove();
+  // remove the error handler if exists
+  d3.select('body')
+    .selectAll('div')
     .remove();
 
   // set margins
@@ -193,6 +197,13 @@ const drawViz = message => {
       .text(function(d) {
         return d.id;
       });
+  }
+};
+const drawViz = message => {
+  try {
+    draw(message);
+  } catch (err) {
+    ut.onError();
   }
 };
 
