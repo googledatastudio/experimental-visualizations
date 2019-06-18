@@ -1,7 +1,7 @@
 const dscc = require('@google/dscc');
 const d3 = Object.assign({}, require('d3'), require('d3-sankey'));
 const local = require('./localMessage.js');
-import * as ut from './utils.js'
+import * as ut from './utils.js';
 
 // change this to 'true' for local development
 // change this to 'false' before deploying
@@ -10,20 +10,20 @@ export const LOCAL = false;
 // write viz code here
 const parseData = data => {
   // assuming only 2 dimensions
-  var dimNodes1 = data.map(function (row) {
+  var dimNodes1 = data.map(function(row) {
     return row['dimensions'][0];
   });
-  var dimNodes2 = data.map(function (row) {
+  var dimNodes2 = data.map(function(row) {
     return row['dimensions'][1];
   });
 
   var uniqueNodes = Array.from(new Set(dimNodes1.concat(dimNodes2)));
 
-  var nodes = uniqueNodes.map(function (d) {
-    return { id: d };
+  var nodes = uniqueNodes.map(function(d) {
+    return {id: d};
   });
 
-  var links = data.map(function (row) {
+  var links = data.map(function(row) {
     return {
       source: uniqueNodes.indexOf(row['dimensions'][0]),
       target: uniqueNodes.indexOf(row['dimensions'][1]),
@@ -31,7 +31,7 @@ const parseData = data => {
     };
   });
 
-  return { nodes, links };
+  return {nodes, links};
 };
 
 const draw = message => {
@@ -48,8 +48,8 @@ const draw = message => {
     .remove();
 
   // set margins
-  var margin = { left: 20, right: 50, top: 20, bottom: 20 };
-  var padding = { left: 20, right: 50, top: 20, bottom: 20 };
+  var margin = {left: 20, right: 50, top: 20, bottom: 20};
+  var padding = {left: 20, right: 50, top: 20, bottom: 20};
   // get the width and the height of the iframe
   var width = dscc.getWidth() - margin.left - margin.right;
   var height = dscc.getHeight() - margin.top - margin.bottom;
@@ -108,13 +108,13 @@ const draw = message => {
     .enter()
     .append('rect')
     .classed('node', true)
-    .attr('x', function (d) {
+    .attr('x', function(d) {
       return d.x0;
     })
-    .attr('y', function (d) {
+    .attr('y', function(d) {
       return d.y0;
     })
-    .attr('height', function (d) {
+    .attr('height', function(d) {
       return d.y1 - d.y0;
     })
     .attr('width', sankey.nodeWidth())
@@ -138,7 +138,7 @@ const draw = message => {
     .enter()
     .append('path')
     .attr('d', d3.sankeyLinkHorizontal())
-    .attr('stroke-width', function (d) {
+    .attr('stroke-width', function(d) {
       return d.width;
     })
     .on('click', onClick)
@@ -156,15 +156,15 @@ const draw = message => {
       .data(sankeyData.nodes)
       .enter()
       .append('text')
-      .filter(function (d) {
+      .filter(function(d) {
         return d.x0 < width / 2;
       })
-      .attr('x', function (d) {
+      .attr('x', function(d) {
         return style.left_offset.value
           ? d.x0 + parseInt(style.left_offset.value, 10)
           : d.x0 + margin.right / 2;
       })
-      .attr('y', function (d) {
+      .attr('y', function(d) {
         return (d.y0 + d.y1) / 2;
       })
       .attr('text-anchor', 'beginning')
@@ -181,40 +181,35 @@ const draw = message => {
       .data(sankeyData.nodes)
       .enter()
       .append('text')
-      .filter(function (d) {
+      .filter(function(d) {
         return d.x0 > width / 2;
       })
-      .attr('x', function (d) {
+      .attr('x', function(d) {
         return style.right_offset.value
           ? d.x0 - +style.right_offset.value
           : d.x0 - margin.right / 2;
       })
-      .attr('y', function (d) {
+      .attr('y', function(d) {
         return (d.y0 + d.y1) / 2;
       })
       .attr('text-anchor', 'end')
       .attr('dy', '0.35em')
-      .text(function (d) {
+      .text(function(d) {
         return d.id;
       });
   }
-}
+};
 const drawViz = message => {
   try {
-    draw(message)
+    draw(message);
+  } catch (err) {
+    ut.onError();
   }
-  catch (err) {
-    ut.onError()
-  }
-
 };
-
-
-
 
 // renders locally
 if (LOCAL) {
   drawViz(local.message);
 } else {
-  dscc.subscribeToData(drawViz, { transform: dscc.objectTransform });
+  dscc.subscribeToData(drawViz, {transform: dscc.objectTransform});
 }

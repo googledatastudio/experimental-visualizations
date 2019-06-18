@@ -17,7 +17,6 @@ This chart takes 2 dimensions (for the nodes on the left and right) and a metric
 
 `;
 
-
 export const onError = () => {
   // append a div to the DOM for the README
   document.body.innerHTML = '';
@@ -26,5 +25,4 @@ export const onError = () => {
   let readmeDiv = document.createElement('div');
   readmeDiv.innerHTML = ERROR_MESSAGE;
   document.body.appendChild(readmeDiv);
-
-}
+};
