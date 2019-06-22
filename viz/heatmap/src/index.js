@@ -6,6 +6,7 @@ const d3 = Object.assign(
   require('d3-scale-chromatic')
 );
 const local = require('./localMessage.js');
+const ut = require('./utils.js')
 
 const vizState = {
   selected: new Set(),
@@ -102,8 +103,8 @@ const updateLabels = message => {
         'transform',
         d =>
           `rotate( -90 ${margin.left}, ${yScale(d) +
-            margin.left +
-            yScale.bandwidth() / 3})`
+          margin.left +
+          yScale.bandwidth() / 3})`
       )
       .text(d => d)
       .style('font-family', fontFamily)
@@ -185,6 +186,12 @@ const drawHeatmap = message => {
     .range([0, height - margin.top - margin.bottom])
     .paddingInner(0.3);
 
+  // check for too many dimensions
+  if (yScale.bandwidth() < 0 || xScale.bandwidth() < 0) {
+    ut.onError(ut.TOO_MANY_DIMS);
+    return;
+  }
+
   const cells = canvas
     .selectAll('rect')
     .data(data)
@@ -213,7 +220,7 @@ const drawHeatmap = message => {
 // write viz code here
 const draw = message => {
   vizState.categories = message.fields.categories;
-  vizState.margin = {left: 60, right: 50, top: 50, bottom: 50};
+  vizState.margin = { left: 60, right: 50, top: 50, bottom: 50 };
 
   const emptyCanvas = d3.select('svg').empty();
 
@@ -256,4 +263,14 @@ const draw = message => {
   }
 };
 
+const drawViz = (message) => {
+  try {
+    draw(message)
+  } catch (err) {
+    ut.onError(ut.GENERAL_ERROR);
+    console.log(err);
+  }
+}
+
+//draw(local.message);
 dscc.subscribeToData(draw, {transform: dscc.objectTransform});

@@ -8,15 +8,15 @@
   "privacyPolicyUrl": "https://developers.google.com/datastudio/visualization",
   "termsOfServiceUrl": "https://developers.google.com/datastudio/visualization",
   "packageUrl": "https://developers.google.com/datastudio/visualization",
-  "devMode": "false",
+  "devMode": "true",
   "components": [
     {
       "name": "heatmap",
       "description": "d3.js heatmap",
       "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/viz/heatmap/src/heatmap-icon.png",
       "resource": {
-        "js": "gs://public-community-viz-showcase-reports/heatmap/index.js",
-        "config": "gs://public-community-viz-showcase-reports/heatmap/index.json",
+        "js": "gs://yulanlin-cv-dev/heatmap2/index.js",
+        "config": "gs://yulanlin-cv-dev/heatmap2/index.json",
         "css": "gs://public-community-viz-showcase-reports/heatmap/index.css"
       }
     }

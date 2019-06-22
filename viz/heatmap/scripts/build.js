@@ -65,5 +65,5 @@ const build = async webpackOptions => {
   });
 };
 
-console.log(path.resolve('./node_modules/'));
+//console.log(path.resolve('./node_modules/'));
 build(webpackOptions);
