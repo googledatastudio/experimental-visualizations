@@ -17,6 +17,11 @@ const drawViz = (data: any) => {
   const height = dscc.getHeight() - margin.top - margin.bottom;
   const width = dscc.getWidth() - margin.left - margin.right;
 
+  if (height < 0 || width < 0) {
+    utils.onError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
+    return;
+  }
+
   // remove the canvas if it exists
   d3.select('body')
     .selectAll('svg')
@@ -79,8 +84,19 @@ const drawViz = (data: any) => {
 };
 
 // renders locally
+
+const draw = (message: object) => {
+  d3.select('#error').remove();
+  try {
+    drawViz(message)
+  }
+  catch (err) {
+    utils.onError(utils.GENERAL_ERROR);
+    console.log(err);
+  }
+}
 if (LOCAL) {
-  drawViz(local.message);
+  draw(local.message);
 } else {
-  dscc.subscribeToData(drawViz, {transform: dscc.objectTransform});
+  dscc.subscribeToData(draw, {transform: dscc.objectTransform});
 }
