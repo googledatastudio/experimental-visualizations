@@ -1,6 +1,6 @@
 {
   "dsccViz": {
-    "gcsDevBucket": "gs://yulanlin-cv-dev/heatmap2",
+    "gcsDevBucket": "gs://yulanlin-cv-dev/heatmap",
     "gcsProdBucket": "gs://public-community-viz-showcase/heatmap",
     "jsFile": "index.js",
     "jsonFile": "index.json",
@@ -8,8 +8,10 @@
     "print": "printMessage.js"
   },
   "scripts": {
-    "build": "node scripts/build.js",
-    "push": "node scripts/push.js",
+    "build:dev": "node scripts/build.js dev",
+    "build:prod": "node scripts/build.js prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
     "start": "webpack-dev-server",
     "update_message": "dscc-scripts viz update_message -f object"
   },
