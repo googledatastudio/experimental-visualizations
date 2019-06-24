@@ -229,7 +229,7 @@ const draw = message => {
   const height = dscc.getHeight() - 50;
 
   if (height < 0) {
-    ut.onError(ut.SVG_TOO_SMALL, ut.c_svg_too_small);
+    ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
     return;
   }
   const widthChange = width !== vizState.width;
