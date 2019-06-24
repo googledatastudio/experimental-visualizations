@@ -6,7 +6,7 @@ const d3 = Object.assign(
   require('d3-scale-chromatic')
 );
 const local = require('./localMessage.js');
-const ut = require('./utils.js')
+const ut = require('./utils.js');
 
 const vizState = {
   selected: new Set(),
@@ -103,8 +103,8 @@ const updateLabels = message => {
         'transform',
         d =>
           `rotate( -90 ${margin.left}, ${yScale(d) +
-          margin.left +
-          yScale.bandwidth() / 3})`
+            margin.left +
+            yScale.bandwidth() / 3})`
       )
       .text(d => d)
       .style('font-family', fontFamily)
@@ -221,7 +221,7 @@ const drawHeatmap = message => {
 // write viz code here
 const draw = message => {
   vizState.categories = message.fields.categories;
-  vizState.margin = { left: 60, right: 50, top: 50, bottom: 50 };
+  vizState.margin = {left: 60, right: 50, top: 50, bottom: 50};
 
   const emptyCanvas = d3.select('svg').empty();
 
@@ -269,14 +269,14 @@ const draw = message => {
   }
 };
 
-const drawViz = (message) => {
+const drawViz = message => {
   d3.select('#error').remove();
   try {
-    draw(message)
+    draw(message);
   } catch (err) {
     ut.onError(ut.GENERAL_ERROR);
     console.log(err);
   }
-}
+};
 
 dscc.subscribeToData(drawViz, {transform: dscc.objectTransform});

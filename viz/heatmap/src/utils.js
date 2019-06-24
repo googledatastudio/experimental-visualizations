@@ -25,8 +25,7 @@ export const onError = (msg, c_msg = c_general) => {
   // append the data to a div
   let msgDiv = document.createElement('div');
   msgDiv.id = 'error';
-  msgDiv.innerHTML = msg;;
+  msgDiv.innerHTML = msg;
   document.body.appendChild(msgDiv);
   console.log(c_msg);
-
 };

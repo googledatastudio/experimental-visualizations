@@ -4,7 +4,7 @@ const fs = require('mz/fs');
 const path = require('path');
 const webpack = require('webpack');
 
-const buildOptions = (buildValues) => {
+const buildOptions = buildValues => {
   // common options
   const webpackOptions = {
     entry: {
@@ -14,12 +14,12 @@ const buildOptions = (buildValues) => {
     module: {
       rules: [
         {
-          exclude: /node_modules/
-        }
-      ]
+          exclude: /node_modules/,
+        },
+      ],
     },
     resolve: {
-      extensions: ['.js']
+      extensions: ['.js'],
     },
     output: {
       filename: 'index.js',
@@ -54,9 +54,9 @@ const buildOptions = (buildValues) => {
   return webpackOptions;
 };
 
-const build = async (devMode) => {
+const build = async devMode => {
   const devBucket = process.env.npm_package_dsccViz_gcsDevBucket;
-  const prodBucket  = process.env.npm_package_dsccViz_gcsProdBucket;
+  const prodBucket = process.env.npm_package_dsccViz_gcsProdBucket;
   const deployBucket = devMode ? devBucket : prodBucket;
 
   const encoding = 'utf-8';
@@ -67,16 +67,8 @@ const build = async (devMode) => {
 
   await compilerRun();
 
-  const manifestSrc = path.resolve(
-    process.env.PWD,
-    'src',
-    'manifest.json'
-  );
-  const manifestDest = path.resolve(
-    process.env.PWD,
-    'build',
-    'manifest.json'
-  );
+  const manifestSrc = path.resolve(process.env.PWD, 'src', 'manifest.json');
+  const manifestDest = path.resolve(process.env.PWD, 'build', 'manifest.json');
   const manifestContents = await fs.readFile(manifestSrc, encoding);
   const newManifest = manifestContents
     .replace(/YOUR_GCS_BUCKET/g, deployBucket)
@@ -88,7 +80,7 @@ const build = async (devMode) => {
 const main = () => {
   const devArg = process.argv[2];
   const devMode = devArg === 'dev' ? true : false;
-  build(devMode)
-}
+  build(devMode);
+};
 
-main()
+main();
