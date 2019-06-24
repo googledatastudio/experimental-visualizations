@@ -1,7 +1,7 @@
 {
   "dsccViz": {
     "gcsDevBucket": "gs://yulanlin-cv-dev/sankey",
-    "gcsProdBucket": "gs://public-community-viz-showcase/sankey",
+    "gcsProdBucket": "gs://public-community-viz-showcase-reports/sankey",
     "jsFile": "index.js",
     "jsonFile": "index.json",
     "cssFile": "index.css",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build:dev": "dscc-scripts viz build -d dev",
-    "build:prod": "dscc-scripts viz push -d prod",
+    "build:prod": "dscc-scripts viz build -d prod",
     "push:dev": "dscc-scripts viz push -d dev",
     "push:prod": "dscc-scripts viz push -d prod",
     "start": "dscc-scripts viz start",

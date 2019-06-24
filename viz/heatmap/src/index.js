@@ -134,7 +134,8 @@ const updateLabels = message => {
 
 const drawHeatmap = message => {
   const width = dscc.getWidth();
-  const height = dscc.getHeight() - 100;
+  const height = dscc.getHeight() - 50;
+
   const data = message.tables.DEFAULT;
   const margin = vizState.margin;
   const enableInteractions =
@@ -187,7 +188,7 @@ const drawHeatmap = message => {
     .paddingInner(0.3);
 
   // check for too many dimensions
-  if (yScale.bandwidth() < 0 || xScale.bandwidth() < 0) {
+  if (yScale.bandwidth() < 0.01 || xScale.bandwidth() < 0.01) {
     ut.onError(ut.TOO_MANY_DIMS);
     return;
   }
@@ -225,7 +226,12 @@ const draw = message => {
   const emptyCanvas = d3.select('svg').empty();
 
   const width = dscc.getWidth();
-  const height = dscc.getHeight() - 100;
+  const height = dscc.getHeight() - 50;
+
+  if (height < 0) {
+    ut.onError(ut.SVG_TOO_SMALL, ut.c_svg_too_small);
+    return;
+  }
   const widthChange = width !== vizState.width;
   const heightChange = height !== vizState.height;
 
@@ -264,6 +270,7 @@ const draw = message => {
 };
 
 const drawViz = (message) => {
+  d3.select('#error').remove();
   try {
     draw(message)
   } catch (err) {
@@ -272,5 +279,4 @@ const drawViz = (message) => {
   }
 }
 
-//draw(local.message);
-dscc.subscribeToData(draw, {transform: dscc.objectTransform});
+dscc.subscribeToData(drawViz, {transform: dscc.objectTransform});
