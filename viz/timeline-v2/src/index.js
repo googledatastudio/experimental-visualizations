@@ -52,7 +52,12 @@ const drawViz = data => {
   const svgHeight = height - margin.top - margin.bottom;
   const svgWidth = width - margin.left - margin.right;
 
-  if (svgHeight < 0 || svgWidth < 0 || width - margin.left < 0 || height - margin.top < 0){
+  if (
+    svgHeight < 0 ||
+    svgWidth < 0 ||
+    width - margin.left < 0 ||
+    height - margin.top < 0
+  ) {
     ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
     return;
   }
