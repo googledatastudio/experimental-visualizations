@@ -54,7 +54,7 @@ export const SVG_TOO_SMALL = `
 
 export const C_SVG_TOO_SMALL = 'Error. Try making the component larger.';
 
-const C_GENERAL = 'Error. For more information, check out the source code or file an issue at \n https://github.com/googledatastudio/experimental-visualizations/viz/heatmap';
+const C_GENERAL = 'Error. For more information, check out the source code or file an issue at \n https://github.com/googledatastudio/experimental-visualizations/viz/sunburst';
 
 export const onError = (msg: any, consoleMsg = C_GENERAL) => {
   // append a div to the DOM for the README
