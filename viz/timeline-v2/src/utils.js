@@ -15,7 +15,8 @@ https://github.com/googledatastudio/experimental-visualizations/viz/timeline-v2
 
 export const C_SVG_TOO_SMALL = 'Try making the component larger.';
 
-const C_GENERAL = 'Error. For more information, see: \n https://github.com/googledatastudio/experimental-visualizations/viz/timeline-v2';
+const C_GENERAL =
+  'Error. For more information, see: \n https://github.com/googledatastudio/experimental-visualizations/viz/timeline-v2';
 
 export const onError = (msg, consoleMsg = C_GENERAL) => {
   // append a div to the DOM for the README
