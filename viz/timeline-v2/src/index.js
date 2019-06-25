@@ -1,4 +1,5 @@
 const local = require('./localMessage.js');
+const ut = require('./utils.js');
 const d3 = Object.assign(
   {},
   require('d3'),
@@ -50,6 +51,11 @@ const drawViz = data => {
   const margin = {top: 20, bottom: 20, left: 20, right: 20};
   const svgHeight = height - margin.top - margin.bottom;
   const svgWidth = width - margin.left - margin.right;
+
+  if (svgHeight < 0 || svgWidth < 0 || width - margin.left < 0 || height - margin.top < 0){
+    ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
+    return;
+  }
 
   const buttonHeight = svgHeight * 0.15;
   const vizHeight = svgHeight * 0.5;
@@ -323,9 +329,19 @@ const drawViz = data => {
   }
 };
 
+const draw = message => {
+  d3.select('#error').remove();
+  try {
+    drawViz(message);
+  } catch (err) {
+    ut.onError(ut.GENERAL_ERROR);
+    console.log(err);
+  }
+};
+
 // renders locally
 if (LOCAL) {
-  drawViz(local.message);
+  draw(local.message);
 } else {
-  dscc.subscribeToData(drawViz, {transform: dscc.objectTransform});
+  dscc.subscribeToData(draw, {transform: dscc.objectTransform});
 }
