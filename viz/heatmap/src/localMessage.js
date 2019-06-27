@@ -2,110 +2,138 @@ export const message = {
   tables: {
     DEFAULT: [
       {
-        dimensions: ['Afternoon', 'Sunday'],
-        metric: [25],
+        categories: ['2', '5'],
+        metric: ['491757'],
       },
       {
-        dimensions: ['Afternoon', 'Saturday'],
-        metric: [25],
+        categories: ['2', '4'],
+        metric: ['490093'],
       },
       {
-        dimensions: ['Afternoon', 'Tuesday'],
-        metric: [25],
+        categories: ['2', '1'],
+        metric: ['486993'],
       },
       {
-        dimensions: ['Afternoon', 'Wednesday'],
-        metric: [21],
+        categories: ['2', '3'],
+        metric: ['480892'],
       },
       {
-        dimensions: ['Afternoon', 'Monday'],
-        metric: [21],
+        categories: ['2', '2'],
+        metric: ['476784'],
       },
       {
-        dimensions: ['Afternoon', 'Thursday'],
-        metric: [20],
+        categories: ['1', '5'],
+        metric: ['465891'],
       },
       {
-        dimensions: ['Afternoon', 'Friday'],
-        metric: [20],
+        categories: ['1', '4'],
+        metric: ['463693'],
       },
       {
-        dimensions: ['Morning', 'Monday'],
-        metric: [19],
+        categories: ['2', '7'],
+        metric: ['462252'],
       },
       {
-        dimensions: ['Morning', 'Saturday'],
-        metric: [19],
+        categories: ['1', '1'],
+        metric: ['460010'],
       },
       {
-        dimensions: ['Morning', 'Friday'],
-        metric: [19],
+        categories: ['1', '3'],
+        metric: ['450954'],
       },
       {
-        dimensions: ['Evening', 'Tuesday'],
-        metric: [18],
+        categories: ['1', '2'],
+        metric: ['445476'],
       },
       {
-        dimensions: ['Morning', 'Wednesday'],
-        metric: [18],
+        categories: ['3', '5'],
+        metric: ['412601'],
       },
       {
-        dimensions: ['Morning', 'Sunday'],
-        metric: [18],
+        categories: ['3', '4'],
+        metric: ['411218'],
       },
       {
-        dimensions: ['Evening', 'Monday'],
-        metric: [17],
+        categories: ['3', '1'],
+        metric: ['409999'],
       },
       {
-        dimensions: ['Evening', 'Saturday'],
-        metric: [17],
+        categories: ['1', '7'],
+        metric: ['409505'],
       },
       {
-        dimensions: ['Evening', 'Sunday'],
-        metric: [17],
+        categories: ['3', '3'],
+        metric: ['402456'],
       },
       {
-        dimensions: ['Evening', 'Friday'],
-        metric: [17],
+        categories: ['2', '6'],
+        metric: ['399075'],
       },
       {
-        dimensions: ['Evening', 'Thursday'],
-        metric: [16],
+        categories: ['3', '2'],
+        metric: ['398807'],
       },
       {
-        dimensions: ['Morning', 'Thursday'],
-        metric: [15],
+        categories: ['3', '7'],
+        metric: ['394362'],
       },
       {
-        dimensions: ['Evening', 'Wednesday'],
-        metric: [15],
+        categories: ['1', '6'],
+        metric: ['356437'],
       },
       {
-        dimensions: ['Morning', 'Tuesday'],
-        metric: [15],
+        categories: ['3', '6'],
+        metric: ['338777'],
+      },
+      {
+        categories: ['4', '7'],
+        metric: ['209650'],
+      },
+      {
+        categories: ['4', '5'],
+        metric: ['205710'],
+      },
+      {
+        categories: ['4', '1'],
+        metric: ['204524'],
+      },
+      {
+        categories: ['4', '3'],
+        metric: ['204311'],
+      },
+      {
+        categories: ['4', '4'],
+        metric: ['202850'],
+      },
+      {
+        categories: ['4', '2'],
+        metric: ['199980'],
+      },
+      {
+        categories: ['4', '6'],
+        metric: ['171139'],
       },
     ],
   },
   fields: {
-    dimensions: [
+    categories: [
       {
-        id: 'qt_vqfldhtcxb',
-        name: 'Time of Day',
-        type: 'TEXT',
+        id: 'qt_ueng7ixiyb',
+        name: 'Quarter',
+        type: 'NUMBER',
         concept: 'DIMENSION',
       },
       {
-        id: 'qt_2uomehtcxb',
-        name: 'Day',
-        type: 'TEXT',
+        id: 'qt_veng7ixiyb',
+        name: 'DayOfWeek',
+        type: 'NUMBER',
         concept: 'DIMENSION',
       },
     ],
     metric: [
       {
-        id: 'qt_lhevfhtcxb',
-        name: 'Temperature',
+        id: 'qt_o6ng7ixiyb',
+        name: 'Record Count',
         type: 'NUMBER',
         concept: 'METRIC',
       },
@@ -113,19 +141,15 @@ export const message = {
   },
   style: {
     fontFamily: {
-      value: 'Roboto',
       defaultValue: 'Roboto',
     },
     fontSize: {
-      value: 10,
-      defaultValue: 14,
+      defaultValue: '14x',
     },
     showLabels: {
-      value: true,
       defaultValue: false,
     },
     showTitle: {
-      value: true,
       defaultValue: true,
     },
   },

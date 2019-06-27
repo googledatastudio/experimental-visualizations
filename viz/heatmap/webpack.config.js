@@ -10,7 +10,7 @@ module.exports = [
     },
     output: {
       filename: 'index.js',
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'dist'),
     },
     module: {
       rules: [
@@ -20,7 +20,7 @@ module.exports = [
             {
               loader: 'file-loader',
               options: {
-                name: 'bundle.css',
+                name: 'index.css',
               },
             },
             {loader: 'extract-loader'},

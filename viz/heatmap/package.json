@@ -1,8 +1,19 @@
 {
+  "dsccViz": {
+    "gcsDevBucket": "gs://yulanlin-cv-dev/heatmap",
+    "gcsProdBucket": "gs://public-community-viz-showcase/heatmap",
+    "jsFile": "index.js",
+    "jsonFile": "index.json",
+    "cssFile": "index.css",
+    "print": "printMessage.js"
+  },
   "scripts": {
-    "build": "node scripts/build.js",
-    "push": "node scripts/push.js",
-    "start": "webpack-dev-server"
+    "build:dev": "node scripts/build.js dev",
+    "build:prod": "node scripts/build.js prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
+    "start": "webpack-dev-server",
+    "update_message": "dscc-scripts viz update_message -f object"
   },
   "devDependencies": {
     "@material/button": "^2.0.0",
@@ -26,6 +37,7 @@
   },
   "dependencies": {
     "@google/dscc": "^0.3.11",
+    "@google/dscc-scripts": "^1.0.7",
     "d3": "^5.9.2",
     "d3-axis": "^1.0.12",
     "d3-scale-chromatic": "^1.3.3"

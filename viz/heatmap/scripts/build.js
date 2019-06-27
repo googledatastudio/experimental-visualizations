@@ -1,69 +1,86 @@
+const bluebird = require('bluebird');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const fs = require('mz/fs');
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 
-const webpackOptions = {
-  mode: 'development',
-  entry: [
-    // this is the viz source code
-    path.resolve('./src', 'index.js'),
-    path.resolve('./src', 'index.scss'),
-  ],
-  output: {
-    filename: 'index.js',
-    path: path.resolve('./build'),
-  },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'index.css',
-            },
-          },
-          {loader: 'extract-loader'},
-          {loader: 'css-loader'},
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [autoprefixer()],
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve('./node_modules/')],
-            },
-          },
-        ],
-      },
+const buildOptions = buildValues => {
+  // common options
+  const webpackOptions = {
+    entry: {
+      // this is the viz source code
+      main: path.resolve('./src', 'index.js'),
+    },
+    module: {
+      rules: [
+        {
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.js'],
+    },
+    output: {
+      filename: 'index.js',
+      path: path.resolve('./build'),
+    },
+    plugins: [
+      new CopyWebpackPlugin([
+        {
+          from: path.resolve('./src', 'index.json'),
+          to: '.',
+        },
+        {
+          from: path.resolve('./src', 'index.css'),
+          to: '.',
+        },
+      ]),
     ],
-  },
-  plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve('./src/', 'index.json'),
-        to: '.',
-      },
-      {
-        from: path.resolve('./src/', 'manifest.json'),
-        to: '.',
-      },
-    ]),
-  ],
+  };
+
+  if (buildValues.devMode) {
+    const devOptions = {
+      mode: 'development',
+    };
+    Object.assign(webpackOptions, devOptions);
+  } else {
+    const prodOptions = {
+      mode: 'production',
+    };
+    Object.assign(webpackOptions, prodOptions);
+  }
+
+  return webpackOptions;
 };
 
-const build = async webpackOptions => {
+const build = async devMode => {
+  const devBucket = process.env.npm_package_dsccViz_gcsDevBucket;
+  const prodBucket = process.env.npm_package_dsccViz_gcsProdBucket;
+  const deployBucket = devMode ? devBucket : prodBucket;
+
+  const encoding = 'utf-8';
+  const webpackOptions = buildOptions(devMode);
   const compiler = webpack(webpackOptions);
-  compiler.run((err, stats) => {
-    // console.log(err);
-    // console.log(stats);
-  });
+
+  const compilerRun = bluebird.promisify(compiler.run, {context: compiler});
+
+  await compilerRun();
+
+  const manifestSrc = path.resolve(process.env.PWD, 'src', 'manifest.json');
+  const manifestDest = path.resolve(process.env.PWD, 'build', 'manifest.json');
+  const manifestContents = await fs.readFile(manifestSrc, encoding);
+  const newManifest = manifestContents
+    .replace(/YOUR_GCS_BUCKET/g, deployBucket)
+    .replace(/"DEVMODE_BOOL"/, `${devMode}`);
+
+  return fs.writeFile(manifestDest, newManifest);
 };
 
-console.log(path.resolve('./node_modules/'));
-build(webpackOptions);
+const main = () => {
+  const devArg = process.argv[2];
+  const devMode = devArg === 'dev' ? true : false;
+  build(devMode);
+};
+
+main();
