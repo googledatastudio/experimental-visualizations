@@ -46,6 +46,21 @@ const colorSwitch = (selectedScheme: string) => {
   }
 }
 
+const buildTooltip = (fields: any, d: any) => {
+  var node: any = d;
+  var tooltip: string[] = [];
+
+  if (node.value !== undefined){
+    tooltip.unshift(`value: ${node.value.toLocaleString('en-US')}`);
+  }
+  
+  while (node.parent !== null){
+    let dimName = fields.dimension[node.depth - 1].name;
+    tooltip.unshift(`${dimName}: ${node.data.name}`);
+    node = node.parent;
+  }
+  return tooltip.join('\n');
+}
 // write viz code here
 const drawViz = (data: any) => {
   const height = dscc.getHeight();
@@ -114,7 +129,8 @@ const drawViz = (data: any) => {
     .attr('stroke', styleVal(data, 'arcOutline'))
     .attr('stroke-opacity', styleVal(data, 'arcOpacity'));
 
-  path.append('title').text((d: any) => d.data.name);
+  path.append('title')
+    .text((d: any) => buildTooltip(data.fields, d));
 };
 
 // renders locally
