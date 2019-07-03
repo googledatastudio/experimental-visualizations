@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -ex
+
+(cd viz/sunburst && yarn run tsc --noEmit)
+yarn prettier:check
