@@ -6,7 +6,7 @@
   "scripts": {
     "prettier": "prettier --write \"**/*.js\"",
     "prettier:check": "prettier --check \"**/*.js\"",
-    "tsc:check": " tsc --noEmit -p viz/sunburst/",
+    "tsc:check": "(cd viz/sunburst && yarn tsc --noEmit)",
     "travis": "yarn tsc:check && yarn prettier:check"
   },
   "prettier": {
@@ -15,7 +15,6 @@
     "bracketSpacing": false
   },
   "devDependencies": {
-    "prettier": "^1.12.1",
-    "typescript": "^3.5.2"
+    "prettier": "^1.12.1"
   }
 }
