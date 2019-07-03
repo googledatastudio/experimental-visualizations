@@ -6,7 +6,7 @@
   "scripts": {
     "prettier": "prettier --write \"**/*.js\"",
     "prettier:check": "prettier --check \"**/*.js\"",
-    "tsc:check": "(cd viz/sunburst && tsc --noEmit)",
+    "tsc:check": "cd viz/sunburst && yarn run tsc --noEmit",
     "travis": "yarn tsc:check && yarn prettier:check"
   },
   "prettier": {
