@@ -18,7 +18,7 @@ const drawViz = (data: any) => {
   const width = dscc.getWidth() - margin.left - margin.right;
 
   if (height < 0 || width < 0) {
-    utils.onError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
+    utils.displayError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
     return;
   }
 
@@ -91,7 +91,7 @@ const draw = (message: object) => {
     drawViz(message)
   }
   catch (err) {
-    utils.onError(utils.GENERAL_ERROR);
+    utils.displayError(utils.GENERAL_ERROR);
     console.log(err);
   }
 }
