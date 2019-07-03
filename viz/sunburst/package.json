@@ -12,14 +12,13 @@
     "build:prod": "ts-node scripts/build.ts prod",
     "push:dev": "dscc-scripts viz push -d dev",
     "push:prod": "dscc-scripts viz push -d prod",
-    "start": "tsc -w & webpack-dev-server",
     "update_message": "dscc-scripts viz update_message -f object",
     "test": "jest",
     "prettier": "prettier --write \"{src,test}/**/*.{ts,js}\""
   },
   "devDependencies": {
     "@google/dscc": "^0.3.8",
-    "@google/dscc-scripts": "^1.0.7",
+    "@google/dscc-scripts": "^1.0.0",
     "@types/bluebird": "^3.5.27",
     "@types/copy-webpack-plugin": "^5.0.0",
     "@types/jest": "^24.0.13",

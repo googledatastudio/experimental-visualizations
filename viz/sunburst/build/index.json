@@ -1,12 +1,12 @@
 {
   "data": [
     {
-      "id": "data",
-      "label": "Data Fields",
+      "id": "concepts",
+      "label": "concepts",
       "elements": [
         {
           "id": "dimension",
-          "label": "Dimension(s)",
+          "label": "Dimensions",
           "type": "DIMENSION",
           "options": {
             "min": 1,
@@ -25,70 +25,7 @@
       ]
     }
   ],
-  "style": [
-    {
-      "id": "arcColors",
-      "label": "Arc Colors",
-      "elements": [
-        {
-          "id": "arcOutline",
-          "label": "Arc Outline",
-          "type": "FILL_COLOR",
-          "defaultValue": "#FFFFFF"
-        },
-        {
-          "id": "arcOpacity",
-          "label": "Arc Opacity",
-          "type": "OPACITY",
-          "defaultValue": "1"
-        },
-        {
-          "id": "arcColors",
-          "label": "Arc Color Scheme",
-          "type": "SELECT_SINGLE",
-          "defaultValue": "schemeCategory10",
-          "options": [
-            {
-              "label": "schemeCategory10",
-              "value": "schemeCategory10"
-            },
-            {
-              "label": "schemeAccent",
-              "value": "schemeAccent"
-            },
-            {
-              "label": "schemeDark2",
-              "value": "schemeDark2"
-            },
-            {
-              "label": "schemePaired",
-              "value": "schemePaired"
-            },
-            {
-              "label": "schemePastel1",
-              "value": "schemePastel1"
-            },
-            {
-              "label": "schemePastel2",
-              "value": "schemePastel2"
-            },
-            {
-              "label": "schemeSet1",
-              "value": "schemeSet1"
-            },
-            {
-              "label": "schemeSet2",
-              "value": "schemeSet2"
-            },
-            {
-              "label": "schemeSet3",
-              "value": "schemeSet3"
-            }
-          ]
-        }
-      ]
-    }
-  ],
+  "style": [],
   "interactions": [
     {
       "id": "onClick",

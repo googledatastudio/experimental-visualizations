@@ -11,65 +11,11 @@ const local = require('./localMessage');
 
 const LOCAL = false;
 
-const styleVal: any = (message: any, styleId: string) => {
-  // to account for color styling
-  if (message.style[styleId].value !== undefined && typeof message.style[styleId].value === 'object' ){
-    return message.style[styleId].value.color;
-  }
-  return message.style[styleId].value !== undefined
-    ? message.style[styleId].value
-      : message.style[styleId].defaultValue;
-  
-}
-
-// TODO just use string formatting and object properties to simplify
-const colorSwitch = (selectedScheme: string) => {
-  switch(selectedScheme){
-    case 'schemeCategory10':
-      return d3.schemeCategory10;
-    case 'schemeAccent':
-      return d3.schemeAccent;
-    case 'schemePaired':
-      return d3.schemePaired;
-    case 'schemePastel1':
-      return d3.schemePastel1;
-    case 'schemePastel2':
-      return d3.schemePastel2;
-    case 'schemeSet1':
-      return d3.schemeSet1;
-    case 'schemeSet2':
-      return d3.schemeSet2;
-    case 'schemeSet3':
-      return d3.schemeSet3;
-    default:
-      return d3.schemeCategory10;
-  }
-}
-
-const buildTooltip = (fields: any, d: any) => {
-  var node: any = d;
-  var tooltip: string[] = [];
-
-  if (node.value !== undefined){
-    tooltip.unshift(`value: ${node.value.toLocaleString('en-US')}`);
-  }
-  
-  while (node.parent !== null){
-    let dimName = fields.dimension[node.depth - 1].name;
-    tooltip.unshift(`${dimName}: ${node.data.name}`);
-    node = node.parent;
-  }
-  return tooltip.join('\n');
-}
 // write viz code here
 const drawViz = (data: any) => {
-  const height = dscc.getHeight();
-  const width = dscc.getWidth();
-  
-  if (height < 0 || width < 0) {
-    utils.displayError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
-    return;
-  }
+  const margin = {top: 20, bottom: 20, left: 20, right: 20};
+  const height = dscc.getHeight() - margin.top - margin.bottom;
+  const width = dscc.getWidth() - margin.left - margin.right;
 
   if (height < 0 || width < 0) {
     utils.onError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
@@ -84,13 +30,14 @@ const drawViz = (data: any) => {
   var svg = d3
     .select('body')
     .append('svg')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`)
     .attr('width', width)
     .attr('height', height);
 
-  const radius = Math.floor(Math.min(width / 2, height / 2));
+  const radius = Math.min(width / 2, height / 2);
 
   const colorScale = d3
-    .scaleOrdinal(colorSwitch(styleVal(data, 'arcColors')))
+    .scaleOrdinal(d3.schemeCategory10)
     .domain(data.tables.DEFAULT.map((row: any) => row.dimension[0]));
 
   const assignColor = (d: any) => {
@@ -131,11 +78,9 @@ const drawViz = (data: any) => {
       });
     })
     .attr('fill', (d: any) => assignColor(d))
-    .attr('stroke', styleVal(data, 'arcOutline'))
-    .attr('stroke-opacity', styleVal(data, 'arcOpacity'));
+    .attr('stroke', 'white');
 
-  path.append('title')
-    .text((d: any) => buildTooltip(data.fields, d));
+  path.append('title').text((d: any) => d.data.name);
 };
 
 // renders locally
@@ -146,7 +91,7 @@ const draw = (message: object) => {
     drawViz(message)
   }
   catch (err) {
-    utils.displayError(utils.GENERAL_ERROR);
+    utils.onError(utils.GENERAL_ERROR);
     console.log(err);
   }
 }
