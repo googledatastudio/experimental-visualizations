@@ -7,4 +7,4 @@ branches:
 cache:
   directories:
   - node_modules/
-script: yarn prettier:check
+script: yarn travis

@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "prettier": "prettier --write \"**/*.js\"",
-    "prettier:check": "prettier --check \"**/*.js\""
+    "prettier:check": "prettier --check \"**/*.js\"",
+    "tsc:check": " tsc --noEmit -p viz/sunburst/",
+    "travis": "yarn tsc:check && yarn prettier:check"
   },
   "prettier": {
     "singleQuote": true,
@@ -13,6 +15,7 @@
     "bracketSpacing": false
   },
   "devDependencies": {
-    "prettier": "^1.12.1"
+    "prettier": "^1.12.1",
+    "typescript": "^3.5.2"
   }
 }
