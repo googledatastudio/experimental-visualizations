@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -ex
+
+(cd viz/sunburst && yarn && yarn run tsc:check)
+yarn prettier:check
