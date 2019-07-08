@@ -70,7 +70,7 @@ const drawViz = (data: any) => {
     utils.displayError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
     return;
   }
-
+  
   // remove the canvas if it exists
   d3.select('body')
     .selectAll('svg')
@@ -132,8 +132,6 @@ const drawViz = (data: any) => {
   path.append('title')
     .text((d: any) => buildTooltip(data.fields, d));
 };
-
-// renders locally
 
 const draw = (message: object) => {
   d3.select('#error').remove();
