@@ -37,24 +37,69 @@
           "defaultValue": "Roboto"
         },
         {
-          "id": "fontSize",
-          "label": "Label Font Size",
-          "type": "FONT_SIZE",
-          "defaultValue": "14x"
-        },
-        {
           "id": "showLabels",
           "label": "Show labels?",
           "type": "CHECKBOX",
           "defaultValue": "false"
-        },        
-        {
-          "id": "showTitle",
-          "label": "Show Title?",
-          "type": "CHECKBOX",
-          "defaultValue": "true"
         }
-
+      ]
+    },
+    {
+      "id": "colorOptions",
+      "label": "Color Scale",
+      "elements": [
+        {
+          "id": "lowColor",
+          "label": "Color for small values",
+          "defaultValue": "#00FFFF",
+          "type": "FILL_COLOR"
+        },
+        {
+          "id": "highColor",
+          "label": "Color for large values",
+          "defaultValue": "#FF0000",
+          "type": "FILL_COLOR"
+        },
+        {
+          "id": "interpolation",
+          "label": "Interpolation",
+          "defaultValue": "interpolateRgb",
+          "type": "SELECT_SINGLE",
+          "options": [
+            {
+              "label": "interpolateRgb",
+              "value": "interpolateRgb"
+            },
+            {
+              "label": "interpolateHsl",
+              "value": "interpolateHsl"
+            },
+            {
+              "label": "interpolateHslLong",
+              "value": "interpolateHslLong"
+            },
+            {
+              "label": "interpolateLab",
+              "value": "interpolateLab"
+            },
+            {
+              "label": "interpolateHcl",
+              "value": "interpolateHcl"
+            },
+            {
+              "label": "interpolateHclLong",
+              "value": "interpolateHclLong"
+            },
+            {
+              "label": "interpolateCubehelix",
+              "value": "interpolateCubehelix"
+            },
+            {
+              "label": "interpolateCubehelixLong",
+              "value": "interpolateCubehelixLong"
+            }
+          ]
+        }
       ]
     }
   ],
