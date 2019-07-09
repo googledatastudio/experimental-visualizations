@@ -20,6 +20,21 @@ const clearFilter = () => {
   }
 };
 
+function click(d, message) {
+
+    const FILTER = dscc.InteractionType.FILTER;
+    const actionId = 'onClick';
+    const dimIds = message.fields.categories.map(d => d.id);
+
+    // style stroke = red, stroke width , 5
+      const filterData = {
+        concepts: dimIds,
+        values: [d.categories],
+      };
+    dscc.sendInteraction(actionId, FILTER, filterData);
+  
+}
+
 const buildTooltip = (d, fields) => {
   const xDim = `${fields.categories[0].name}: ${d.categories[0]}`;
   const yDim = `${fields.categories[1].name}: ${d.categories[1]}`;
@@ -108,17 +123,32 @@ const draw = message => {
     .attr('y', d => yScale(d.categories[1]))
     .attr('width', xScale.bandwidth())
     .attr('height', yScale.bandwidth())
+    .attr('data-cat0', d => d.categories[0])
+    .attr('data-cat1', d => d.categories[1])
     .style('fill', d => colorScale(metScale(d.metric[0])))
     .style('opacity', 1)
+    .on('click', d => click(d, message))
     .append('title')
     .text(d => buildTooltip(d, message.fields));
-  
+
+  const enableInteractions =
+    message.interactions.onClick.value.type === 'FILTER' ? true : false;  
+
+  if (enableInteractions) {
+    if (message.interactions.onClick.value.data !== undefined){
+      //console.log(message.interactions.onClick.value.data.values);
+      const selected = message.interactions.onClick.value.data.values;
+      selected.forEach(val => {
+        const selector = `[data-cat0="${val[0]}"][data-cat1="${val[1]}"]`;
+        d3.select(selector)
+          .style('stroke', 'red')
+          .style('stroke-width', 5);
+      });
+    }
+  }  
   const fontFamily = styleVal(message, 'fontFamily');
   const showLabels = styleVal(message, 'showLabels');
 
-
-  svg.selectAll('g.text').remove();
-  svg.selectAll('text').remove();
 
   if (showLabels) {
     const xLabels = svg
@@ -153,6 +183,8 @@ const draw = message => {
       .style('font-family', fontFamily);
   }
 
+//  const selTest = d3.selectAll('[data-cat0="1"][data-cat1="6"]')
+  
 };
 
 const drawViz = message => {
