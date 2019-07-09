@@ -1,10 +1,10 @@
 const path = require('path');
-const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = [
   {
     mode: 'development',
-    entry: ['./src/index.scss', './src/index.js'],
+    entry: './src/index.js',
     devServer: {
       contentBase: './dist',
     },
@@ -12,34 +12,10 @@ module.exports = [
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
     },
-    module: {
-      rules: [
-        {
-          test: /\.scss$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'index.css',
-              },
-            },
-            {loader: 'extract-loader'},
-            {loader: 'css-loader'},
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [autoprefixer()],
-              },
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                includePaths: ['./node_modules'],
-              },
-            },
-          ],
-        },
-      ],
-    },
+    plugins: [
+      new CopyWebpackPlugin([
+        {from: path.resolve('./src', 'index.css'), to: '.'},
+      ]),
+    ],
   },
 ];

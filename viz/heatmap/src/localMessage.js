@@ -118,13 +118,13 @@ export const message = {
   fields: {
     categories: [
       {
-        id: 'qt_ueng7ixiyb',
+        id: 'qt_7hffei9vyb',
         name: 'Quarter',
         type: 'NUMBER',
         concept: 'DIMENSION',
       },
       {
-        id: 'qt_veng7ixiyb',
+        id: 'qt_8hffei9vyb',
         name: 'DayOfWeek',
         type: 'NUMBER',
         concept: 'DIMENSION',
@@ -132,7 +132,7 @@ export const message = {
     ],
     metric: [
       {
-        id: 'qt_o6ng7ixiyb',
+        id: 'qt_9hffei9vyb',
         name: 'Record Count',
         type: 'NUMBER',
         concept: 'METRIC',
@@ -143,14 +143,27 @@ export const message = {
     fontFamily: {
       defaultValue: 'Roboto',
     },
-    fontSize: {
-      defaultValue: '14x',
-    },
     showLabels: {
+      value: true,
       defaultValue: false,
     },
-    showTitle: {
-      defaultValue: true,
+    lowColor: {
+      value: {
+        color: '#1565C0',
+        opacity: 1,
+      },
+      defaultValue: '#00FFFF',
+    },
+    highColor: {
+      value: {
+        color: '#B71C1C',
+        opacity: 1,
+      },
+      defaultValue: '#FF0000',
+    },
+    interpolation: {
+      value: 'interpolateCubehelix',
+      defaultValue: 'interpolateRgb',
     },
   },
   theme: {
@@ -269,7 +282,13 @@ export const message = {
   },
   interactions: {
     onClick: {
-      value: {},
+      value: {
+        type: 'FILTER',
+        data: {
+          concepts: ['qt_7hffei9vyb', 'qt_8hffei9vyb'],
+          values: [['3', '1']],
+        },
+      },
       supportedActions: ['FILTER'],
     },
   },

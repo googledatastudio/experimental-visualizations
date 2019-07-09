@@ -8,154 +8,85 @@ const d3 = Object.assign(
 const local = require('./localMessage.js');
 const ut = require('./utils.js');
 
-const vizState = {
-  selected: new Set(),
-};
-
-const clearFilter = () => {
+function click(d, message) {
   const FILTER = dscc.InteractionType.FILTER;
-  if ('canvas' in vizState) {
-    const canvas = vizState.canvas;
-    const actionId = 'onClick';
-    vizState.selected.clear();
-    canvas.selectAll('rect').style('stroke', 'none');
-    dscc.clearInteraction(actionId, FILTER);
+  const actionId = 'onClick';
+  const dimIds = message.fields.categories.map(d => d.id);
+  let selected = new Set();
+
+  if (message.interactions.onClick.value.data !== undefined) {
+    const selVals = message.interactions[actionId].value.data.values.map(d =>
+      JSON.stringify(d)
+    );
+    selected = new Set(selVals);
+    const clickData = JSON.stringify(d.categories);
+    if (selected.has(clickData)) {
+      selected.delete(clickData);
+    } else {
+      selected.add(clickData);
+    }
+  } else {
+    const filterData = {
+      concepts: dimIds,
+      values: [d.categories],
+    };
+    dscc.sendInteraction(actionId, FILTER, filterData);
+    return;
   }
-};
 
-function click(d) {
-  if (vizState.enableInteractions === true) {
-    const selected = vizState.selected;
-
-    const FILTER = dscc.InteractionType.FILTER;
-    const actionId = 'onClick';
-    const dimIds = vizState.categories.map(d => d.id);
-
-    if (selected.has(d)) {
-      selected.delete(d);
-      d3.select(this).style('stroke', 'none');
-    } else {
-      selected.add(d);
-      d3.select(this)
-        .style('stroke', 'red')
-        .style('stroke-width', 5);
-    }
-    if (selected.size > 0) {
-      const filterVals = [];
-      for (let item of selected) {
-        filterVals.push(item.categories);
-      }
-      const filterData = {
-        concepts: dimIds,
-        values: filterVals,
-      };
-      dscc.sendInteraction(actionId, FILTER, filterData);
-    } else {
-      clearFilter();
-    }
+  if (selected.size > 0) {
+    const filterData = {
+      concepts: dimIds,
+      values: Array.from(selected).map(d => JSON.parse(d)),
+    };
+    dscc.sendInteraction(actionId, FILTER, filterData);
+  } else {
+    dscc.clearInteraction(actionId, FILTER);
   }
 }
 
+const buildTooltip = (d, fields) => {
+  const xDim = `${fields.categories[0].name}: ${d.categories[0]}`;
+  const yDim = `${fields.categories[1].name}: ${d.categories[1]}`;
+  const met = `${fields.metric[0].name}: ${d.metric[0]}`;
+  return `${xDim}\n ${yDim}\n ${met}`;
+};
+
 const styleVal = (message, styleId) => {
+  // to account for color styling
+  if (
+    message.style[styleId].value !== undefined &&
+    typeof message.style[styleId].value === 'object'
+  ) {
+    return message.style[styleId].value.color;
+  }
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
     : message.style[styleId].defaultValue;
 };
-const updateLabels = message => {
-  const xScale = vizState.xScale;
-  const yScale = vizState.yScale;
-  const svg = vizState.svg;
-  const margin = vizState.margin;
-  const width = vizState.width;
-  const height = vizState.height;
-  const fontFamily = styleVal(message, 'fontFamily');
-  const showTitle = styleVal(message, 'showTitle');
-  const showLabels = styleVal(message, 'showLabels');
-  const fontSize = styleVal(message, 'fontSize');
 
-  svg.selectAll('g.text').remove();
-  svg.selectAll('text').remove();
-
-  if (showLabels) {
-    const xLabels = svg
-      .append('g')
-      .selectAll('text')
-      .data(xScale.domain())
-      .enter()
-      .append('text')
-      .attr('x', d => xScale(d) + margin.left + xScale.bandwidth() / 2)
-      .attr('y', (margin.top * 5) / 6)
-      .text(d => d)
-      .attr('text-anchor', 'middle')
-      .style('font-family', fontFamily)
-      .style('font-size', `${fontSize}px`);
-
-    const yLabels = svg
-      .append('g')
-      .selectAll('text')
-      .data(yScale.domain())
-      .enter()
-      .append('text')
-      .attr('x', margin.left)
-      .attr('y', d => yScale(d) + margin.left + yScale.bandwidth() / 4)
-      .attr('text-anchor', 'middle')
-      .attr(
-        'transform',
-        d =>
-          `rotate( -90 ${margin.left}, ${yScale(d) +
-            margin.left +
-            yScale.bandwidth() / 3})`
-      )
-      .text(d => d)
-      .style('font-family', fontFamily)
-      .style('font-size', `${fontSize}px`);
-  }
-
-  if (showTitle) {
-    const xName = message.fields.categories[0].name;
-    const yName = message.fields.categories[1].name;
-    const metricName = message.fields.metric[0].name;
-
-    var chartTitle = svg
-      .append('text')
-      .attr('x', width / 2)
-      .attr('y', height - margin.bottom / 5)
-      .text(`${metricName} by ${xName} and ${yName}`)
-      .attr('text-anchor', 'middle')
-      .style('font-size', '18px')
-      .style('font-weight', 'bold')
-      .style('font-family', fontFamily);
-  }
-
-  vizState.showLabels = showLabels;
-  vizState.fontFamily = fontFamily;
-  vizState.showTitle = showTitle;
+const colors = message => {
+  const lowColor = styleVal(message, 'lowColor');
+  const highColor = styleVal(message, 'highColor');
+  const interpolation = styleVal(message, 'interpolation');
+  return d3[`${interpolation}`](lowColor, highColor);
 };
 
-const drawHeatmap = message => {
+// write viz code here
+const draw = message => {
+  const margin = {left: 60, right: 50, top: 50, bottom: 50};
+
+  const emptyCanvas = d3.select('svg').remove();
+
   const width = dscc.getWidth();
-  const height = dscc.getHeight() - 50;
+  const height = dscc.getHeight() - 4;
+
+  if (height < 0) {
+    ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
+    return;
+  }
 
   const data = message.tables.DEFAULT;
-  const margin = vizState.margin;
-  const enableInteractions =
-    message.interactions.onClick.value.type === 'FILTER' ? true : false;
-
-  d3.select('body')
-    .selectAll('svg')
-    .remove();
-
-  d3.select('body')
-    .selectAll('button')
-    .remove();
-
-  if (enableInteractions) {
-    d3.select('body')
-      .append('button')
-      .attr('class', 'mdc-button clear-button')
-      .html('Clear Filter')
-      .on('click', clearFilter);
-  }
 
   var svg = d3
     .select('body')
@@ -170,10 +101,12 @@ const drawHeatmap = message => {
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
   // create color scale
-  var colorScale = d3
+  var metScale = d3
     .scaleLinear()
     .domain(d3.extent(data.map(d => d.metric[0])))
     .range([0, 1]);
+
+  const colorScale = colors(message);
 
   var xScale = d3
     .scaleBand()
@@ -202,70 +135,62 @@ const drawHeatmap = message => {
     .attr('y', d => yScale(d.categories[1]))
     .attr('width', xScale.bandwidth())
     .attr('height', yScale.bandwidth())
-    .style('fill', d => d3.interpolateRdBu(1 - colorScale(d.metric[0])))
+    .attr('data-cat0', d => d.categories[0])
+    .attr('data-cat1', d => d.categories[1])
+    .style('fill', d => colorScale(metScale(d.metric[0])))
     .style('opacity', 1)
-    .on('click', click)
+    .on('click', d => click(d, message))
     .append('title')
-    .text(d => d.metric[0]);
-
-  vizState['svg'] = svg;
-  vizState['canvas'] = canvas;
-  vizState['width'] = width;
-  vizState['height'] = height;
-  vizState['yScale'] = yScale;
-  vizState['xScale'] = xScale;
-  vizState['data'] = data;
-  vizState['interactions'] = enableInteractions;
-};
-
-// write viz code here
-const draw = message => {
-  vizState.categories = message.fields.categories;
-  vizState.margin = {left: 60, right: 50, top: 50, bottom: 50};
-
-  const emptyCanvas = d3.select('svg').empty();
-
-  const width = dscc.getWidth();
-  const height = dscc.getHeight() - 50;
-
-  if (height < 0) {
-    ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
-    return;
-  }
-  const widthChange = width !== vizState.width;
-  const heightChange = height !== vizState.height;
+    .text(d => buildTooltip(d, message.fields));
 
   const enableInteractions =
     message.interactions.onClick.value.type === 'FILTER' ? true : false;
-  vizState.enableInteractions = enableInteractions;
-  let clearInteractions;
+
   if (enableInteractions) {
-    clearInteractions = message.interactions.onClick.value.data === undefined;
-    if (clearInteractions) {
-      clearFilter();
+    if (message.interactions.onClick.value.data !== undefined) {
+      const selected = message.interactions.onClick.value.data.values;
+      selected.forEach(val => {
+        const selector = `[data-cat0="${val[0]}"][data-cat1="${val[1]}"]`;
+        d3.select(selector)
+          .style('stroke', 'red')
+          .style('stroke-width', 5);
+      });
     }
   }
+  const fontFamily = styleVal(message, 'fontFamily');
+  const showLabels = styleVal(message, 'showLabels');
 
-  const fontFamilyChange =
-    message.style.fontFamily.value != vizState.fontFamily;
-  const fontSizeChange = message.style.fontSize.value != vizState.fontSize;
-  const titleChange = message.style.showTitle.value != vizState.showTitle;
-  const labelChange = message.style.showLabels.value != vizState.showLabels;
-  const interactionsChange = enableInteractions != vizState['interactions'];
-  const dataChange =
-    JSON.stringify(message.tables.DEFAULT) != JSON.stringify(vizState['data']);
+  if (showLabels) {
+    const xLabels = svg
+      .append('g')
+      .selectAll('text')
+      .data(xScale.domain())
+      .enter()
+      .append('text')
+      .attr('x', d => xScale(d) + margin.left + xScale.bandwidth() / 2)
+      .attr('y', (margin.top * 5) / 6)
+      .text(d => d)
+      .attr('text-anchor', 'middle')
+      .style('font-family', fontFamily);
 
-  if (
-    emptyCanvas ||
-    widthChange ||
-    heightChange ||
-    interactionsChange ||
-    dataChange
-  ) {
-    drawHeatmap(message);
-    updateLabels(message);
-  } else if (fontFamilyChange || titleChange || fontSizeChange || labelChange) {
-    updateLabels(message);
+    const yLabels = svg
+      .append('g')
+      .selectAll('text')
+      .data(yScale.domain())
+      .enter()
+      .append('text')
+      .attr('x', margin.left)
+      .attr('y', d => yScale(d) + margin.left + yScale.bandwidth() / 4)
+      .attr('text-anchor', 'middle')
+      .attr(
+        'transform',
+        d =>
+          `rotate( -90 ${margin.left}, ${yScale(d) +
+            margin.left +
+            yScale.bandwidth() / 3})`
+      )
+      .text(d => d)
+      .style('font-family', fontFamily);
   }
 };
 
@@ -280,3 +205,4 @@ const drawViz = message => {
 };
 
 dscc.subscribeToData(drawViz, {transform: dscc.objectTransform});
+//drawViz(local.message);
