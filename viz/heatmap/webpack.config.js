@@ -16,6 +16,6 @@ module.exports = [
       new CopyWebpackPlugin([
         {from: path.resolve('./src', 'index.css'), to: '.'},
       ]),
-    ],    
+    ],
   },
 ];

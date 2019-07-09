@@ -8,56 +8,69 @@ const d3 = Object.assign(
 const local = require('./localMessage.js');
 const ut = require('./utils.js');
 
-// TODO fix this
-const clearFilter = () => {
+function click(d, message) {
   const FILTER = dscc.InteractionType.FILTER;
-  if ('canvas' in vizState) {
-    const canvas = vizState.canvas;
-    const actionId = 'onClick';
-    vizState.selected.clear();
-    canvas.selectAll('rect').style('stroke', 'none');
+  const actionId = 'onClick';
+  const dimIds = message.fields.categories.map(d => d.id);
+  let selected = new Set();
+
+  if (message.interactions.onClick.value.data !== undefined) {
+    const selVals = message.interactions[actionId].value.data.values.map(d =>
+      JSON.stringify(d)
+    );
+    selected = new Set(selVals);
+    const clickData = JSON.stringify(d.categories);
+    if (selected.has(clickData)) {
+      selected.delete(clickData);
+    } else {
+      selected.add(clickData);
+    }
+  } else {
+    const filterData = {
+      concepts: dimIds,
+      values: [d.categories],
+    };
+    dscc.sendInteraction(actionId, FILTER, filterData);
+    return;
+  }
+
+  if (selected.size > 0) {
+    const filterData = {
+      concepts: dimIds,
+      values: Array.from(selected).map(d => JSON.parse(d)),
+    };
+    dscc.sendInteraction(actionId, FILTER, filterData);
+  } else {
     dscc.clearInteraction(actionId, FILTER);
   }
-};
-
-function click(d, message) {
-
-    const FILTER = dscc.InteractionType.FILTER;
-    const actionId = 'onClick';
-    const dimIds = message.fields.categories.map(d => d.id);
-
-    // style stroke = red, stroke width , 5
-      const filterData = {
-        concepts: dimIds,
-        values: [d.categories],
-      };
-    dscc.sendInteraction(actionId, FILTER, filterData);
-  
 }
 
 const buildTooltip = (d, fields) => {
   const xDim = `${fields.categories[0].name}: ${d.categories[0]}`;
   const yDim = `${fields.categories[1].name}: ${d.categories[1]}`;
   const met = `${fields.metric[0].name}: ${d.metric[0]}`;
-  return (`${xDim}\n ${yDim}\n ${met}` );
-}
+  return `${xDim}\n ${yDim}\n ${met}`;
+};
 
 const styleVal = (message, styleId) => {
   // to account for color styling
-  if (message.style[styleId].value !== undefined && typeof message.style[styleId].value === 'object' ){
+  if (
+    message.style[styleId].value !== undefined &&
+    typeof message.style[styleId].value === 'object'
+  ) {
     return message.style[styleId].value.color;
   }
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
-      : message.style[styleId].defaultValue;
-}
+    : message.style[styleId].defaultValue;
+};
 
-const colors = (message) => {
+const colors = message => {
   const lowColor = styleVal(message, 'lowColor');
   const highColor = styleVal(message, 'highColor');
   const interpolation = styleVal(message, 'interpolation');
   return d3[`${interpolation}`](lowColor, highColor);
-}
+};
 
 // write viz code here
 const draw = message => {
@@ -68,14 +81,13 @@ const draw = message => {
   const width = dscc.getWidth();
   const height = dscc.getHeight() - 4;
 
-  
   if (height < 0) {
     ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
     return;
   }
 
   const data = message.tables.DEFAULT;
-  
+
   var svg = d3
     .select('body')
     .append('svg')
@@ -132,11 +144,10 @@ const draw = message => {
     .text(d => buildTooltip(d, message.fields));
 
   const enableInteractions =
-    message.interactions.onClick.value.type === 'FILTER' ? true : false;  
+    message.interactions.onClick.value.type === 'FILTER' ? true : false;
 
   if (enableInteractions) {
-    if (message.interactions.onClick.value.data !== undefined){
-      //console.log(message.interactions.onClick.value.data.values);
+    if (message.interactions.onClick.value.data !== undefined) {
       const selected = message.interactions.onClick.value.data.values;
       selected.forEach(val => {
         const selector = `[data-cat0="${val[0]}"][data-cat1="${val[1]}"]`;
@@ -145,10 +156,9 @@ const draw = message => {
           .style('stroke-width', 5);
       });
     }
-  }  
+  }
   const fontFamily = styleVal(message, 'fontFamily');
   const showLabels = styleVal(message, 'showLabels');
-
 
   if (showLabels) {
     const xLabels = svg
@@ -182,9 +192,6 @@ const draw = message => {
       .text(d => d)
       .style('font-family', fontFamily);
   }
-
-//  const selTest = d3.selectAll('[data-cat0="1"][data-cat1="6"]')
-  
 };
 
 const drawViz = message => {
