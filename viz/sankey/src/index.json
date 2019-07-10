@@ -87,9 +87,5 @@
         }
       ]
     }
-  ],
-  "interactions": [{
-    "id": "onClick",
-    "supportedActions": ["FILTER"]
-  }]
+  ]
 }
