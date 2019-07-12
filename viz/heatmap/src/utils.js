@@ -1,5 +1,4 @@
-export const TOO_MANY_DIMS = `
-<b>Error.</b> If your dimensions have too many unique values, the heatmap may not display correctly. Try lower cardinality dimension(s) or resizing the component.
+export const TOO_MANY_DIMS = `<b>Error.</b> If your dimensions have too many unique values, the heatmap may not display correctly. Try lower cardinality dimension(s) or resizing the component.
 `;
 
 export const SVG_TOO_SMALL = `
@@ -14,11 +13,12 @@ https://github.com/googledatastudio/experimental-visualizations/viz/heatmap
 
 `;
 
-export const C_SVG_TOO_SMALL = 'Try making the component larger.';
+export const C_SVG_TOO_SMALL = 'Error. Try making the component larger.';
 
-const C_GENERAL = 'This community visualization encountered an error.';
+const C_GENERAL = `Error. For more information, check out the source code or file an issue:
+  https://github.com/googledatastudio/experimental-visualizations/viz/heatmap`;
 
-export const onError = (msg, consoleMsg = C_GENERAL) => {
+export const displayError = (msg, consoleMsg = C_GENERAL) => {
   // append a div to the DOM for the README
   document.body.innerHTML = '';
 
