@@ -1,0 +1,112 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "Concepts",
+      "elements": [
+        {
+          "id": "categories",
+          "label": "Categories",
+          "type": "DIMENSION",
+          "options": {
+            "min": 2,
+            "max": 2
+          }
+        },
+        {
+          "id": "metric",
+          "label": "Metric (to color by)",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "textOptions",
+      "label": "Text Options",
+      "elements":[
+        {
+          "id": "fontFamily",
+          "label": "Label Font",
+          "type": "FONT_FAMILY",
+          "defaultValue": "Roboto"
+        },
+        {
+          "id": "showLabels",
+          "label": "Show labels?",
+          "type": "CHECKBOX",
+          "defaultValue": "false"
+        }
+      ]
+    },
+    {
+      "id": "colorOptions",
+      "label": "Color Scale",
+      "elements": [
+        {
+          "id": "lowColor",
+          "label": "Color for small values",
+          "defaultValue": "#00FFFF",
+          "type": "FILL_COLOR"
+        },
+        {
+          "id": "highColor",
+          "label": "Color for large values",
+          "defaultValue": "#FF0000",
+          "type": "FILL_COLOR"
+        },
+        {
+          "id": "interpolation",
+          "label": "Interpolation",
+          "defaultValue": "interpolateRgb",
+          "type": "SELECT_SINGLE",
+          "options": [
+            {
+              "label": "interpolateRgb",
+              "value": "interpolateRgb"
+            },
+            {
+              "label": "interpolateHsl",
+              "value": "interpolateHsl"
+            },
+            {
+              "label": "interpolateHslLong",
+              "value": "interpolateHslLong"
+            },
+            {
+              "label": "interpolateLab",
+              "value": "interpolateLab"
+            },
+            {
+              "label": "interpolateHcl",
+              "value": "interpolateHcl"
+            },
+            {
+              "label": "interpolateHclLong",
+              "value": "interpolateHclLong"
+            },
+            {
+              "label": "interpolateCubehelix",
+              "value": "interpolateCubehelix"
+            },
+            {
+              "label": "interpolateCubehelixLong",
+              "value": "interpolateCubehelixLong"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "id": "onClick",
+      "supportedActions": ["FILTER"]
+    }
+  ]
+}
