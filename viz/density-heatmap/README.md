@@ -1,23 +1,25 @@
-# Heatmap community visualization
+# Density Heatmap community visualization
 
-A matrix [heatmap] [community visualization] built with d3.js.
+A density heatmap [community visualization] built with [simpleheat.js].
 
-![Community visualization heatmap][thumbnail]
+![Community visualization density heatmap][thumbnail]
 
 Deployed version:
-`gs://public-community-viz-showcase-reports/heatmap`
 
 
-This heatmap takes two dimensions (for x tiling and y tiling) and one metric (to
-color by).
+
+This heatmap takes up to three dimensions for defining the data points (like a scatterplot), two metrics as X and Y coordinates, and one metric for the point value.
+
+Style options enable customization of the radius, blur, opacity, and colour palette of the heatmap.
 
 See it live in a [report].
 
 ## Authors
 
-This code was written by the [Data Studio Developer Relations team][community visualization].
+This code was written by [ClickInsight].
 
-[heatmap]: https://en.wikipedia.org/wiki/Heat_map
-[thumbnail]: src/heatmap_thumbnail.png
+[simpleheat.js]: https://github.com/mourner/simpleheat
+[thumbnail]: src/density-heatmap.png
 [community visualization]: http://developers.google.com/datastudio/visualization
-[report]: https://datastudio.google.com/c/u/0/reporting/1rvY8wWp3uhlj6daGi_Y2XXvuf7bBcjsi/page/7sUq
+[report]: https://datastudio.google.com/reporting/1AWfaGM5PspyHtAxJBKTJx-yFjzYF_DOR/page/lH9p
+[ClickInsight]: https://www.clickinsight.ca
