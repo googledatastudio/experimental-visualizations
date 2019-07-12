@@ -19,7 +19,7 @@ See it live in a [report].
 This code was written by [ClickInsight].
 
 [simpleheat.js]: https://github.com/mourner/simpleheat
-[thumbnail]: src/density-heatmap.png
+[thumbnail]: src/density-heatmap-thumbnail.png
 [community visualization]: http://developers.google.com/datastudio/visualization
 [report]: https://datastudio.google.com/reporting/1AWfaGM5PspyHtAxJBKTJx-yFjzYF_DOR/page/lH9p
 [ClickInsight]: https://www.clickinsight.ca
