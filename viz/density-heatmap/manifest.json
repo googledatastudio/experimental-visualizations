@@ -1,0 +1,25 @@
+{
+  "name": "My Visualizations",
+  "organization": "MyOrg",
+  "description": "My first visualization package.",
+  "logoUrl": "https://logo",
+  "organizationUrl": "https://url",
+  "supportUrl": "https://url",
+  "privacyPolicyUrl": "https://url",
+  "termsOfServiceUrl": "https://url",
+  "packageUrl": "https://url",
+  "supportUrl": "https://url",
+  "devMode": true,
+  "components": [
+    {
+      "name": "myViz",
+      "description": "Simple Heatmap",
+      "iconUrl": "https://url",
+      "resource": {
+    "js": "gs://cc-community-viz/heatmap/myViz.js",
+    "config": "gs://cc-community-viz/heatmap/myViz.json",
+    "css": "gs://cc-community-viz/heatmap/myViz.css"
+      }
+    }
+  ]
+}
