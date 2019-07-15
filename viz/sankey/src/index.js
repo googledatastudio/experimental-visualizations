@@ -184,7 +184,7 @@ const drawViz = message => {
   try {
     draw(message);
   } catch (err) {
-    ut.onError();
+    ut.displayError(ut.GENERAL_ERROR);
   }
 };
 

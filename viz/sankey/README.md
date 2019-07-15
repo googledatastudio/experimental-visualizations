@@ -7,7 +7,8 @@ JavaScript visualizations for [Google Data Studio][datastudio].
 
 This [sankey] community visualization built with d3.js takes 2 dimensions and a metric.
 
-Note: this visualization will not work if the two dimensions have overlapping values. For example: if `a` exists in dimension 1, dimension 2 cannot have the value `a`.
+> Note: This sankey will not render if the two dimensions have overlapping values.
+> For example: if > `a` exists in dimension 1, dimension 2 cannot have the value `a`.
 
 ## Deployed version
 
