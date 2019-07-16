@@ -74,7 +74,7 @@ const buildOptions = (buildValues: any): webpack.Configuration => {
 
 export const build = async (devMode: boolean) => {
   const devBucket: any = process.env.npm_package_dsccViz_gcsDevBucket;
-  const prodBucket: any = process.env.npm_package_dsccViz_gcsDevBucket;
+  const prodBucket: any = process.env.npm_package_dsccViz_gcsProdBucket;
   const deployBucket = devMode ? devBucket : prodBucket;
 
   const encoding = 'utf-8';
