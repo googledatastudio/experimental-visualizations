@@ -74,7 +74,7 @@ const colors = message => {
 
 // write viz code here
 const draw = message => {
-  const margin = {left: 60, right: 50, top: 50, bottom: 50};
+  const margin = {left: 20, right: 20, top: 20, bottom: 20};
 
   const emptyCanvas = d3.select('svg').remove();
 
@@ -82,7 +82,7 @@ const draw = message => {
   const height = dscc.getHeight() - 4;
 
   if (height < 0) {
-    ut.onError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
+    ut.displayError(ut.SVG_TOO_SMALL, ut.C_SVG_TOO_SMALL);
     return;
   }
 
@@ -112,17 +112,17 @@ const draw = message => {
     .scaleBand()
     .domain(data.map(d => d.categories[0]))
     .range([0, width - margin.left - margin.right])
-    .paddingInner(0.3);
+    .paddingInner(0.1);
 
   var yScale = d3
     .scaleBand()
     .domain(data.map(d => d.categories[1]))
     .range([0, height - margin.top - margin.bottom])
-    .paddingInner(0.3);
+    .paddingInner(0.1);
 
   // check for too many dimensions
   if (yScale.bandwidth() < 0.01 || xScale.bandwidth() < 0.01) {
-    ut.onError(ut.TOO_MANY_DIMS);
+    ut.displayError(ut.TOO_MANY_DIMS);
     return;
   }
 
@@ -199,7 +199,7 @@ const drawViz = message => {
   try {
     draw(message);
   } catch (err) {
-    ut.onError(ut.GENERAL_ERROR);
+    ut.displayError(ut.GENERAL_ERROR);
     console.log(err);
   }
 };

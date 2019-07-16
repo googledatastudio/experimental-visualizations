@@ -41,20 +41,21 @@ export const buildHierarchy: any = (
 
 
 
-export const GENERAL_ERROR = `
-<b>Error.</b> For more information, check out the source code or file an issue at:
+export const GENERAL_ERROR =
+  `<b>Error.</b> For more information, check out the source code or file an issue at:
 <code>
 https://github.com/googledatastudio/experimental-visualizations/viz/sunburst
-</code>
-`;
+</code>`;
 
-export const SVG_TOO_SMALL = `
-<b>Error.</b> The component is smaller than the visualization margins. Try making the component larger.
-`;
+export const SVG_TOO_SMALL =
+  `<b>Error.</b> The component is smaller than the visualization margins.
+  Try making the component larger.`;
 
 export const C_SVG_TOO_SMALL = 'Error. Try making the component larger.';
 
-const C_GENERAL = 'Error. For more information, check out the source code or file an issue at \n https://github.com/googledatastudio/experimental-visualizations/viz/sunburst';
+const C_GENERAL =
+  `Error. For more information, check out the source code or file an issue:
+  https://github.com/googledatastudio/experimental-visualizations/viz/sunburst`;
 
 export const displayError = (msg: string, consoleMsg = C_GENERAL) => {
   // append a div to the DOM for the README

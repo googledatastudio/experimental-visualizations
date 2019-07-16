@@ -1,7 +1,7 @@
 {
   "dsccViz": {
     "gcsDevBucket": "gs://yulanlin-cv-dev/heatmap",
-    "gcsProdBucket": "gs://public-community-viz-showcase/heatmap",
+    "gcsProdBucket": "gs://public-community-viz-showcase-reports/heatmap",
     "jsFile": "index.js",
     "jsonFile": "index.json",
     "cssFile": "index.css",
@@ -26,6 +26,7 @@
     "css-loader": "^2.1.1",
     "extract-loader": "^3.1.0",
     "file-loader": "^3.0.1",
+    "mz": "^2.7.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
