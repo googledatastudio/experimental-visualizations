@@ -1,0 +1,148 @@
+{
+  "data": [
+    {
+      "id": "dimension",
+      "label": "Dimension",
+      "elements": [
+        {
+          "id": "dimension",
+          "label": "Dimension",
+          "type": "DIMENSION",
+          "options": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "metric",
+      "label": "Coordinates",
+      "elements": [
+        {
+          "id": "xMetric",
+          "label": "X Coordinate",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "yMetric",
+          "label": "Y Coordinate",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "valueMetric",
+          "label": "Value",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "heatmap",
+      "label": "Heatmap Options",
+      "elements": [
+        {
+          "type": "TEXTINPUT",
+          "id": "radius",
+          "label": "Point Radius",
+          "defaultValue": "25"
+        },
+        {
+          "type": "TEXTINPUT",
+          "id": "blur",
+          "label": "Blur Radius",
+          "defaultValue": "15"
+        },
+        {
+          "type": "TEXTINPUT",
+          "id": "maxValue",
+          "label": "Maximum Data Value",
+          "defaultValue": "1"
+        },
+        {
+          "type": "TEXTINPUT",
+          "id": "minOpacity",
+          "label": "Minimum Point Opacity",
+          "defaultValue": "0.05"
+        },
+        {
+          "type": "SELECT_SINGLE",
+          "id": "colourPalette",
+          "label": "Colour Palette",
+          "defaultValue": "default",
+          "options": [
+            {
+              "label": "Default",
+              "value": "default"
+            },
+            {
+              "label": "Blue-Yellow",
+              "value": "blue-yellow"
+            },
+            {
+              "label": "Viridis",
+              "value": "viridis"
+            },
+            {
+              "label": "Inferno",
+              "value": "inferno"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "axis",
+      "label": "Axis Options",
+      "elements": [
+        {
+          "type": "TEXTINPUT",
+          "id": "xmin",
+          "label": "X Axis Minimum",
+          "defaultValue": "0"
+        },
+        {
+          "type": "TEXTINPUT",
+          "id": "xmax",
+          "label": "X Axis Maximum",
+          "defaultValue": "500"
+        },
+        {
+          "type": "TEXTINPUT",
+          "id": "ymin",
+          "label": "Y Axis Minimum",
+          "defaultValue": "0"
+        },
+        {
+          "type": "TEXTINPUT",
+          "id": "ymax",
+          "label": "Y Axis Maximum",
+          "defaultValue": "500"
+        },
+        {
+          "type": "CHECKBOX",
+          "id": "xrev",
+          "label": "Reverse X Axis"
+        },
+        {
+          "type": "CHECKBOX",
+          "id": "yrev",
+          "label": "Reverse Y Axis"
+        }
+      ]
+    }
+  ]
+}
