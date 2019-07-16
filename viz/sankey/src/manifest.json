@@ -13,7 +13,7 @@
     {
       "name": "sankey",
       "description": "Sankey visualization",
-      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/viz/sankey/src/sankey.png",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/sankey/src/sankey.png",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
         "config": "YOUR_GCS_BUCKET/index.json",
