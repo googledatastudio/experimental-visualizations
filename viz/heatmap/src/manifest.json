@@ -11,8 +11,8 @@
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
-      "name": "heatmap",
-      "description": "d3.js heatmap",
+      "name": "Heatmap",
+      "description": "Heatmap built by d3.js",
       "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/heatmap/src/heatmap-icon.png",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
