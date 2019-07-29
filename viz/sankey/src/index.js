@@ -90,8 +90,12 @@ const draw = message => {
     .nodePadding(yMargin / 2)
     .size([width, height - yMargin * 2]);
 
-  sankey(sankeyData);
-
+  try {
+    sankey(sankeyData);
+  } catch (e) {
+    ut.displayError(ut.DATA_ERROR, ut.C_DATA_ERROR);
+    return;
+  }
   // draw the nodes
   svg
     .append('g')

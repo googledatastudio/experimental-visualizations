@@ -1,18 +1,18 @@
 {
   "name": "Heatmap Visualization",
-  "organization": "Data Studio Developer Relations",
-  "description": "d3.js heatmap",
-  "logoUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
-  "organizationUrl": "https://developers.google.com/datastudio/visualization",
-  "supportUrl": "https://developers.google.com/datastudio/visualization",
-  "privacyPolicyUrl": "https://developers.google.com/datastudio/visualization",
-  "termsOfServiceUrl": "https://developers.google.com/datastudio/visualization",
-  "packageUrl": "https://developers.google.com/datastudio/visualization",
+  "organization": "Yulan Lin",
+  "description": "Heatmap built with d3.js",
+  "logoUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/sankey/src/bar-chart.svg",
+  "organizationUrl": "https://yulan.dev",
+  "supportUrl": "https://github.com/googledatastudio/experimental-visualizations/issues",
+  "privacyPolicyUrl": "https://tinyurl.com/yulanlin-communityviz-tos",
+  "termsOfServiceUrl": "https://tinyurl.com/yulanlin-communityviz-tos",
+  "packageUrl": "https://github.com/googledatastudio/experimental-visualizations/tree/master/viz",
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
       "name": "Heatmap",
-      "description": "Heatmap built by d3.js",
+      "description": "Heatmap built with d3.js",
       "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/heatmap/src/heatmap-icon.png",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
