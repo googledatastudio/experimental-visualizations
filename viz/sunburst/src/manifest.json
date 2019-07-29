@@ -11,9 +11,9 @@
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
-      "name": "sunburst",
-      "description": "Sunburst visualization",
-      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/viz/sunburst/src/sunburst.png",
+      "name": "Sunburst",
+      "description": "Sunburst chart built with d3.js",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/sunburst/src/sunburst.png",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
         "config": "YOUR_GCS_BUCKET/index.json",
