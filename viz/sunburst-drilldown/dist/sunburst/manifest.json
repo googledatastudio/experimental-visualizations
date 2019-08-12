@@ -13,9 +13,9 @@
         "description": "Sunburst Visualization",
         "iconUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
         "resource": {
-          "js": "gs://dscv/prod/sunburst/sunburst.js",
-          "config": "gs://dscv/prod/sunburst/sunburst.json",
-          "css": "gs://dscv/prod/sunburst/sunburst.css"
+          "js": "gs://**YOURBUCKET**/sunburst/sunburst.js",
+          "config": "gs://**YOURBUCKET**/sunburst/sunburst.json",
+          "css": "gs://**YOURBUCKET**/sunburst/sunburst.css"
         }
       }
     ]

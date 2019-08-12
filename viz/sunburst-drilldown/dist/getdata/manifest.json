@@ -10,12 +10,12 @@
     "components": [
       {
         "name": "getdata",
-        "description": "Empty viz to export data from Google Data Studio",
+        "description": "Component for creating datasets in Google Data Studio",
         "iconUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
         "resource": {
-          "js": "gs://dscv/prod/getdata/getdata.js",
-          "config": "gs://dscv/prod/getdata/getdata.json",
-          "css": "gs://dscv/prod/getdata/getdata.css"
+          "js": "gs://**YOURBUCKET**/getdata/getdata.js",
+          "config": "gs://**YOURBUCKET**/getdata/getdata.json",
+          "css": "gs://**YOURBUCKET**/getdata/getdata.css"
         }
       }
     ]

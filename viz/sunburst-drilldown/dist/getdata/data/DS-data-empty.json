@@ -7,33 +7,38 @@
     "fields": {
         "dimension": [
             {
-                "id": "qt_y2lz7wahzb",
-                "name": "dispositionName",
-                "type": "TEXT",
+                "id": "qt_u8b1p7ozzb",
+                "name": "Continent",
+                "type": "CONTINENT",
                 "concept": "DIMENSION"
             },
             {
-                "id": "qt_nosvaxahzb",
-                "name": "raison",
-                "type": "TEXT",
+                "id": "qt_dtqox7ozzb",
+                "name": "Country",
+                "type": "COUNTRY",
                 "concept": "DIMENSION"
             }
         ],
         "metric": [
             {
-                "id": "qt_sn7rdxahzb",
-                "name": "COUNT",
+                "id": "qt_b6t6b7ozzb",
+                "name": "Pages / Session",
                 "type": "NUMBER",
                 "concept": "METRIC"
             }
         ]
     },
     "style": {
-        "fontColor": { "value": { "color": "black" }, "defaultValue": "black" },
+        "fontColor": {
+            "value": { "color": "#434343", "opacity": 1 },
+            "defaultValue": "black"
+        },
+        "isLegend": { "value": true, "defaultValue": false },
         "arcColors": {
-            "value": "interpolateRainbow",
-            "defaultValue": "interpolateRainbow"
-        }
+            "value": "interpolateInferno",
+            "defaultValue": "interpolateViridis"
+        },
+        "colorSchemeReversed": { "value": false, "defaultValue": false }
     },
     "theme": {
         "themeFillColor": { "color": "#fff", "opacity": 1 },

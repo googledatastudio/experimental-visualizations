@@ -76,7 +76,6 @@ const htmlPlugins = generateHtmlPlugins('./views');
 
 module.exports = {
   entry: {
-    'timeplot/scatterplot': './timeplot/scatterplot.js',
     'sunburst/sunburst': './sunburst/sunburst.js',
     'getdata/getdata': './getdata/getdata.js',
   },
@@ -160,9 +159,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyPlugin([
-      {from: 'timeplot/settings', to: 'timeplot'},
-      {from: 'timeplot/data', to: 'timeplot/data'},
-
       {from: 'sunburst/settings', to: 'sunburst'},
       {from: 'sunburst/data', to: 'sunburst/data'},
 
