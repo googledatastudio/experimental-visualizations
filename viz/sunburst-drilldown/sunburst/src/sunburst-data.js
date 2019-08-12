@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const d3 = Object.assign(
   {},
-  require("d3-array"),
-  require("d3-selection"),
-  require("d3-hierarchy")
+  require('d3-array'),
+  require('d3-selection'),
+  require('d3-hierarchy')
 );
 
 export function prepareData() {
@@ -23,7 +23,7 @@ export function prepareData() {
 
   // #### reconverting to flat structure makes no sense - but I can do it if I want
   const flatArray = [];
-  const parentArray = ["root"];
+  const parentArray = ['root'];
   let depth = 0;
   let itemID = 0;
   let parentID = [0];
@@ -62,7 +62,7 @@ export function prepareData() {
   }
 
   convertNestdMap(nestedMap);
-  flatArray.unshift({ id: 0 });
+  flatArray.unshift({id: 0});
 
   // #### reconverting END
 
@@ -84,7 +84,7 @@ export function partitionData(data) {
 }
 
 export function getParentArray(clickedNode) {
-  const parentArray = [""];
+  const parentArray = [''];
 
   function getParent(node) {
     if (node.parent) {

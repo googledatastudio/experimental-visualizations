@@ -15,6 +15,6 @@
     "bracketSpacing": false
   },
   "devDependencies": {
-    "prettier": "^1.12.1"
+    "prettier": "1.18.2"
   }
 }

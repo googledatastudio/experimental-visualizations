@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const d3 = Object.assign(
   {},
-  require("d3-array"),
-  require("d3-selection"),
-  require("d3-format"),
-  require("d3-transition"),
-  require("d3-interpolate"),
-  require("d3-shape")
+  require('d3-array'),
+  require('d3-selection'),
+  require('d3-format'),
+  require('d3-transition'),
+  require('d3-interpolate'),
+  require('d3-shape')
 );
 
 export function drawContent() {
@@ -24,29 +24,29 @@ export function drawContent() {
   });
 
   const paths = this.g
-    .append("g")
-    .attr("fill-opacity", 0.8)
-    .selectAll("path")
+    .append('g')
+    .attr('fill-opacity', 0.8)
+    .selectAll('path')
     .data(root.descendants())
     .enter()
-    .append("path")
-    .attr("fill", d => {
+    .append('path')
+    .attr('fill', d => {
       while (d.depth > 1) d = d.parent;
-      return !d.depth ? "none" : this.colorScale(d.data.id);
+      return !d.depth ? 'none' : this.colorScale(d.data.id);
     })
-    .attr("fill-opacity", d => (d.children ? 0.6 : 0.4))
-    .attr("d", this.arc)
-    .attr("data-test", d => d.data.id)
-    .attr("id", (d, i) => `cp-${i}`)
-    .on("mouseover", (d, i, node) => {
+    .attr('fill-opacity', d => (d.children ? 0.6 : 0.4))
+    .attr('d', this.arc)
+    .attr('data-test', d => d.data.id)
+    .attr('id', (d, i) => `cp-${i}`)
+    .on('mouseover', (d, i, node) => {
       showTooltip(d, i, node);
     })
-    .on("mouseout", hideToolTip);
+    .on('mouseout', hideToolTip);
 
   paths
     .filter(d => d.children)
-    .style("cursor", "pointer")
-    .on("click", changeRoot);
+    .style('cursor', 'pointer')
+    .on('click', changeRoot);
 
   this.buildLegend(root, 0);
 
@@ -62,19 +62,19 @@ export function drawContent() {
     }
 
     const tooltip = d3
-      .select("#tooltip")
-      .style("max-width", `${ctx.dimensions.boundedRadius}px`);
+      .select('#tooltip')
+      .style('max-width', `${ctx.dimensions.boundedRadius}px`);
 
     // TOOLTIP TEXT
     const percentage =
       Math.round((d.value * 100) / d.parent.value) == 0
-        ? "< 1%"
-        : d3.format(".0%")(d.value / d.parent.value);
+        ? '< 1%'
+        : d3.format('.0%')(d.value / d.parent.value);
 
     const totalPercentage =
       Math.round((d.value * 100) / ctx.totalMetric) == 0
-        ? "< 1%"
-        : d3.format(".0%")(d.value / ctx.totalMetric);
+        ? '< 1%'
+        : d3.format('.0%')(d.value / ctx.totalMetric);
 
     let metricText = `${ctx.metricAccessor}: ${d.value} `;
     metricText += `(${percentage}`;
@@ -84,9 +84,9 @@ export function drawContent() {
     metricText += `)`;
 
     tooltip
-      .select("#title")
+      .select('#title')
       .text(`${ctx.dimensionsAccessor[d.depth - 1]}: ${d.data.data.key}`);
-    tooltip.select("#count").text(metricText);
+    tooltip.select('#count').text(metricText);
 
     // TOOLTIP POSITION
     const w = tooltip.node().offsetWidth;
@@ -100,9 +100,9 @@ export function drawContent() {
       ctx.dimensions.height / 2;
 
     tooltip
-      .style("opacity", 0.8)
+      .style('opacity', 0.8)
       .style(
-        "transform",
+        'transform',
         `translate(${x - ctx.horizontalOffset - w / 2}px, ${y - h - 10}px)`
       );
 
@@ -117,26 +117,26 @@ export function drawContent() {
       ctx.dimensions.height / 2;
 
     ctx.g
-      .append("circle")
-      .attr("class", "tooltip-dot")
-      .attr("cx", tx)
-      .attr("cy", ty)
-      .attr("r", 3)
-      .style("fill", "black")
-      .style("opacity", 0.7);
+      .append('circle')
+      .attr('class', 'tooltip-dot')
+      .attr('cx', tx)
+      .attr('cy', ty)
+      .attr('r', 3)
+      .style('fill', 'black')
+      .style('opacity', 0.7);
 
     const lineX = x - ctx.dimensions.width / 2;
     const lineY = y - ctx.dimensions.height / 2 - 10;
     ctx.wrapper
-      .append("line")
-      .attr("class", "tooltip-line")
-      .attr("x1", lineX)
-      .attr("y1", lineY)
-      .attr("x2", tx)
-      .attr("y2", ty)
-      .attr("stroke-width", 1)
-      .attr("stroke", "black")
-      .style("opacity", 0.7);
+      .append('line')
+      .attr('class', 'tooltip-line')
+      .attr('x1', lineX)
+      .attr('y1', lineY)
+      .attr('x2', tx)
+      .attr('y2', ty)
+      .attr('stroke-width', 1)
+      .attr('stroke', 'black')
+      .style('opacity', 0.7);
   }
 
   function changeRoot(p) {
@@ -195,7 +195,7 @@ export function drawContent() {
           2 *
           Math.PI,
         y0: Math.max(0, d.y0 - target.y0),
-        y1: Math.max(0, d.y1 - target.y0)
+        y1: Math.max(0, d.y1 - target.y0),
       };
       d.newAngle = d.target.x1 - (d.target.x1 - d.target.x0) / 2;
       d.newRadius = d.target.y1 - (d.target.y1 - d.target.y0) / 2;
@@ -208,11 +208,11 @@ export function drawContent() {
     // the next transition from the desired position.
     paths
       .transition()
-      .tween("data", d => {
+      .tween('data', d => {
         const i = d3.interpolate(d.current, d.target);
         return t => (d.current = i(t));
       })
-      .attrTween("d", d => () => ctx.arc(d.current));
+      .attrTween('d', d => () => ctx.arc(d.current));
 
     // REBUILD LEGEND
     let level = p.depth;
@@ -226,12 +226,12 @@ export function drawContent() {
 }
 
 export function hideToolTip() {
-  d3.select("#tooltip")
-    .style("opacity", 0)
-    .style("transform", "translate(-10000px, -10000px)");
+  d3.select('#tooltip')
+    .style('opacity', 0)
+    .style('transform', 'translate(-10000px, -10000px)');
 
-  d3.select(".tooltip-line").remove();
-  d3.selectAll(".tooltip-dot").remove();
+  d3.select('.tooltip-line').remove();
+  d3.selectAll('.tooltip-dot').remove();
 }
 
 export default drawContent;

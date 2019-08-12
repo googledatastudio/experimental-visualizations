@@ -1,19 +1,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import getDimensions from "./sunburst-dimensions";
-import { prepareData, partitionData, getParentArray } from "./sunburst-data";
-import drawBase from "./sunburst-drawBase";
-import { drawContent, hideToolTip } from "./sunburst-drawContent";
-import buildLegend from "./sunburst-legend";
+import getDimensions from './sunburst-dimensions';
+import {prepareData, partitionData, getParentArray} from './sunburst-data';
+import drawBase from './sunburst-drawBase';
+import {drawContent, hideToolTip} from './sunburst-drawContent';
+import buildLegend from './sunburst-legend';
 
 const d3 = Object.assign(
   {},
-  require("d3-array"),
-  require("d3-selection"),
-  require("d3-fetch"),
-  require("d3-scale"),
-  require("d3-interpolate"),
-  require("d3-scale-chromatic"),
-  require("d3-shape")
+  require('d3-array'),
+  require('d3-selection'),
+  require('d3-fetch'),
+  require('d3-scale'),
+  require('d3-interpolate'),
+  require('d3-scale-chromatic'),
+  require('d3-shape')
 );
 
 export default class Sunburst {
@@ -23,19 +23,19 @@ export default class Sunburst {
     this.treeData = null;
 
     // Scales
-    this.colorScheme = "interpolateRainbow"; // Default value
+    this.colorScheme = 'interpolateRainbow'; // Default value
     this.colorScale = null;
     this.arc = null;
 
     // Accessors
-    this.dimensionsAccessor = ["dimension"]; // Default value
-    this.metricAccessor = "COUNT"; // Default value
+    this.dimensionsAccessor = ['dimension']; // Default value
+    this.metricAccessor = 'COUNT'; // Default value
 
     // Computes
     this.totalMetric = null;
 
     // Variables
-    this.fontColor = "slateGrey";
+    this.fontColor = 'slateGrey';
     this.fontOpacity = 1;
     this.legend = true;
     this.colorSchemeReversed = false;
@@ -45,9 +45,9 @@ export default class Sunburst {
   init() {
     this.dimensions = this.getDimensions(this.DOMtarget);
 
-    if (localStorage.getItem("d3_sunburst") === null) {
+    if (localStorage.getItem('d3_sunburst') === null) {
       const locStorage = {};
-      window.localStorage.setItem("d3_sunburst", JSON.stringify(locStorage));
+      window.localStorage.setItem('d3_sunburst', JSON.stringify(locStorage));
     }
     this.treeData = this.prepareData();
     this.initScales();
@@ -92,5 +92,5 @@ Object.assign(Sunburst.prototype, {
   drawBase,
   drawContent,
   hideToolTip,
-  buildLegend
+  buildLegend,
 });

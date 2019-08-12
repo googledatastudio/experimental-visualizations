@@ -1,14 +1,14 @@
-import * as dscc from "@google/dscc";
-import Helper from "../js/d3-common";
-import * as msg from "../js/messages";
-import Sunburst from "./src/sunburst-obj";
-import "./src/d3-sunburst.scss";
-import * as _ from "lodash";
+import * as dscc from '@google/dscc';
+import Helper from '../js/d3-common';
+import * as msg from '../js/messages';
+import Sunburst from './src/sunburst-obj';
+import './src/d3-sunburst.scss';
+import * as _ from 'lodash';
 
-const d3 = Object.assign({}, require("d3-fetch"), require("d3-selection"));
+const d3 = Object.assign({}, require('d3-fetch'), require('d3-selection'));
 
 // General Settings
-const LOCAL = "localhost"; // your local dev hostname
+const LOCAL = 'localhost'; // your local dev hostname
 const minSize = 450;
 
 /* 
@@ -23,7 +23,7 @@ const minSize = 450;
 function drawViz(rawData) {
   // First Error check: component size
   prepareDOM();
-  const dim = Helper.getMaxDimensions("body");
+  const dim = Helper.getMaxDimensions('body');
   if (dim.max < minSize) {
     renderErrorMessage(msg.resizeTitle, msg.sizeError);
     console.log(`current ${dim.max}`);
@@ -36,7 +36,7 @@ function drawViz(rawData) {
     const root = prepareDOM();
     createTooltip(root);
 
-    const sunburst = new Sunburst("body", data.tables);
+    const sunburst = new Sunburst('body', data.tables);
 
     // Dimensions and Metric of viz
     sunburst.metricAccessor = rawData.fields.metric[0].name;
@@ -71,24 +71,24 @@ function drawViz(rawData) {
 
 function createTooltip(root) {
   const tooltip = root
-    .append("div")
-    .attr("id", "tooltip")
-    .attr("class", "tooltip");
+    .append('div')
+    .attr('id', 'tooltip')
+    .attr('class', 'tooltip');
 
-  tooltip.append("span").attr("id", "title");
-  tooltip.append("span").attr("id", "count");
+  tooltip.append('span').attr('id', 'title');
+  tooltip.append('span').attr('id', 'count');
 }
 
 function prepareDOM() {
-  const root = d3.select("body").attr("id", "body");
+  const root = d3.select('body').attr('id', 'body');
 
   // Clean everything
-  d3.select("body")
-    .selectAll("svg")
+  d3.select('body')
+    .selectAll('svg')
     .remove();
 
-  d3.select("#error").remove();
-  d3.select("#tooltip").remove();
+  d3.select('#error').remove();
+  d3.select('#tooltip').remove();
 
   return root;
 }
@@ -144,15 +144,15 @@ function draw(data) {
 /* Load data (LOCAL) or take from Google DS */
 async function sunburst() {
   if (window.location.hostname == LOCAL) {
-    const theDataSet = await d3.json("./data/DS-data-documentation.json");
+    const theDataSet = await d3.json('./data/DS-data-documentation.json');
     draw(theDataSet);
   } else {
-    dscc.subscribeToData(draw, { transform: dscc.objectTransform });
+    dscc.subscribeToData(draw, {transform: dscc.objectTransform});
   }
 }
 
 sunburst();
-window.addEventListener("resize", _.debounce(sunburst, 300));
+window.addEventListener('resize', _.debounce(sunburst, 300));
 
 // ** ERROR HANDLING **
 function renderErrorMessage(errTitle, errMsg) {
