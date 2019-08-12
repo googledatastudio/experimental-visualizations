@@ -1,0 +1,16 @@
+// D3 TREE VIZZ CSS
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  }
+
+.d3-viz {
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+}
