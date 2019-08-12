@@ -517,10 +517,9 @@ simpleheat.prototype = {
           tables: (function(e) {
             var t,
               R = r(e),
-              n =
-                (C(e),
-                ((t = {})[o.TableType.DEFAULT] = {headers: [], rows: []}),
-                t);
+              n = (C(e),
+              ((t = {})[o.TableType.DEFAULT] = {headers: [], rows: []}),
+              t);
             return (
               e.dataResponse.tables.forEach(function(e) {
                 n[e.id] = {headers: R, rows: e.rows};
