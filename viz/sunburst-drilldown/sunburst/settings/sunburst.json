@@ -110,5 +110,11 @@
                 }
             ]
         }
-    ]
+    ],
+    "interactions": [
+        {
+          "id": "sunburstFilter",
+          "supportedActions": ["FILTER"]
+        }
+      ]
 }

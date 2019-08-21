@@ -1,76 +1,93 @@
-import * as msg from '../js/messages';
+import * as msg from "../js/messages";
 
 const Helper = {
-  getMaxDimensions(id) {
-    const val = {};
-    const container = document.getElementById(id);
-    val.w = container.offsetWidth;
-    val.h = container.offsetHeight;
+    getMaxDimensions(id) {
+        const val = {};
+        const container = document.getElementById(id);
+        val.w = container.offsetWidth;
+        val.h = container.offsetHeight;
 
-    val.w >= val.h ? (val.max = val.h) : (val.max = val.w);
-    val.w >= val.h
-      ? (val.direction = 'horizontal')
-      : (val.direction = 'vertical');
+        val.w >= val.h ? (val.max = val.h) : (val.max = val.w);
+        val.w >= val.h
+            ? (val.direction = "horizontal")
+            : (val.direction = "vertical");
 
-    return val;
-  },
+        return val;
+    },
 
-  renderErrorMessage(node, errTitle, errMsg) {
-    const content = node
-      .append('div')
-      .attr('id', 'error')
-      .append('div')
-      .attr('class', 'row');
+    getStyleValue(styleData, style) {
+        const value = styleData[style].value;
+        if (value === "undefined" || typeof value === "undefined") {
+            return styleData[style].defaultValue;
+        } else {
+            return value;
+        }
+    },
 
-    // ** Append logo as svg
-    const logoW = 200; // original size as exported
-    const logoH = 95;
-    const scale = 0.2;
+    saveLocStorage(ctx, object, value) {
+      ctx.locStorage.state[object] = value;
+        localStorage.setItem(
+          ctx.localStorageId,
+            JSON.stringify(ctx.locStorage)
+        );
+    },
 
-    content
-      .append('svg')
-      .attr('width', `${logoW * scale}`)
-      .attr('height', `${logoH * scale}`)
-      .attr('viewbox', `0 0 ${logoW * scale} ${logoH * scale}`)
-      .attr('fill', 'none')
-      .append('path')
-      .attr('transform', `scale(${scale})`)
-      .attr('d', msg.logoPath)
-      .attr('fill', '#ABAF2C');
+    renderErrorMessage(node, errTitle, errMsg) {
+        const content = node
+            .append("div")
+            .attr("id", "error")
+            .append("div")
+            .attr("class", "row");
 
-    content
-      .append('h2')
-      .attr('id', 'title')
-      .text(errTitle);
+        // ** Append logo as svg
+        const logoW = 200; // original size as exported
+        const logoH = 95;
+        const scale = 0.2;
 
-    content
-      .append('p')
-      .attr('id', 'message')
-      .text(errMsg);
+        content
+            .append("svg")
+            .attr("width", `${logoW * scale}`)
+            .attr("height", `${logoH * scale}`)
+            .attr("viewbox", `0 0 ${logoW * scale} ${logoH * scale}`)
+            .attr("fill", "none")
+            .append("path")
+            .attr("transform", `scale(${scale})`)
+            .attr("d", msg.logoPath)
+            .attr("fill", "#ABAF2C");
 
-    console.log(`### ${errTitle} : ${errMsg} ###`);
-  },
+        content
+            .append("h2")
+            .attr("id", "title")
+            .text(errTitle);
 
-  getScreenCoords(x, y, ctm) {
-    const xn = ctm.e + x * ctm.a + y * ctm.c;
-    const yn = ctm.f + x * ctm.b + y * ctm.d;
-    return {x: xn, y: yn};
-  },
+        content
+            .append("p")
+            .attr("id", "message")
+            .text(errMsg);
 
-  getScreenCoordsCanvas(x, y, ctm) {
-    const xn = ctm.x + x * ctm.s;
-    const yn = ctm.y + y * ctm.s;
-    return {x: xn, y: yn};
-  },
+        console.log(`### ${errTitle} : ${errMsg} ###`);
+    },
 
-  async loadImage(imageUrl) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.addEventListener('load', () => resolve(img));
-      img.addEventListener('error', err => reject(err));
-      img.src = imageUrl;
-    });
-  },
+    getScreenCoords(x, y, ctm) {
+        const xn = ctm.e + x * ctm.a + y * ctm.c;
+        const yn = ctm.f + x * ctm.b + y * ctm.d;
+        return { x: xn, y: yn };
+    },
+
+    getScreenCoordsCanvas(x, y, ctm) {
+        const xn = ctm.x + x * ctm.s;
+        const yn = ctm.y + y * ctm.s;
+        return { x: xn, y: yn };
+    },
+
+    async loadImage(imageUrl) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.addEventListener("load", () => resolve(img));
+            img.addEventListener("error", err => reject(err));
+            img.src = imageUrl;
+        });
+    }
 };
 
 export default Helper;
