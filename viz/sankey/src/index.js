@@ -70,7 +70,10 @@ const draw = message => {
   }
 
   function leaveHover(d) {
-    d3.select(this).attr('stroke-opacity', Number(style.link_opacity.value));
+    d3.select(this).attr(
+      'stroke-opacity',
+      Number(styleVal(message, 'link_opacity'))
+    );
   }
 
   // set up the canvas space
