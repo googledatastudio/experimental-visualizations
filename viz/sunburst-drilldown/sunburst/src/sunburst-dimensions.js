@@ -1,4 +1,4 @@
-import Helper from "../../js/d3-common";
+import Helper from '../../js/d3-common';
 
 export default function getDimensions(elementId) {
   const dim = Helper.getMaxDimensions(elementId);
@@ -14,8 +14,8 @@ export default function getDimensions(elementId) {
       top: 15,
       right: 15,
       bottom: 15,
-      left: 15
-    }
+      left: 15,
+    },
   };
 
   if (this.legend == true) {
