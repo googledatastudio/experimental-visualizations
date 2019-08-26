@@ -1,17 +1,18 @@
 {
-    "name": "GetData",
-    "organization": "r42 communication Inc.",
-    "description": "Empty viz to export data from Google Data Studio",
-    "logoUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
-    "organizationUrl": "http://www.r42.ca",
-    "supportUrl": "https://developers.google.com/datastudio/visualization",
-    "packageUrl": "https://developers.google.com/datastudio/visualization",
-    "devMode": true,
-    "components": [
-      {
-        "name": "getdata",
-        "description": "Component for creating datasets in Google Data Studio",
-        "iconUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
+  "name": "GetData",
+  "organization": "r42 communication Inc.",
+  "description": "Empty viz to export data from Google Data Studio",
+  "logoUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
+  "organizationUrl": "http://www.r42.ca",
+  "supportUrl": "https://twitter.com/ralph_spandl",
+  "packageUrl": "https://datastudio.google.com/u/0/reporting/1QlIg3GtMrpY6a9EQ8BPFUZxH6zeAUMjk/page/mNHw",
+  "devMode": true,
+  "components": [
+    {
+      "id": "r42_getdata_v1",
+      "name": "getdata",
+      "description": "Empty viz to export data from Google Data Studio",
+      "iconUrl": "https://storage.cloud.google.com/dscv/public/images/logo-green.svg",
         "resource": {
           "js": "gs://dscv/public/getdata/getdata.js",
           "config": "gs://dscv/public/getdata/getdata.json",

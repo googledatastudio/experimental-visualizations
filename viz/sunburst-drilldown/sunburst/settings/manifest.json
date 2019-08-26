@@ -8,10 +8,11 @@
     "packageUrl": "https://datastudio.google.com/reporting/1p06tzmnFLNbY92hC2HjYWmjPRmpBI-gK/page/mNHw",
     "devMode": false,
     "components": [
-        {
-            "name": "sunburst",
-            "description": "Sunburst Visualization",
-            "iconUrl": "https://www.gstatic.com/images/branding/product/1x/google_data_studio_48dp.png",
+      {
+        "id": "r42_sunburst_v1",
+        "name": "sunburst",
+        "description": "Sunburst Visualization",
+        "iconUrl": "https://storage.cloud.google.com/dscv/public/images/logo-green.svg",
             "resource": {
                 "js": "gs://dscv/public/sunburst/sunburst.js",
                 "config": "gs://dscv/public/sunburst/sunburst.json",
