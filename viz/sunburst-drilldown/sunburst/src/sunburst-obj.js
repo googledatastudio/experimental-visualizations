@@ -54,11 +54,12 @@ export default class Sunburst {
     this.AnimDuration = 750;
 
     // Local Storage
-    this.localStorageId = 'd3_sunburst_v1.0';
     this.locStorage = null;
+    this.instanceID = null;
   }
 
   init() {
+    this.localStorageId = `d3_sunburst_v1.0${this.instanceID}`;
     this.dimensions = this.getDimensions(this.DOMtarget);
 
     if (localStorage.getItem(this.localStorageId) === null) {

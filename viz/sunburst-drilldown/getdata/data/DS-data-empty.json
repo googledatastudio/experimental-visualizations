@@ -29,6 +29,7 @@
         ]
     },
     "style": {
+        "instanceID": { "defaultValue": 1 },
         "fontColor": {
             "value": { "color": "#434343", "opacity": 1 },
             "defaultValue": "black"

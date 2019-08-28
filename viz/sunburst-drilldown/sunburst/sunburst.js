@@ -43,6 +43,9 @@ function drawViz(rawData) {
       sunburst.dimensionsAccessor[i] = d.name;
     });
 
+    // Instance ID for multiple usage in same report
+    sunburst.instanceID = Helper.getStyleValue(data.style, 'instanceID');
+
     // Color Scheme
     sunburst.colorScheme = Helper.getStyleValue(data.style, 'arcColors');
     sunburst.colorSchemeReversed = Helper.getStyleValue(
@@ -167,7 +170,7 @@ function convertData(dsObj) {
 /* try catch only for DS */
 function draw(data) {
   if (LOCAL) {
-    window.addEventListener('resize', _.debounce(sunburst, 300));
+    window.addEventListener('resize', executeDebounced);
     drawViz(data);
   } else {
     try {
@@ -181,14 +184,19 @@ function draw(data) {
 /* Load data (LOCAL) or take from Google DS */
 async function sunburst() {
   if (window.location.hostname == LOCAL) {
-    const theDataSet = await d3.json('./data/DS-data-documentation.json');
+    const theDataSet = await d3.json('./data/DS-data-4levels.json');
     draw(theDataSet);
   } else {
     dscc.subscribeToData(draw, {transform: dscc.objectTransform});
   }
 }
 
-sunburst();
+// debounce instead of calling sunburst() directly
+const executeDebounced = _.debounce(sunburst, 2000, {
+  leading: true,
+  trailing: false,
+});
+executeDebounced();
 
 // ** ERROR HANDLING **
 function renderErrorMessage(errTitle, errMsg) {

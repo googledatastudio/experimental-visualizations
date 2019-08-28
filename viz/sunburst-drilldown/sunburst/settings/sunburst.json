@@ -27,14 +27,14 @@
     ],
     "style": [
         {
-            "id": "title",
-            "label": "Font",
+            "id": "instance",
+            "label": "For multiple instances in same report",
             "elements": [
                 {
-                    "id": "fontColor",
-                    "label": "Font Color",
-                    "type": "FONT_COLOR",
-                    "defaultValue": "#000000"
+                    "id": "instanceID",
+                    "label": "Unique Component ID",
+                    "type": "INTERVAL",
+                    "defaultValue": "1"
                 }
             ]
         },
@@ -47,16 +47,22 @@
                     "label": "Show Legend",
                     "type": "CHECKBOX",
                     "defaultValue": "false"
+                },
+                {
+                    "id": "fontColor",
+                    "label": "Font Color",
+                    "type": "FONT_COLOR",
+                    "defaultValue": "#000000"
                 }
             ]
         },
         {
             "id": "colors",
-            "label": "Colors",
+            "label": "Colour Scheme",
             "elements": [
                 {
                     "id": "arcColors",
-                    "label": "Arc Color Scheme",
+                    "label": "Choose a Color Scheme",
                     "type": "SELECT_SINGLE",
                     "defaultValue": "interpolateViridis",
                     "options": [
