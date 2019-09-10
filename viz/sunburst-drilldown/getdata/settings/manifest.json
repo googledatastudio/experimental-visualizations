@@ -1,0 +1,23 @@
+{
+  "name": "GetData",
+  "organization": "r42 communication Inc.",
+  "description": "Empty viz to export data from Google Data Studio",
+  "logoUrl": "https://storage.cloud.google.com/dscv/public/images/logo-green.svg",
+  "organizationUrl": "http://www.r42.ca",
+  "supportUrl": "https://twitter.com/ralph_spandl",
+  "packageUrl": "https://datastudio.google.com/reporting/1QlIg3GtMrpY6a9EQ8BPFUZxH6zeAUMjk/page/mNHw",
+  "devMode": false,
+  "components": [
+    {
+      "id": "r42_getdata_v1",
+      "name": "getdata",
+      "description": "Empty viz to export data from Google Data Studio",
+      "iconUrl": "https://storage.cloud.google.com/dscv/public/images/getdata-icon.svg",
+        "resource": {
+          "js": "gs://dscv/public/getdata/getdata.js",
+          "config": "gs://dscv/public/getdata/getdata.json",
+          "css": "gs://dscv/public/getdata/getdata.css"
+        }
+      }
+    ]
+  }

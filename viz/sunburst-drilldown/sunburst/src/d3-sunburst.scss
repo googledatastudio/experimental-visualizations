@@ -1,0 +1,64 @@
+// D3 TREE VIZZ CSS
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  }
+
+.d3-viz {
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+}
+
+#tooltip {
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+  line-height: 140%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  background-color: white;
+  pointer-events: none;
+
+    #title {
+      font-weight: 700;
+    }
+
+    span {
+      display: block;
+    }
+}
+
+.tooltip-line, .tooltip-dot, .tooltip-rect {
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.breadcrumb-text {
+  font-size: 0.8em;
+  font-weight: 700
+}
+
+#error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: slategray;
+  text-align: center;
+  height: 100%;
+  h2 {
+    font-size: 1.25em;
+    margin: 15px auto 5px;
+    max-width: 400px;
+  }
+  p {
+    font-size: 0.8em;
+    margin: 2px auto 10px;
+    max-width: 400px;
+  }
+}
