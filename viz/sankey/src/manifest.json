@@ -11,6 +11,7 @@
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
+      "id": "sankey",
       "name": "Sankey",
       "description": "Sankey visualization built with d3.js",
       "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/sankey/src/sankey.png",
