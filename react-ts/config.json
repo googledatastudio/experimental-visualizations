@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "concepts",
+      "elements": [
+        {
+          "id": "dimension",
+          "label": "Dimensions",
+          "type": "DIMENSION",
+          "options": {
+            "min": 0,
+            "max": 10
+          }
+        },
+        {
+          "id": "metric",
+          "label": "Metrics",
+          "type": "METRIC",
+          "options": {
+            "min": 0,
+            "max": 10
+          }
+        }
+      ]
+    }
+  ],
+  "style": []
+}
