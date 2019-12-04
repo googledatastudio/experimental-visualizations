@@ -18,6 +18,6 @@ Each viz should be in its own directory, with a README that describes the visual
 
 For visualizations that are maintained in other locations, add a link below.
 
-- [GDS-Word-Cloud](https://github.com/pcperini/GDS-Word-Cloud): Easy word clouds in Google Data Studio
+- [React-Starter](https://github.com/anvilinsights/data-studio-react-starter): Starter visualization using React
 
 [community visualizations]: https://developers.google.com/datastudio/visualization
