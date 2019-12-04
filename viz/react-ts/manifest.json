@@ -1,0 +1,24 @@
+{
+  "name": "React-ts",
+  "organization": "Matt",
+  "description": "Simple react example using hooks.",
+  "logoUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/sankey/src/bar-chart.svg",
+  "organizationUrl": "",
+  "supportUrl": "",
+  "privacyPolicyUrl": "",
+  "termsOfServiceUrl": "",
+  "packageUrl": "",
+  "devMode": true,
+  "components": [
+    {
+      "id": "react-ts",
+      "name": "React-ts",
+      "description": "Simple react example using hooks.",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/sunburst/src/sunburst.png",
+      "resource": {
+        "js": "gs://yl-viz-dev/react-ts/viz.js",
+        "config": "gs://yl-viz-dev/react-ts/config.json"
+      }
+    }
+  ]
+}
