@@ -1,0 +1,23 @@
+{
+  "name": "Star Rating",
+  "logoUrl": "https://storage.cloud.google.com/ds_com_vis_star_rating/star-thumbnail.png",
+  "organization": "Bounteous",
+  "supportUrl": "https://www.bounteous.com/contact/",
+  "packageUrl": "https://datastudio.google.com/open/1qQcyuAIwI45Hv-mszKFBokrmoQFb9xJZ",
+  "privacyPolicyUrl": "https://www.bounteous.com/legal/privacy-policy/",
+  "termsOfServiceUrl": "https://www.bounteous.com/legal/privacy-policy/",
+  "organizationUrl": "https://www.bounteous.com/",
+  "description": "Star Rating",
+  "devMode": false,
+  "components": [{
+    "id": "starRating",
+    "name": "Star Rating",
+    "iconUrl": "https://storage.cloud.google.com/ds_com_vis_star_rating/star-icon.png",
+    "description": "Star rating chart for products, content, etc.",
+    "resource": {
+      "js": "gs://ds_com_vis_star_rating/viz.js",
+      "config": "gs://ds_com_vis_star_rating/viz.json",
+      "css": "gs://ds_com_vis_star_rating/viz.css"
+    }
+  }]
+}

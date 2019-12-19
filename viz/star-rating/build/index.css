@@ -1,0 +1,43 @@
+body {
+  font-family: sans-serif;
+  overflow: hidden;
+}
+path {
+	fill: #f7f7f7;
+	stroke: #b7b7b7;
+}
+.stop-left {
+  stop-color: orange;  
+}
+.stop-right {
+  stop-color: #f7f7f7; 
+}
+#starsContainer {
+    margin: auto;
+}
+g {
+  text-align: center;
+}
+.percent100 {
+  fill: orange;
+}
+.percentageDynamic {
+  fill: url(#dynamicRatingGradient);
+}
+svg#starsContainer text#rating {
+    font-size: 22pt;
+    color: #262626;
+}
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* aspect ratio */
+  vertical-align: top;
+  overflow: hidden;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+}
