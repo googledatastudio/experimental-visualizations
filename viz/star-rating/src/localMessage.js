@@ -8,7 +8,7 @@ export const message = {
   tables: {
     DEFAULT: [
       {
-        starMetric: [3.75],
+        starMetric: [3.7556454],
         metricID: [128863172],
       }
     ],
@@ -35,7 +35,7 @@ export const message = {
   },
   theme: {
     themeFontColor: {
-      color: '#FFFFFF'
+      color: '#262626'
     },
     themeFontFamily: 'Roboto'
   }

@@ -8,16 +8,16 @@
   "termsOfServiceUrl": "https://www.bounteous.com/legal/privacy-policy/",
   "organizationUrl": "https://www.bounteous.com/",
   "description": "Star Rating",
-  "devMode": false,
+  "devMode": "DEVMODE_BOOL",
   "components": [{
     "id": "starRating",
     "name": "Star Rating",
     "iconUrl": "https://storage.cloud.google.com/ds_com_vis_star_rating/star-icon.png",
     "description": "Star rating chart for products, content, etc.",
     "resource": {
-      "js": "gs://ds_com_vis_star_rating/viz.js",
-      "config": "gs://ds_com_vis_star_rating/viz.json",
-      "css": "gs://ds_com_vis_star_rating/viz.css"
+      "js": "gs://ds_com_vis_star_rating/index.js",
+      "config": "gs://ds_com_vis_star_rating/index.json",
+      "css": "gs://ds_com_vis_star_rating/index.css"
     }
   }]
 }

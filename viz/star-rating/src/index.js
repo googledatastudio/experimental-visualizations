@@ -4,7 +4,7 @@ const local = require('./localMessage.js');
 
 // change this to 'true' for local development
 // change this to 'false' before deploying
-export const LOCAL = true;
+export const LOCAL = false;
 
 const drawViz = (data) => {
 
@@ -52,7 +52,7 @@ const drawViz = (data) => {
 
     return; 
   }
-  const metric = tableData[0].starMetric[0];
+  const metric = tableData[0].starMetric[0].toFixed(2);
   const starColor = data.style.starColor.value.color;
   const themeFontColor = data.theme.themeFontColor.color;
   const themeFontFamily = data.theme.themeFontFamily;
@@ -187,11 +187,7 @@ const drawViz = (data) => {
   d3.select('defs')
     .selectAll('linearGradient#dynamicRatingGradient stop.stop-left')
     .style('stop-color', starColor);
-
 }
-/*
-dscc.subscribeToData(drawViz, {transform: dscc.objectTransform})
-*/
 
 // renders locally
 if (LOCAL) {
