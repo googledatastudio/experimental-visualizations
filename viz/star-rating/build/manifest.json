@@ -8,7 +8,7 @@
   "termsOfServiceUrl": "https://www.bounteous.com/legal/privacy-policy/",
   "organizationUrl": "https://www.bounteous.com/",
   "description": "Star Rating",
-  "devMode": false,
+  "devMode": "true",
   "components": [{
     "id": "starRating",
     "name": "Star Rating",

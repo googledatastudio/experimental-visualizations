@@ -15,9 +15,9 @@
     "iconUrl": "https://storage.cloud.google.com/ds_com_vis_star_rating/star-icon.png",
     "description": "Star rating chart for products, content, etc.",
     "resource": {
-      "js": "gs://ds_com_vis_star_rating/index.js",
-      "config": "gs://ds_com_vis_star_rating/index.json",
-      "css": "gs://ds_com_vis_star_rating/index.css"
+      "js": "YOUR_GCS_BUCKET/index.js",
+      "config": "YOUR_GCS_BUCKET/index.json",
+      "css": "YOUR_GCS_BUCKET/index.css"
     }
   }]
 }
