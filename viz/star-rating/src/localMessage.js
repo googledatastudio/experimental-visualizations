@@ -8,7 +8,7 @@ export const message = {
   tables: {
     DEFAULT: [
       {
-        starMetric: [2.37],
+        starMetric: [3.75],
         metricID: [128863172],
       }
     ],
