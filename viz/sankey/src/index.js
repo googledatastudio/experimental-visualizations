@@ -36,11 +36,10 @@ const parseData = data => {
 
 const styleVal = (message, styleId) => {
   // to account for color styling
-  if (
-    message.style[styleId].value !== undefined &&
-    typeof message.style[styleId].value === 'object'
-  ) {
-    return message.style[styleId].value.color;
+  if (typeof message.style[styleId].defaultValue === 'object') {
+    return message.style[styleId].value.color !== undefined
+      ? message.style[styleId].value.color
+      : message.style[styleId].defaultValue.color;
   }
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
