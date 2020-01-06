@@ -11,16 +11,17 @@ const local = require('./localMessage');
 
 const LOCAL = false;
 
-const styleVal: any = (message: any, styleId: string) => {
+const styleVal = (message:any, styleId:any) => {
   // to account for color styling
-  if (message.style[styleId].value !== undefined && typeof message.style[styleId].value === 'object' ){
-    return message.style[styleId].value.color;
+  if (typeof message.style[styleId].defaultValue === 'object') {
+    return message.style[styleId].value.color !== undefined
+      ? message.style[styleId].value.color
+      : message.style[styleId].defaultValue.color;
   }
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
-      : message.style[styleId].defaultValue;
-  
-}
+    : message.style[styleId].defaultValue;
+};
 
 // TODO just use string formatting and object properties to simplify
 const colorSwitch = (selectedScheme: string) => {
