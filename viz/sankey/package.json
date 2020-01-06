@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@google/dscc": "^0.3.8",
-    "@google/dscc-scripts": "^1.0.10"
+    "@google/dscc-scripts": "^1.0.14"
   },
   "dependencies": {
     "d3": "^5.9.2",
