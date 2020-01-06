@@ -34,7 +34,9 @@
           "id": "arcOutline",
           "label": "Arc Outline",
           "type": "FILL_COLOR",
-          "defaultValue": "#FFFFFF"
+          "defaultValue": {
+            "color": "#FFFFFF"
+          }
         },
         {
           "id": "arcOpacity",

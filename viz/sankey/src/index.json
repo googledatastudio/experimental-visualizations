@@ -35,13 +35,17 @@
           "id": "node_color",
           "label": "Node Color",
           "type": "FILL_COLOR",
-          "defaultValue": "#000000"
+          "defaultValue": {
+            "color": "#000000"
+          }
         },
         {
           "id": "link_color",
           "label": "Link color",
           "type": "BORDER_COLOR",
-          "defaultValue": "#000"
+          "defaultValue": {
+            "color": "#000000"
+          }
         },
         {
           "id": "link_opacity",
@@ -71,7 +75,9 @@
           "id": "node_font_color",
           "label": "Node label color",
           "type": "FONT_COLOR",
-          "defaultValue": "#000000"
+          "defaultValue": {
+            "color": "#000000"
+          }
         },
         {
           "id": "left_offset",
