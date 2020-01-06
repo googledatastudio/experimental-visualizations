@@ -11,7 +11,7 @@ const local = require('./localMessage');
 
 const LOCAL = false;
 
-const styleVal = (message:any, styleId:any) => {
+const styleVal: any = (message: any, styleId: string) => {
   // to account for color styling
   if (typeof message.style[styleId].defaultValue === 'object') {
     return message.style[styleId].value.color !== undefined
