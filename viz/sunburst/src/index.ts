@@ -20,12 +20,12 @@ const styleVal: any = (message: any, styleId: string) => {
   }
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
-      : message.style[styleId].defaultValue;
+    : message.style[styleId].defaultValue;
 }
 
 // TODO just use string formatting and object properties to simplify
 const colorSwitch = (selectedScheme: string) => {
-  switch(selectedScheme){
+  switch (selectedScheme) {
     case 'schemeCategory10':
       return d3.schemeCategory10;
     case 'schemeAccent':
@@ -51,11 +51,11 @@ const buildTooltip = (fields: any, d: any) => {
   var node: any = d;
   var tooltip: string[] = [];
 
-  if (node.value !== undefined){
+  if (node.value !== undefined) {
     tooltip.unshift(`value: ${node.value.toLocaleString('en-US')}`);
   }
-  
-  while (node.parent !== null){
+
+  while (node.parent !== null) {
     let dimName = fields.dimension[node.depth - 1].name;
     tooltip.unshift(`${dimName}: ${node.data.name}`);
     node = node.parent;
@@ -66,12 +66,12 @@ const buildTooltip = (fields: any, d: any) => {
 const drawViz = (data: any) => {
   const height = dscc.getHeight();
   const width = dscc.getWidth();
-  
+
   if (height < 0 || width < 0) {
     utils.displayError(utils.SVG_TOO_SMALL, utils.C_SVG_TOO_SMALL);
     return;
   }
-  
+
   // remove the canvas if it exists
   d3.select('body')
     .selectAll('svg')
