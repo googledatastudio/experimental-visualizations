@@ -21,7 +21,7 @@ const styleVal: any = (message: any, styleId: string) => {
   return message.style[styleId].value !== undefined
     ? message.style[styleId].value
     : message.style[styleId].defaultValue;
-}
+};
 
 // TODO just use string formatting and object properties to simplify
 const colorSwitch = (selectedScheme: string) => {
