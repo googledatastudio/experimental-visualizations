@@ -51,13 +51,17 @@
         {
           "id": "lowColor",
           "label": "Color for small values",
-          "defaultValue": "#00FFFF",
+          "defaultValue": {
+            "color": "#00FFFF"
+          },
           "type": "FILL_COLOR"
         },
         {
           "id": "highColor",
           "label": "Color for large values",
-          "defaultValue": "#FF0000",
+          "defaultValue": {
+            "color": "#FF0000"
+          },
           "type": "FILL_COLOR"
         },
         {

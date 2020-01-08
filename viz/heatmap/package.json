@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@google/dscc": "^0.3.11",
-    "@google/dscc-scripts": "^1.0.10",
+    "@google/dscc-scripts": "^1.0.14",
     "d3": "^5.9.2",
     "d3-axis": "^1.0.12",
     "d3-scale-chromatic": "^1.3.3"
