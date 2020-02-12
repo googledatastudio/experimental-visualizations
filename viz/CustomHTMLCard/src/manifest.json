@@ -1,0 +1,24 @@
+{
+  "name": "Custom HTML Card",
+  "organization": "Data Studio",
+  "description": "Community Viz lets users design and render their own viz in Data Studio. Using this card generator Community Viz we will let users render individual cards for each of their data rows. User can provide their own style. Sample format body{background-color:#aebecf} .row{float:left;width:30%;margin:0.5em;border:0.05em solid black;}",
+  "logoUrl": "https://storage.googleapis.com/lego-devrel-testing/CustomHTMLCard/HTMLCard.png",
+  "supportUrl": "https://issuetracker.google.com//issues/new?component=801069&template=1385925",
+  "privacyPolicyUrl": "",
+  "termsOfServiceUrl": "",
+  "packageUrl": "https://datastudio.google.com/open/1QhuGDiHKUQ-yBs4nfAOesdhr9RBeQPvm",
+  "devMode": false,
+  "components": [
+    {
+      "id": "htmlCard",
+      "name": "CustomHTMLCard",
+      "description": "My first Community Visualization",
+      "iconUrl": "https://storage.googleapis.com/lego-devrel-testing/CustomHTMLCard/HTMLCard.png",
+      "resource": {
+       "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}
