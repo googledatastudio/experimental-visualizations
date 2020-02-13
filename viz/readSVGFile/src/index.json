@@ -1,0 +1,17 @@
+{
+  "data":[],
+  "style": [
+    {
+      "id": "text",
+      "label": "Text Input",
+      "elements": [
+        {
+          "type": "TEXTAREA",
+          "id": "customText",
+          "label": "Enter SVG text",
+          "defaultValue": ""
+        }
+      ]
+    }
+  ]
+}
