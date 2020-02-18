@@ -1,19 +1,19 @@
 {
   "name": "Draw SVG",
   "organization": "Data Studio Developer Relations",
-  "description": "This visualization allows user to give SVG XML as a text input and create report with image.",
+  "description": "This visualization will use SVG XML text input to render an image.",
   "logoUrl": "https://storage.googleapis.com/lego-devrel-testing/readSVGFile/svg.jpg",
   "supportUrl": "https://issuetracker.google.com//issues/new?component=801069&template=1385925",
   "privacyPolicyUrl": "",
   "termsOfServiceUrl": "",
-  "packageUrl": "https://datastudio.google.com/open/15pJmbAJMCyPBFWYICz_XQlU_nKjSjwqD?usp=sharing",
+  "packageUrl": "https://datastudio.google.com/open/15pJmbAJMCyPBFWYICz_XQlU_nKjSjwqD",
   "organizationUrl":"",
-  "devMode": true,
+  "devMode": false,
   "components": [
     {
       "id":"svgFile",
       "name": "Draw SVG",
-      "description": "User can create SVG image by providing XML format in text input field in Style tab.",
+      "description": "This visualization will use SVG XML text input to render an image.",
       "iconUrl": "https://storage.googleapis.com/lego-devrel-testing/readSVGFile/svg.jpg",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",
