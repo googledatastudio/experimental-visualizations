@@ -12,7 +12,7 @@
   "components": [
     {
       "id": "htmlCard",
-      "name": "CustomHTMLCard",
+      "name": "HTML Card Template",
       "description": "Create custom HTML Cards using the data.",
       "iconUrl": "https://storage.googleapis.com/lego-devrel-testing/CustomHTMLCard/HTMLCard.png",
       "resource": {
