@@ -1,7 +1,7 @@
 # Data Studio Community Visualization code to create HTML Card Template
 
-Data Studio [community visualizations][community viz] allow you to write custom
-JavaScript visualizations for [Google Data Studio][datastudio].
+Data Studio [community visualizations][https://datastudio.google.com/c/u/0/navigation/reporting] allow you to write custom
+JavaScript visualizations for [Google Data Studio][https://developers.google.com/datastudio/visualization].
 
 ## About this Community Visualization
 
