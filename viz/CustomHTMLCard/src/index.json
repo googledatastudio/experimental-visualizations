@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "Concepts",
+      "elements": [
+        {
+          "id": "chartDimension",
+          "label": "Dimensions",
+          "type": "DIMENSION",
+          "options": {
+            "min": 1,
+            "max": 100
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "css",
+      "label": "Page Style",
+      "elements": [
+        {
+          "id": "pageStyle",
+          "label": "Enter styling CSS for HTML page",
+          "defaultValue": "",
+          "type": "TEXTINPUT"
+        }
+      ]
+    }
+  ]
+}
