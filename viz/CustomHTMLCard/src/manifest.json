@@ -1,0 +1,25 @@
+{
+  "name": "Custom HTML Card",
+  "organization": "Data Studio Developer Relations",
+  "description": "Using this card generator Community Viz we will let users render individual cards for each of their data rows.",
+  "logoUrl": "https://storage.googleapis.com/lego-devrel-testing/CustomHTMLCard/HTMLCard.png",
+  "supportUrl": "https://issuetracker.google.com//issues/new?component=801069&template=1385925",
+  "privacyPolicyUrl": "",
+  "termsOfServiceUrl": "",
+  "packageUrl": "https://datastudio.google.com/open/1QhuGDiHKUQ-yBs4nfAOesdhr9RBeQPvm",
+  "organizationUrl":"",
+  "devMode": false,
+  "components": [
+    {
+      "id": "htmlCard",
+      "name": "HTML Card Template",
+      "description": "Create custom HTML Cards using the data.",
+      "iconUrl": "https://storage.googleapis.com/lego-devrel-testing/CustomHTMLCard/HTMLCard.png",
+      "resource": {
+       "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "dsccViz": {
+    "gcsDevBucket": "gs://lego-devrel-testing/CustomHTMLCard",
+    "gcsProdBucket": "gs://lego-devrel-testing/CustomHTMLCard-prod",
+    "jsFile": "index.js",
+    "jsonFile": "index.json",
+    "cssFile": "index.css",
+    "print": "printMessage.js"
+  },
+  "scripts": {
+    "build:dev": "dscc-scripts viz build -d dev",
+    "build:prod": "dscc-scripts viz build -d prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
+    "update_message": "dscc-scripts viz update_message -f object",
+    "start": "dscc-scripts viz start"
+  },
+  "devDependencies": {
+    "@google/dscc": "^0.3.8",
+    "@google/dscc-scripts": "^1.0.15"
+  },
+  "dependencies": {
+    "color-string": "^1.5.3",
+    "jquery": "^3.4.1"
+  }
+}
