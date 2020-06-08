@@ -3,7 +3,7 @@ import {drawViz} from './common'
 import { subscribeToData, objectTransform } from '@google/dscc';
 // change this to 'true' for local development
 // change this to 'false' before deploying
-export const LOCAL = false;
+export const LOCAL = true;
 
 // renders locally
 if (LOCAL) {

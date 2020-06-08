@@ -69,6 +69,7 @@ export function populateTables(vizData: ObjectRow[], vizFields: FieldsByConfigId
         }
         series.push(newSeries);
     }
+    //console.log(series,labels);
     return {
         series: series,
         labels: labels
