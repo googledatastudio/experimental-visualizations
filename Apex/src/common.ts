@@ -16,7 +16,7 @@ let myChart: Chart = {
 };
 const CHARTNAME = 'myChart';
 
-export function drawViz(data: ObjectFormat) {
+export function drawViz(data: ObjectFormat): void {
     const newChart: boolean = document.getElementById(CHARTNAME) == undefined;
     const tables = populateTables(data.tables.DEFAULT, data.fields);
     const styling = populateStyle(data.style, tables.labels.length);
@@ -24,7 +24,7 @@ export function drawViz(data: ObjectFormat) {
     const options = {
         series: tables.series,
         labels: tables.labels,
-        tooltip:styling.tooltip,
+        tooltip: styling.tooltip,
         chart: styling.chart,
         fill: styling.fill,
         markers: styling.markers,
@@ -93,7 +93,7 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         }
     }
     return {
-        tooltip:tooltip,
+        tooltip: tooltip,
         chart: chart,
         fill: populateFill(vizStyle.fillRadar.value, vizStyle.fillOpacity.value, lineColors),
         markers: populateMarkers(vizStyle.showMarkers.value, vizStyle.markerType.value, lineColors),
@@ -105,6 +105,12 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         legend: populateLegend(lineColors)
     };
 };
+/**
+ * Takes fillRadar bool, fillOpacity level and lineColors to generate ApexFill
+ * @param fillRadar
+ * @param fillOpacity
+ * @param lineColors
+ */
 export function populateFill(fillRadar: boolean, fillOpacity: number, lineColors: string[]) {
     const fill: ApexFill = {
         opacity: fillRadar ? fillOpacity : 0,
@@ -112,6 +118,12 @@ export function populateFill(fillRadar: boolean, fillOpacity: number, lineColors
     }
     return fill;
 };
+/**
+ * Takes showMarkers bool, the markerType and lineColors to populate ApexDataLabels
+ * @param showMarkers
+ * @param markerType
+ * @param lineColors
+ */
 export function populateMarkers(showMarkers: boolean, markerType: string, lineColors: string[]) {
     const size = showMarkers == true && markerType === 'default' ? 4 : 0
     const markers: ApexMarkers = {
@@ -120,6 +132,12 @@ export function populateMarkers(showMarkers: boolean, markerType: string, lineCo
     }
     return markers;
 };
+/**
+ * Takes showMarkers bool, the markerType and lineColors to populate ApexDataLabels
+ * @param showMarkers
+ * @param markerType
+ * @param lineColors
+ */
 export function populateDataLabels(showMarkers: boolean, markerType: string, lineColors: string[]) {
     if (showMarkers == true && markerType === 'data') {
         const dataLabels: ApexDataLabels = {
@@ -142,6 +160,11 @@ export function populateDataLabels(showMarkers: boolean, markerType: string, lin
     };
     return dataLabels;
 };
+/**
+ * Takes 2 colors and populates ApexPlotOptions
+ * @param color1
+ * @param color2
+ */
 export function populatePlotOptions(color1: string, color2: string) {
     const plotOptions: ApexPlotOptions = {
         radar: {
@@ -155,23 +178,44 @@ export function populatePlotOptions(color1: string, color2: string) {
     };
     return plotOptions;
 };
+/**
+ * Takes XAxisEnable boolean and fontInfo and creates ApexXAxis
+ * Uses numDims to properly add color to axis from fontInfo
+ * @param enableAxis
+ * @param fontInfo
+ * @param numDims
+ */
 export function populateXAxis(enableAxis: boolean, fontInfo: FontInfo, numDims: number) {
-    const temp = []; //super hacky but it works
-    for (let i = 0; i < numDims; i++) {
-        temp[i] = fontInfo.color; //pushes the color to every x axis label individually
+    if (enableAxis) {
+        const temp = []; //super hacky but it works
+        for (let i = 0; i < numDims; i++) {
+            temp[i] = fontInfo.color; //pushes the color to every x axis label individually
+        }
+        const xAxis: ApexXAxis = {
+            labels: {
+                show: enableAxis,
+                style: {
+                    colors: temp,
+                    fontSize: fontInfo.size + 'px',
+                    fontFamily: fontInfo.family,
+                }
+            }
+        }
+        return xAxis;
     }
     const xAxis: ApexXAxis = {
         labels: {
-            show: enableAxis,
-            style: {
-                colors: temp,
-                fontSize: fontInfo.size + 'px',
-                fontFamily: fontInfo.family,
-            }
+            show: enableAxis
         }
     }
-    return xAxis;
+    return xAxis
+
 };
+/**
+ * Takes YAxisEnable boolean and fontInfo and creates ApexYAxis
+ * @param enableAxis
+ * @param fontInfo
+ */
 export function populateYAxis(enableAxis: boolean, fontInfo: FontInfo) {
     const yAxis: ApexYAxis = {
         show: enableAxis,
@@ -185,6 +229,10 @@ export function populateYAxis(enableAxis: boolean, fontInfo: FontInfo) {
     }
     return yAxis;
 };
+/**
+ * Takes lineColors and creates ApexStroke
+ * @param lineColors 
+ */
 export function populateStroke(lineColors: string[]) {
     const stroke: ApexStroke = {
         show: true,
@@ -196,7 +244,11 @@ export function populateStroke(lineColors: string[]) {
     }
     return stroke;
 }
-export function populateLegend(lineColors: string[]) {
+/**
+ * Takes lineColors and creates ApexLegend
+ * @param lineColors 
+ */
+export function populateLegend(lineColors: string[]): ApexLegend {
     const legend: ApexLegend = {
         markers: {
             fillColors: lineColors
