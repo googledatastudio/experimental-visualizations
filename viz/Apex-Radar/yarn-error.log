@@ -1,0 +1,67 @@
+Arguments: 
+  /usr/bin/node /usr/local/bin/yarn add --dev babel-jest @babel/core @babel/preset-env~
+
+PATH: 
+  /usr/local/google/home/duncanross/google-cloud-sdk/bin:/usr/lib/google-golang/bin:/usr/local/buildtools/java/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.20.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@babel%2fpreset-env~: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66987:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "dsccViz": {
+      "gcsDevBucket": "gs://duncanross-test/dev",
+      "gcsProdBucket": "gs://duncanross-test/prod",
+      "tsFile": "index.ts",
+      "jsonFile": "index.json",
+      "cssFile": "index.css",
+      "print": "printMessage.js"
+    },
+    "scripts": {
+      "build:dev": "dscc-scripts viz build -d dev",
+      "build:prod": "dscc-scripts viz build -d prod",
+      "push:dev": "dscc-scripts viz push -d dev",
+      "push:prod": "dscc-scripts viz push -d prod",
+      "update_message": "dscc-scripts viz update_message -f object",
+      "start": "dscc-scripts viz start",
+      "test": "jest"
+    },
+    "devDependencies": {
+      "@google/dscc": "^0.3.17",
+      "@google/dscc-scripts": "^1.0.16",
+      "copy-webpack-plugin": "^4.6.0",
+      "jest": "^26.0.1",
+      "ts-loader": "^7.0.4",
+      "typescript": "^3.9.2"
+    },
+    "dependencies": {
+      "apexcharts": "^3.19.2",
+      "yarn": "^1.22.4"
+    },
+    "version": "0.0.0"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
