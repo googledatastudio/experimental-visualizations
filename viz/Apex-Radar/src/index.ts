@@ -1,6 +1,6 @@
 import * as local from './localMessage';
-import {drawViz} from './common'
-import { subscribeToData, objectTransform } from '@google/dscc';
+import {drawViz} from './common';
+import {subscribeToData, objectTransform} from '@google/dscc';
 // change this to 'true' for local development
 // change this to 'false' before deploying
 export const LOCAL = false;
@@ -9,6 +9,5 @@ export const LOCAL = false;
 if (LOCAL) {
   drawViz(local.message);
 } else {
-  subscribeToData(drawViz, { transform: objectTransform });
+  subscribeToData(drawViz, {transform: objectTransform});
 }
- 
