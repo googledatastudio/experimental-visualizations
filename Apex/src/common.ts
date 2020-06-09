@@ -20,7 +20,6 @@ export function drawViz(data: ObjectFormat): void {
     const newChart: boolean = document.getElementById(CHARTNAME) == undefined;
     const tables = populateTables(data.tables.DEFAULT, data.fields);
     const styling = populateStyle(data.style, tables.labels.length);
-    console.log(styling);
 
     const options = {
         series: tables.series,
