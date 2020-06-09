@@ -534,3 +534,347 @@ import {ObjectFormat, FieldType, ConceptType} from '@google/dscc';
   },
   "interactions": {}
 };
+export const message2:ObjectFormat={
+  "tables":{"DEFAULT": [
+    {
+    "dimID": [
+      "1"
+    ],
+    "metricID": [
+      2,3
+    ]
+  },{
+    "dimID": [
+      "2"
+    ],
+    "metricID": [
+      3,4
+    ]
+  },{
+    "dimID": [
+      "3"
+    ],
+    "metricID": [
+      4,5
+    ]
+  },{
+    "dimID": [
+      "4"
+    ],
+    "metricID": [
+      5,6
+    ]
+  },{
+    "dimID": [
+      "5"
+    ],
+    "metricID": [
+      6,7
+    ]
+  }
+
+  ]},
+  "fields": {
+    "dimID": [
+      {
+        "id": "qt_3zx5rwt08b",
+        "name": "1 Month Times",
+        "type": FieldType.YEAR_MONTH_DAY,
+        "concept": ConceptType.DIMENSION
+      }
+    ],
+    "metricID": [
+      {
+        "id": "qt_0grczm838b",
+        "name": "Really small numbers",
+        "type": FieldType.NUMBER,
+        "concept":ConceptType.METRIC
+      },
+      {
+        "id": "qt_0grczm838a",
+        "name": "Kind of small numbers",
+        "type": FieldType.NUMBER,
+        "concept":ConceptType.METRIC
+      }
+    ]
+  },
+  "style": {
+    "fillRadar": {
+      "value": true,
+      "defaultValue": false
+    },
+    "fillOpacity": {
+      "value": 0.5,
+      "defaultValue": 0.2
+    },
+    "showMarkers": {
+      "value": true,
+      "defaultValue": true
+    },
+    "markerType": {
+      "value": "default",
+      "defaultValue": "default"
+    },
+    "fillColor1": {
+      "value": {
+        "color": "#CDDC39",
+        "opacity": 1
+      },
+      "defaultValue": {
+        "color": "#008FFB"
+      }
+    },
+    "fillColor2": {
+      "value": {
+        "color": "#0EE396"
+      },
+      "defaultValue": {
+        "color": "#0EE396"
+      }
+    },
+    "fillColor3": {
+      "value": {
+        "color": "#FEB019"
+      },
+      "defaultValue": {
+        "color": "#FEB019"
+      }
+    },
+    "fillColor4": {
+      "value": {
+        "color": "#FF4560"
+      },
+      "defaultValue": {
+        "color": "#FF4560"
+      }
+    },
+    "fillColor5": {
+      "value": {
+        "color": "#775DD0"
+      },
+      "defaultValue": {
+        "color": "#775DD0"
+      }
+    },
+    "plotColor1": {
+      "value": {
+        "color": "green"
+      },
+      "defaultValue": {
+        "color": "#FFFFFF"
+      }
+    },
+    "plotColor2": {
+      "value": {
+        "color": "#FFFFFF",
+        "opacity": 1
+      },
+      "defaultValue": {
+        "color": "#FFFFFF"
+      }
+    },
+    "enableXAxis": {
+      "value": true,
+      "defaultValue": true
+    },
+    "enableYAxis": {
+      "value": true,
+      "defaultValue": true
+    },
+    "axisFontColor": {
+      "value": {
+        "color": "red",
+        "opacity": 1
+      },
+      "defaultValue": {
+        "color": "#0000ff"
+      }
+    },
+    "axisFontSize": {
+      "value": 11,
+      "defaultValue": 10
+    },
+    "axisFontFamily": {
+      "value": "Arial",
+      "defaultValue": "auto"
+    }
+  },
+  "theme": {
+    "themeFillColor": {
+      "color": "#ffffff",
+      "themeRef": {
+        "index": 0
+      }
+    },
+    "themeFontColor": {
+      "color": "#000000",
+      "themeRef": {
+        "index": 1
+      }
+    },
+    "themeFontFamily": "Roboto",
+    "themeAccentFillColor": {
+      "color": "#e0e0e0",
+      "themeRef": {
+        "index": 2
+      }
+    },
+    "themeAccentFontColor": {
+      "color": "#000000",
+      "themeRef": {
+        "index": 3
+      }
+    },
+    "themeAccentFontFamily": "Roboto",
+    "themeSeriesColor": [
+      {
+        "color": "#0072f0",
+        "seriesRef": {
+          "index": 0
+        },
+        "themeRef": {
+          "index": 4
+        }
+      },
+      {
+        "color": "#00b6cb",
+        "seriesRef": {
+          "index": 1
+        },
+        "themeRef": {
+          "index": 5
+        }
+      },
+      {
+        "color": "#f10096",
+        "seriesRef": {
+          "index": 2
+        },
+        "themeRef": {
+          "index": 6
+        }
+      },
+      {
+        "color": "#f66d00",
+        "seriesRef": {
+          "index": 3
+        },
+        "themeRef": {
+          "index": 7
+        }
+      },
+      {
+        "color": "#ffa800",
+        "seriesRef": {
+          "index": 4
+        },
+        "themeRef": {
+          "index": 8
+        }
+      },
+      {
+        "color": "#7cb342",
+        "seriesRef": {
+          "index": 5
+        },
+        "themeRef": {
+          "index": 9
+        }
+      },
+      {
+        "color": "#5e35b1",
+        "seriesRef": {
+          "index": 6
+        }
+      },
+      {
+        "color": "#03a9f4",
+        "seriesRef": {
+          "index": 7
+        }
+      },
+      {
+        "color": "#ec407a",
+        "seriesRef": {
+          "index": 8
+        }
+      },
+      {
+        "color": "#ff7043",
+        "seriesRef": {
+          "index": 9
+        }
+      },
+      {
+        "color": "#737373",
+        "seriesRef": {
+          "index": 10
+        }
+      },
+      {
+        "color": "#f15a60",
+        "seriesRef": {
+          "index": 11
+        }
+      },
+      {
+        "color": "#7ac36a",
+        "seriesRef": {
+          "index": 12
+        }
+      },
+      {
+        "color": "#5a9bd4",
+        "seriesRef": {
+          "index": 13
+        }
+      },
+      {
+        "color": "#faa75a",
+        "seriesRef": {
+          "index": 14
+        }
+      },
+      {
+        "color": "#9e67ab",
+        "seriesRef": {
+          "index": 15
+        }
+      },
+      {
+        "color": "#ce7058",
+        "seriesRef": {
+          "index": 16
+        }
+      },
+      {
+        "color": "#d77fb3",
+        "seriesRef": {
+          "index": 17
+        }
+      },
+      {
+        "color": "#81d4fa",
+        "seriesRef": {
+          "index": 18
+        }
+      },
+      {
+        "color": "#f48fb1",
+        "seriesRef": {
+          "index": 19
+        }
+      }
+    ],
+    "themeIncreaseColor": {
+      "color": "#388e3c"
+    },
+    "themeDecreaseColor": {
+      "color": "#f44336"
+    },
+    "themeGridColor": {
+      "color": "#d1d1d1"
+    }
+  },
+  "interactions": {}
+}

@@ -14,6 +14,83 @@ describe('popTables', () => {
         }
         )
     });
+    test('local msg2, 2 metrics', () => {
+        expect(common.populateTables(local.message2.tables.DEFAULT, local.message2.fields)).toStrictEqual({
+            series: [{
+                data: [2, 3, 4, 5, 6],
+                name: "Really small numbers"
+            }, {
+                data: [3, 4, 5, 6, 7],
+                name: "Kind of small numbers"
+            }],
+            labels: ["1", "2", "3", "4", "5"]
+        }
+        )
+    });
+});
+describe('popStyle', () => {
+    test('local msg', () => {
+        expect(common.populateStyle(local.message.style, 28)).toStrictEqual({
+            chart: {
+                toolbar: { show: false },
+                type: "radar"
+            },
+            datalabels: { enabled: false },
+            fill: {
+                colors: ["#CDDC39", "#0EE396", "#FEB019", "#FF4560", "#775DD0"],
+                opacity: 0.5
+            },
+            legend: {
+                markers: {
+                    fillColors: ["#CDDC39", "#0EE396", "#FEB019", "#FF4560", "#775DD0"]
+                }
+            },
+            markers: {
+                colors: ["#CDDC39", "#0EE396", "#FEB019", "#FF4560", "#775DD0"],
+                size: 4
+            },
+            plotoptions: {
+                radar: {
+                    polygons: {
+                        strokeColors: "white",
+                        fill: {
+                            colors: ["green", "#FFFFFF"]
+                        }
+                    }
+                }
+            },
+            stroke: {
+                colors: ["#CDDC39", "#0EE396", "#FEB019", "#FF4560", "#775DD0"],
+                curve: "smooth",
+                dashArray: 0,
+                lineCap: "butt",
+                show: true,
+                width: 2
+            },
+            tooltip: { marker: { show: false } },
+            xaxis: {
+                labels: {
+                    show: true,
+                    style: {
+                        colors: ["red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red", "red"],
+                        fontFamily: "Arial",
+                        fontSize: "11px"
+                    }
+                },
+            },
+            yaxis: {
+                show: true,
+                labels: {
+                    style: {
+                        colors: "red",
+                        fontFamily: "Arial",
+                        fontSize: "11px"
+                    }
+
+                }
+            }
+        })
+    });
 });
 describe('popFill', () => {
     test('enabled', () => {
