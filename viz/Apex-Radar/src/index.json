@@ -6,7 +6,7 @@
       "elements": [
         {
           "id": "dimID",
-          "label": "A dimension",
+          "label": "Dimension",
           "type": "DIMENSION",
           "options": {
             "min": 1,
@@ -15,7 +15,7 @@
         },
         {
           "id": "metricID",
-          "label": "A metric",
+          "label": "Metric",
           "type": "METRIC",
           "options": {
             "min": 1,

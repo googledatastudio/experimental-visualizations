@@ -2,6 +2,6 @@
 
 set -ex
 
+/bin/bash /viz/Apex-Radar/travis_checks_apex-radar
 (cd viz/sunburst && yarn && yarn run tsc:check)
-(cd viz/Apex-Radar && npm ci && npm run test)
 yarn prettier:check
