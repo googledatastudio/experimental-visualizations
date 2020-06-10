@@ -1,0 +1,3 @@
+#!/bin/bash
+
+(cd viz/Apex-Radar && npm ci && npm run test)
