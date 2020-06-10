@@ -43,35 +43,26 @@ describe('populateStyle', () => {
   test('local msg', () => {
     const result=common.populateStyle(local.message.style, 28);
     expect(result.chart).toStrictEqual({
-      chart: {
         toolbar: {show: false},
         type: 'radar',
-      }
     });
     expect(result.datalabels).toStrictEqual({
-      datalabels: {enabled: false}
+      enabled: false
     });
     expect(result.fill).toStrictEqual({
-      fill: {
         colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
         opacity: 0.5,
-      }
     });
     expect(result.legend).toStrictEqual({
-      legend: {
         markers: {
           fillColors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
         }
-      }
     });
     expect(result.markers).toStrictEqual({
-      markers: {
         colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
         size: 4,
-      }
     });
     expect(result.plotoptions).toStrictEqual({
-      plotoptions: {
         radar: {
           polygons: {
             strokeColors: 'white',
@@ -80,23 +71,19 @@ describe('populateStyle', () => {
             }
           }
         }
-      }
     });
     expect(result.stroke).toStrictEqual({
-      stroke: {
         colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
         curve: 'smooth',
         dashArray: 0,
         lineCap: 'butt',
         show: true,
         width: 2,
-      }
     });
     expect(result.tooltip).toStrictEqual({
-      tooltip: {marker: {show: false}}
+      marker: {show: false}
     });
     expect(result.xaxis).toStrictEqual({
-      xaxis: {
         labels: {
           show: true,
           style: {
@@ -105,10 +92,8 @@ describe('populateStyle', () => {
             fontSize: '11px',
           },
         },
-      }
     });
     expect(result.yaxis).toStrictEqual({
-       yaxis: {
         show: true,
         labels: {
           style: {
@@ -117,7 +102,6 @@ describe('populateStyle', () => {
             fontSize: '11px',
           },
         },
-      }
     });
     
   });
