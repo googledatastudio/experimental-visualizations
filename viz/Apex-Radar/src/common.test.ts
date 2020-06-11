@@ -54,6 +54,9 @@ describe('populateStyle', () => {
         opacity: 0.5,
     });
     expect(result.legend).toStrictEqual({
+      position:"bottom",
+      show:true,
+      showForSingleSeries:true,
         markers: {
           fillColors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
         }
@@ -358,7 +361,10 @@ describe('populateStroke', () => {
 
 describe('populateLegend', () => {
   test('empty', () => {
-    expect(common.populateLegend([])).toStrictEqual({
+    expect(common.populateLegend(true,"bottom",[])).toStrictEqual({
+      position:"bottom",
+      show:true,
+      showForSingleSeries:true,
       markers: {
         fillColors: [],
       },
@@ -366,7 +372,10 @@ describe('populateLegend', () => {
   });
 
   test('one item', () => {
-    expect(common.populateLegend(['1'])).toStrictEqual({
+    expect(common.populateLegend(false,"bottom",['1'])).toStrictEqual({
+      position:"bottom",
+      show:false,
+      showForSingleSeries:true,
       markers: {
         fillColors: ['1'],
       },
@@ -374,7 +383,10 @@ describe('populateLegend', () => {
   });
 
   test('multiple', () => {
-    expect(common.populateLegend(['1', 'red', '#ffffff'])).toStrictEqual({
+    expect(common.populateLegend(true,"bottom",['1', 'red', '#ffffff'])).toStrictEqual({
+      position:"bottom",
+      show:true,
+      showForSingleSeries:true,
       markers: {
         fillColors: ['1', 'red', '#ffffff'],
       },

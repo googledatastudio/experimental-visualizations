@@ -34,7 +34,7 @@
           "id": "fillRadar",
           "label": "Fill",
           "type": "CHECKBOX",
-          "defaultValue": "false"
+          "defaultValue": "true"
         },
         {
           "id": "fillOpacity",
@@ -151,7 +151,7 @@
           "label": "Plot Color #1",
           "type": "FILL_COLOR",
           "defaultValue": {
-            "color": "#FFFFFF"
+            "color": "#EDEDED"
           }
         },
         {
@@ -185,7 +185,7 @@
           "label": "Font Color",
           "type": "FONT_COLOR",
           "defaultValue":{
-            "color": "#0000ff"
+            "color": "#000000"
           }
         },
         {
@@ -198,10 +198,46 @@
           "id": "axisFontFamily",
           "label": "Font",
           "type": "FONT_FAMILY",
-          "defaultValue": "auto"
+          "defaultValue": "Arial"
         }
       ]
 
+    },
+    {
+      "id":"legend",
+      "label":"Legend",
+      "elements":[
+        {
+          "id": "enableLegend",
+          "label": "Enable Legend",
+          "defaultValue": "true",
+          "type": "CHECKBOX"
+        },
+        {
+          "id": "legendPosition",
+          "label": "Legend Position",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "bottom",
+          "options": [
+            {
+              "label": "Bottom",
+              "value": "bottom"
+            },
+            {
+              "label": "Top",
+              "value": "top"
+            },
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        }
+      ]
     }
   ]
     

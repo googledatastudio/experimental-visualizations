@@ -242,6 +242,14 @@ export const message: ObjectFormat = {
       value: 'Arial',
       defaultValue: 'auto',
     },
+    enableLegend:{
+      value:true,
+      defaultValue:true
+    },
+    legendPosition:{
+      value:"bottom",
+      defaultValue:"bottom"
+    }
   },
   theme: {
     themeFillColor: {

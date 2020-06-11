@@ -146,7 +146,7 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         xaxis: populateXAxis(vizStyle.enableXAxis.value, axisFontInfo, numDims),
         yaxis: populateYAxis(vizStyle.enableYAxis.value, axisFontInfo),
         stroke: populateStroke(lineColors),
-        legend: populateLegend(lineColors),
+        legend: populateLegend(vizStyle.enableLegend.value,vizStyle.legendPosition.value,lineColors),
     };
 }
 
@@ -302,10 +302,10 @@ export function populateYAxis(enableAxis: boolean, fontInfo: FontInfo): ApexYAxi
  * @param lineColors
  */
 export function populateStroke(lineColors: string[]): ApexStroke {
-    const stroke: ApexStroke = {
+    const stroke = {
         show: true,
-        curve: 'smooth',
-        lineCap: 'butt',
+        curve: 'smooth' as ApexStroke["curve"],
+        lineCap: 'butt'as ApexStroke["lineCap"],
         width: 2,
         colors: lineColors,
         dashArray: 0,
@@ -317,8 +317,11 @@ export function populateStroke(lineColors: string[]): ApexStroke {
  * Takes lineColors and creates ApexLegend
  * @param lineColors
  */
-export function populateLegend(lineColors: string[]): ApexLegend {
+export function populateLegend(enableLegend: boolean,legendPosition:ApexLegend["position"],lineColors: string[]): ApexLegend {
     const legend = {
+        show:enableLegend,
+        showForSingleSeries:true,
+        position:legendPosition,
         markers: {
             fillColors: lineColors,
         },
