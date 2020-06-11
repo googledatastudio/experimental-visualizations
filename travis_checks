@@ -3,5 +3,5 @@
 set -ex
 
 (cd viz/sunburst && yarn && yarn run tsc:check)
-/bin/bash viz/Apex-Radar/travis_check
-yarn prettier:check
+(cd viz/Apex-Radar && /bin/bash ./travis_check)
+(yarn && yarn run prettier:check)`
