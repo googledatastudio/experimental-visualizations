@@ -26,6 +26,27 @@ const CHARTNAME = 'myChart';
  * @param data 
  */
 export function drawViz(data: ObjectFormat): void {
+    const hasData:boolean =data.tables.DEFAULT.length>0;
+    const oldErrorMsg=document.querySelector('h1');
+    
+    if(oldErrorMsg && oldErrorMsg.parentNode){
+        oldErrorMsg.parentNode.removeChild(oldErrorMsg);
+    }
+    if(!hasData){
+        if(myChart && document.body.contains(myChart.element)){
+            myChart.chart.destroy();
+            console.log('chart destroyed');
+            document.body.removeChild(myChart.element);
+            myChart=undefined;
+        }
+        const errorChartElement = document.createElement('h1');
+        errorChartElement.id='Error';
+        const errorText=document.createTextNode("No data");
+        errorChartElement.appendChild(errorText);
+        document.body.appendChild(errorChartElement);
+        return;
+    }
+
     const tables = populateTables(data.tables.DEFAULT, data.fields);
     const styling = populateStyle(data.style, tables.labels.length);
 
@@ -51,10 +72,8 @@ export function drawViz(data: ObjectFormat): void {
         const newApexChart = new ApexCharts(newChartElement, options);
         newApexChart.render();
         myChart = { element: newChartElement, chart: newApexChart };
-        console.log('New chart created.');
     } else {
         myChart.chart.updateOptions(options);
-        console.log('Chart updated.');
     }
 }
 
@@ -284,14 +303,16 @@ export function populateXAxis(
  * @param fontInfo
  */
 export function populateYAxis(enableAxis: boolean, fontInfo: FontInfo): ApexYAxis {
-    const yAxis = {
+    const yAxis:ApexYAxis = {
         show: enableAxis,
+        floating:true,
         labels: {
             style: {
                 colors: fontInfo.color,
                 fontSize: fontInfo.size + 'px',
                 fontFamily: fontInfo.family,
             },
+           
         },
     };
     return yAxis;

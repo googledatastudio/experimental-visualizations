@@ -98,6 +98,7 @@ describe('populateStyle', () => {
     });
     expect(result.yaxis).toStrictEqual({
         show: true,
+        floating:true,
         labels: {
           style: {
             colors: 'red',
@@ -293,6 +294,7 @@ describe('populateYAxis', () => {
       common.populateYAxis(true, {color: 'red', size: 10.4352, family: 'Arial'})
     ).toStrictEqual({
       show: true,
+      floating:true,
       labels: {
         style: {
           colors: 'red',
@@ -312,6 +314,7 @@ describe('populateYAxis', () => {
       })
     ).toStrictEqual({
       show: false,
+      floating:true,
       labels: {
         style: {
           colors: 'red',
