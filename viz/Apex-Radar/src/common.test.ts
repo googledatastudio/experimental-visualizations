@@ -16,7 +16,7 @@
 
 import * as common from './common';
 import * as local from './localMessage';
-import {EXPECTED_DATA,EXPECTED_LABELS,EXPECTED_COLORS} from './ExpectedResults';
+import { EXPECTED_DATA, EXPECTED_LABELS, EXPECTED_COLORS } from './ExpectedResults';
 
 describe('populateTables', () => {
   test('local msg, 1 metric', () => {
@@ -57,60 +57,65 @@ describe('populateTables', () => {
 
 describe('populateStyle', () => {
   test('local msg', () => {
-    const result=common.populateStyle(local.message.style, 28);
+    const result = common.populateStyle(local.message.style, 28);
     expect(result.chart).toStrictEqual({
-        toolbar: {show: false},
-        type: 'radar',
+      toolbar: { show: false },
+      type: 'radar',
     });
     expect(result.datalabels).toStrictEqual({
       enabled: false
     });
     expect(result.fill).toStrictEqual({
-        colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
-        opacity: 0.5,
+      colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
+      opacity: 0.5,
     });
     expect(result.legend).toStrictEqual({
-      position:"bottom",
-      show:true,
-      showForSingleSeries:true,
-        markers: {
-          fillColors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
-        }
+      position: "bottom",
+      show: true,
+      showForSingleSeries: true,
+      fontSize:'11px',
+        fontFamily:'Arial',
+        labels:{
+            colors:'red',
+        },
+      markers: {
+        fillColors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
+      }
     });
     expect(result.markers).toStrictEqual({
-        colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
-        size: 4,
+      colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
+      size: 4,
     });
     expect(result.plotoptions).toStrictEqual({
-        radar: {
-          polygons: {
-            strokeColors: 'white',
-            fill: {
-              colors: ['green', '#FFFFFF'],
-            }
+      radar: {
+        polygons: {
+          strokeColors: 'white',
+          fill: {
+            colors: ['green', '#FFFFFF'],
           }
         }
+      }
     });
     expect(result.stroke).toStrictEqual({
-        colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
-        curve: 'smooth',
-        dashArray: 0,
-        lineCap: 'butt',
-        show: true,
-        width: 2,
+      colors: ['#CDDC39', '#0EE396', '#FEB019', '#FF4560', '#775DD0'],
+      curve: 'smooth',
+      dashArray: 0,
+      lineCap: 'butt',
+      show: true,
+      width: 2,
     });
     expect(result.tooltip).toStrictEqual({
-      marker: {show: false}
+      marker: { show: false }
     });
     expect(result.xaxis).toStrictEqual({
-        labels: {
-          show: true,
-          style: {
-            colors: EXPECTED_COLORS,
-            fontFamily: 'Arial',
-            fontSize: '11px',
-          },
+      labels: {
+        show: true,
+        style: {
+          colors: EXPECTED_COLORS,
+          fontFamily: 'Arial',
+          fontSize: '11px',
         },
+      },
     });
     expect(result.yaxis).toStrictEqual({
         show: true,
@@ -122,11 +127,12 @@ describe('populateStyle', () => {
             fontSize: '11px',
           },
         },
-    });
-    
-  });
 
+    });
+
+  });
 });
+
 
 describe('populateFill', () => {
   test('enabled', () => {
@@ -176,10 +182,11 @@ describe('populateMarkers', () => {
 describe('populateDataLabels', () => {
   test('enabled, data', () => {
     expect(
-      common.populateDataLabels(true, 'data', ['red', 'green'])
+      common.populateDataLabels(true, 'data', ['red', 'green'],'Arial')
     ).toStrictEqual({
       enabled: true,
       style: {
+        fontFamily:'Arial',
         colors: ['red', 'green'],
       },
       background: {
@@ -194,7 +201,7 @@ describe('populateDataLabels', () => {
 
   test('enabled, not data', () => {
     expect(
-      common.populateDataLabels(true, 'not data', ['red', 'green'])
+      common.populateDataLabels(true, 'not data', ['red', 'green'],'Arial')
     ).toStrictEqual({
       enabled: false,
     });
@@ -202,7 +209,7 @@ describe('populateDataLabels', () => {
 
   test('disabled', () => {
     expect(
-      common.populateDataLabels(true, 'not data', ['red', 'green'])
+      common.populateDataLabels(true, 'not data', ['red', 'green'],'Arial')
     ).toStrictEqual({
       enabled: false,
     });
@@ -255,7 +262,7 @@ describe('populateXAxis', () => {
     expect(
       common.populateXAxis(
         true,
-        {color: 'red', size: 10.4352, family: 'Arial'},
+        { color: 'red', size: 10.4352, family: 'Arial' },
         5
       )
     ).toStrictEqual({
@@ -274,7 +281,7 @@ describe('populateXAxis', () => {
     expect(
       common.populateXAxis(
         true,
-        {color: 'red', size: 10.4352, family: 'Arial'},
+        { color: 'red', size: 10.4352, family: 'Arial' },
         1
       )
     ).toStrictEqual({
@@ -293,7 +300,7 @@ describe('populateXAxis', () => {
     expect(
       common.populateXAxis(
         false,
-        {color: 'red', size: 10.4352, family: 'Arial'},
+        { color: 'red', size: 10.4352, family: 'Arial' },
         5
       )
     ).toStrictEqual({
@@ -307,7 +314,7 @@ describe('populateXAxis', () => {
 describe('populateYAxis', () => {
   test('enabled', () => {
     expect(
-      common.populateYAxis(true, {color: 'red', size: 10.4352, family: 'Arial'})
+      common.populateYAxis(true, { color: 'red', size: 10.4352, family: 'Arial' })
     ).toStrictEqual({
       show: true,
       floating:true,
@@ -380,10 +387,15 @@ describe('populateStroke', () => {
 
 describe('populateLegend', () => {
   test('empty', () => {
-    expect(common.populateLegend(true,"bottom",[])).toStrictEqual({
-      position:"bottom",
-      show:true,
-      showForSingleSeries:true,
+    expect(common.populateLegend(true, "bottom", [],{ color: 'red', size: 10.4352, family: 'Arial' })).toStrictEqual({
+      position: "bottom",
+      show: true,
+      showForSingleSeries: true,
+      fontSize:'10.4352px',
+        fontFamily:'Arial',
+        labels:{
+            colors:'red',
+        },
       markers: {
         fillColors: [],
       },
@@ -391,10 +403,15 @@ describe('populateLegend', () => {
   });
 
   test('one item', () => {
-    expect(common.populateLegend(false,"bottom",['1'])).toStrictEqual({
-      position:"bottom",
-      show:false,
-      showForSingleSeries:true,
+    expect(common.populateLegend(false, "bottom", ['1'],{ color: 'red', size: 10.4352, family: 'Arial' })).toStrictEqual({
+      position: "bottom",
+      show: false,
+      showForSingleSeries: true,
+      fontSize:'10.4352px',
+        fontFamily:'Arial',
+        labels:{
+            colors:'red',
+        },
       markers: {
         fillColors: ['1'],
       },
@@ -402,10 +419,15 @@ describe('populateLegend', () => {
   });
 
   test('multiple', () => {
-    expect(common.populateLegend(true,"bottom",['1', 'red', '#ffffff'])).toStrictEqual({
-      position:"bottom",
-      show:true,
-      showForSingleSeries:true,
+    expect(common.populateLegend(true, "bottom", ['1', 'red', '#ffffff'],{ color: 'red', size: 10.4352, family: 'Arial' })).toStrictEqual({
+      position: "bottom",
+      show: true,
+      showForSingleSeries: true,
+      fontSize:'10.4352px',
+        fontFamily:'Arial',
+        labels:{
+            colors:'red',
+        },
       markers: {
         fillColors: ['1', 'red', '#ffffff'],
       },

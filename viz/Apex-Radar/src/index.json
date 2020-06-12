@@ -173,6 +173,30 @@
       ]
     },
     {
+      "id": "text",
+      "label": "Text",
+      "elements":[{
+        "id": "axisFontColor",
+        "label": "Font Color",
+        "type": "FONT_COLOR",
+        "defaultValue":{
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "axisFontSize",
+        "label": "Font Size",
+        "type": "FONT_SIZE",
+        "defaultValue": "10"
+      },
+      {
+        "id": "axisFontFamily",
+        "label": "Font",
+        "type": "FONT_FAMILY",
+        "defaultValue": "Arial"
+      }]
+    },
+    {
       "id": "axis",
       "label": "Axis",
       "elements": [
@@ -187,26 +211,6 @@
           "label": "Enable Y Axis",
           "defaultValue": "true",
           "type": "CHECKBOX"
-        },
-        {
-          "id": "axisFontColor",
-          "label": "Font Color",
-          "type": "FONT_COLOR",
-          "defaultValue": {
-            "color": "#000000"
-          }
-        },
-        {
-          "id": "axisFontSize",
-          "label": "Font Size",
-          "type": "FONT_SIZE",
-          "defaultValue": "10"
-        },
-        {
-          "id": "axisFontFamily",
-          "label": "Font",
-          "type": "FONT_FAMILY",
-          "defaultValue": "Arial"
         }
       ]
     },
