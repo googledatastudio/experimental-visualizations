@@ -19,6 +19,7 @@ interface Chart {
 let myChart: Chart | undefined;
 
 const CHARTNAME = 'myChart';
+const ERRORNAME = 'Error';
 
 /**
  * Main driver function, takes data from DS as ObjectFormat
@@ -26,23 +27,28 @@ const CHARTNAME = 'myChart';
  * @param data 
  */
 export function drawViz(data: ObjectFormat): void {
-    const hasData:boolean =data.tables.DEFAULT.length>0;
-    const oldErrorMsg=document.querySelector('h1');
-    
-    if(oldErrorMsg && oldErrorMsg.parentNode){
+    const hasData: boolean = data.tables.DEFAULT.length > 0;
+    const oldErrorMsg = document.getElementById(ERRORNAME);
+
+    if (oldErrorMsg && oldErrorMsg.parentNode) {
         oldErrorMsg.parentNode.removeChild(oldErrorMsg);
     }
-    if(!hasData){
-        if(myChart && document.body.contains(myChart.element)){
+    if (!hasData) {
+        if (myChart && document.body.contains(myChart.element)) {
             myChart.chart.destroy();
-            console.log('chart destroyed');
             document.body.removeChild(myChart.element);
-            myChart=undefined;
+            myChart = undefined;
         }
-        const errorChartElement = document.createElement('h1');
-        errorChartElement.id='Error';
-        const errorText=document.createTextNode("No data");
-        errorChartElement.appendChild(errorText);
+        const errorChartElement = document.createElement('div');
+        errorChartElement.id = ERRORNAME;
+        errorChartElement.innerHTML = `
+        <div style="
+        position:absolute;top:30%;
+        bottom:30%;left:30%;right:30%">
+            <h1 style="text-align:center;">No Data</h1>
+            <p style="text-align:center;">Data Studio returned no data.</p>
+        </div>
+        `;
         document.body.appendChild(errorChartElement);
         return;
     }
@@ -165,7 +171,7 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         xaxis: populateXAxis(vizStyle.enableXAxis.value, axisFontInfo, numDims),
         yaxis: populateYAxis(vizStyle.enableYAxis.value, axisFontInfo),
         stroke: populateStroke(lineColors),
-        legend: populateLegend(vizStyle.enableLegend.value,vizStyle.legendPosition.value,lineColors),
+        legend: populateLegend(vizStyle.enableLegend.value, vizStyle.legendPosition.value, lineColors),
     };
 }
 
@@ -273,9 +279,9 @@ export function populateXAxis(
     if (enableAxis) {
         //super hacky but it works- creates an array with the desired color n times
         //this lets the color apply to all the labels on the xx axis
-        const axisColors = []; 
+        const axisColors = [];
         for (let i = 0; i < numDims; i++) {
-            axisColors[i] = fontInfo.color; 
+            axisColors[i] = fontInfo.color;
         }
         const xAxis = {
             labels: {
@@ -303,16 +309,16 @@ export function populateXAxis(
  * @param fontInfo
  */
 export function populateYAxis(enableAxis: boolean, fontInfo: FontInfo): ApexYAxis {
-    const yAxis:ApexYAxis = {
+    const yAxis: ApexYAxis = {
         show: enableAxis,
-        floating:true,
+        floating: true,
         labels: {
             style: {
                 colors: fontInfo.color,
                 fontSize: fontInfo.size + 'px',
                 fontFamily: fontInfo.family,
             },
-           
+
         },
     };
     return yAxis;
@@ -326,7 +332,7 @@ export function populateStroke(lineColors: string[]): ApexStroke {
     const stroke = {
         show: true,
         curve: 'smooth' as ApexStroke["curve"],
-        lineCap: 'butt'as ApexStroke["lineCap"],
+        lineCap: 'butt' as ApexStroke["lineCap"],
         width: 2,
         colors: lineColors,
         dashArray: 0,
@@ -338,11 +344,11 @@ export function populateStroke(lineColors: string[]): ApexStroke {
  * Takes lineColors and creates ApexLegend
  * @param lineColors
  */
-export function populateLegend(enableLegend: boolean,legendPosition:ApexLegend["position"],lineColors: string[]): ApexLegend {
+export function populateLegend(enableLegend: boolean, legendPosition: ApexLegend["position"], lineColors: string[]): ApexLegend {
     const legend = {
-        show:enableLegend,
-        showForSingleSeries:true,
-        position:legendPosition,
+        show: enableLegend,
+        showForSingleSeries: true,
+        position: legendPosition,
         markers: {
             fillColors: lineColors,
         },
