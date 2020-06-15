@@ -1,0 +1,4 @@
+
+.apexcharts-legend.position-bottom.apexcharts-align-left, .apexcharts-legend.position-top.apexcharts-align-left, .apexcharts-legend.position-right, .apexcharts-legend.position-left{
+    justify-content: center !important;
+}
