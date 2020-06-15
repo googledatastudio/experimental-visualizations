@@ -21,6 +21,15 @@
             "min": 1,
             "max": 5
           }
+        },
+        {
+          "id": "maxResults",
+          "label": "Max Results",
+          "type":"MAX_RESULTS",
+          "options":{
+            "max":500
+          }
+
         }
       ]
     }
