@@ -25,7 +25,7 @@
       ]
     }
   ],
-"style": [
+  "style": [
     {
       "id": "fill",
       "label": "Fill",
@@ -55,18 +55,18 @@
           "defaultValue": "true"
         },
         {
-          "id":"markerType",
+          "id": "markerType",
           "label": "Marker Type",
-          "type":"SELECT_SINGLE",
+          "type": "SELECT_SINGLE",
           "defaultValue": "default",
-          "options":[
+          "options": [
             {
-              "label":"Default",
-              "value":"default"
+              "label": "Default",
+              "value": "default"
             },
             {
-              "label":"Data",
-              "value":"data"
+              "label": "Data",
+              "value": "data"
             }
           ]
         }
@@ -159,7 +159,7 @@
           "label": "Plot Color #2",
           "type": "FILL_COLOR",
           "defaultValue": {
-            "color":"#FFFFFF"
+            "color": "#FFFFFF"
           }
         }
       ]
@@ -167,7 +167,7 @@
     {
       "id": "axis",
       "label": "Axis",
-      "elements":[
+      "elements": [
         {
           "id": "enableXAxis",
           "label": "Enable X Axis",
@@ -184,7 +184,7 @@
           "id": "axisFontColor",
           "label": "Font Color",
           "type": "FONT_COLOR",
-          "defaultValue":{
+          "defaultValue": {
             "color": "#000000"
           }
         },
@@ -201,12 +201,11 @@
           "defaultValue": "Arial"
         }
       ]
-
     },
     {
-      "id":"legend",
-      "label":"Legend",
-      "elements":[
+      "id": "legend",
+      "label": "Legend",
+      "elements": [
         {
           "id": "enableLegend",
           "label": "Enable Legend",
@@ -240,6 +239,4 @@
       ]
     }
   ]
-    
-    
 }
