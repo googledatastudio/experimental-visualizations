@@ -152,7 +152,7 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         family: vizStyle.axisFontFamily.value,
     };
     const chart = {
-        type: 'bar',
+        type: 'radar',
         toolbar: {
             show: false,
         }
