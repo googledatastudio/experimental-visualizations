@@ -1,11 +1,10 @@
 # Data Studio Community ApexCharts Radar Visualization
 
-Data Studio [community visualizations][community viz] allow you to write custom
-TypeScript visualizations for [Google Data Studio][datastudio].
+This visualization was created using Data Studio [community visualizations][community viz] and TypeScript. The radar is a web-shaped diagram used to indicate the relative influence of different numerical parameters.
 
 ## About this visualization
 
-The [Radar chart by ApexCharts][apex-radar] community visualization takes 1 dimension and up to 5 metrics. It works best with dimensions of moderate cardinality - for example, dimensions with 5-10 unique values.
+The [ApexCharts Radar chart][apex-radar] community visualization takes 1 dimension and up to 5 metrics. It works best with dimensions of moderate cardinality - for example, dimensions with 5-10 unique values.
 
 ## Deployed Version
 Component ID of the deployed version of this visualization:
