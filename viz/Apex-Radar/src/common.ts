@@ -20,6 +20,8 @@ import {
     ObjectRow,
     FieldsByConfigId,
     StyleById,
+    getHeight,
+    getWidth
 } from '@google/dscc';
 import ApexCharts from 'apexcharts';
 
@@ -57,9 +59,10 @@ export function drawViz(data: ObjectFormat): void {
         }
         const errorChartElement = document.createElement('div');
         errorChartElement.id = ERRORNAME;
+        const height = getHeight()/2;
         errorChartElement.innerHTML = `
         <div style="
-        position:absolute;top:30%;
+        position:absolute;padding-top:`+height+`px;
         bottom:30%;left:30%;right:30%">
             <h1 style="text-align:center;">No Data</h1>
             <p style="text-align:center;">Data Studio returned no data.</p>
@@ -85,6 +88,19 @@ export function drawViz(data: ObjectFormat): void {
         yaxis: styling.yaxis,
         stroke: styling.stroke,
         legend: styling.legend,
+        responsive: [{
+            breakpoint: 5000,
+            options: {
+                chart:{
+                type: 'radar',
+                toolbar: {
+                    show: false,
+                },
+                height:getHeight()-20,
+                width:getWidth()
+
+            }},
+        }]
     };
 
     if (!myChart) {
