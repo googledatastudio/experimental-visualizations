@@ -2,7 +2,7 @@
   "name": "ApexCharts Radar chart",
   "organization": "Duncan Ross",
   "description": "ApexCharts Radar visualization",
-  "logoUrl": "https://camo.githubusercontent.com/b36535715f6acada0653e347bb88533670d6c410/68747470733a2f2f617065786368617274732e636f6d2f6d656469612f617065786368617274732d6c6f676f2e706e67",
+  "logoUrl": "./resources/icon.png",
   "organizationUrl": "https://datastudio.google.com",
   "supportUrl": "https://github.com/googledatastudio/experimental-visualizations/issues",
   "privacyPolicyUrl": "https://docs.google.com/document/d/1RJXX3rAG29YBxQJIfrp887jGoRg3qLEtnY501BiVmIU/edit?usp=sharing",

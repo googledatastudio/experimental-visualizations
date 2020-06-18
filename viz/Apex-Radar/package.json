@@ -1,7 +1,7 @@
 {
   "dsccViz": {
     "gcsDevBucket": "gs://duncanross-test/dev",
-    "gcsProdBucket": "gs://duncanross-test/prod",
+    "gcsProdBucket": "gs://duncanross-test/radar-prod",
     "tsFile": "index.ts",
     "jsonFile": "index.json",
     "cssFile": "index.css",
