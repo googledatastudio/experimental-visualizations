@@ -1,0 +1,24 @@
+{
+  "name": "ApexCharts Radar Chart",
+  "organization": "Duncan Ross",
+  "description": "ApexCharts Radar visualization",
+  "logoUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/Apex-Radar/resources/Icon.png",
+  "organizationUrl": "https://datastudio.google.com",
+  "supportUrl": "https://github.com/googledatastudio/experimental-visualizations/issues",
+  "privacyPolicyUrl": "https://docs.google.com/document/d/1RJXX3rAG29YBxQJIfrp887jGoRg3qLEtnY501BiVmIU/edit?usp=sharing",
+  "termsOfServiceUrl": "https://docs.google.com/document/d/1RJXX3rAG29YBxQJIfrp887jGoRg3qLEtnY501BiVmIU/edit?usp=sharing",
+  "packageUrl": "https://github.com/googledatastudio/experimental-visualizations",
+  "devMode": "DEVMODE_BOOL",
+  "components": [
+    {
+      "name": "ApexCharts Radar chart",
+      "description": "ApexCharts Radar visualization",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/Apex-Radar/resources/Icon.png",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}
