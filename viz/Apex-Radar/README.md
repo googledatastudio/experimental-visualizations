@@ -10,7 +10,7 @@ The [ApexCharts Radar][ApexCharts-Radar] chart community visualization takes 1 d
 Component ID of the deployed version of this visualization:
 
 ```bash
-gs://duncanross-test/dev
+gs://duncanross-test/radar-prod
 ```
 
 ### Authors
@@ -20,6 +20,7 @@ This code was written by Duncan Ross.
 ### Additional Links
 
 [ApexCharts][ApexCharts]
+
 [Data Studio Community Visualizations][community-viz]
 
 [community-viz]: http://developers.google.com/datastudio/visualization
