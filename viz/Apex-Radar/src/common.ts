@@ -194,7 +194,8 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         datalabels: populateDataLabels(
             vizStyle.showMarkers.value,
             vizStyle.markerType.value,
-            lineColors
+            lineColors,
+            axisFontInfo.family
         ),
         plotoptions: populatePlotOptions(
             vizStyle.plotColor1.value.color,
@@ -203,7 +204,7 @@ export function populateStyle(vizStyle: StyleById, numDims: number) {
         xaxis: populateXAxis(vizStyle.enableXAxis.value, axisFontInfo, numDims),
         yaxis: populateYAxis(vizStyle.enableYAxis.value, axisFontInfo),
         stroke: populateStroke(lineColors),
-        legend: populateLegend(vizStyle.enableLegend.value, vizStyle.legendPosition.value, lineColors),
+        legend: populateLegend(vizStyle.enableLegend.value, vizStyle.legendPosition.value, lineColors,axisFontInfo),
     };
 }
 
@@ -253,12 +254,14 @@ export function populateMarkers(
 export function populateDataLabels(
     showMarkers: boolean,
     markerType: string,
-    lineColors: string[]
+    lineColors: string[],
+    fontFamily:string
 ): ApexDataLabels {
     if (showMarkers && markerType === 'data') {
         const dataLabels = {
             enabled: true,
             style: {
+                fontFamily:fontFamily,
                 colors: lineColors,
             },
             background: {
@@ -376,11 +379,16 @@ export function populateStroke(lineColors: string[]): ApexStroke {
  * Takes lineColors and creates ApexLegend
  * @param lineColors
  */
-export function populateLegend(enableLegend: boolean, legendPosition: ApexLegend["position"], lineColors: string[]): ApexLegend {
+export function populateLegend(enableLegend: boolean, legendPosition: ApexLegend["position"], lineColors: string[],fontInfo:FontInfo): ApexLegend {
     const legend = {
         show: enableLegend,
         showForSingleSeries: true,
         position: legendPosition,
+        fontSize:fontInfo.size+'px',
+        fontFamily:fontInfo.family,
+        labels:{
+            colors:fontInfo.color,
+        },
         markers: {
             fillColors: lineColors,
         },

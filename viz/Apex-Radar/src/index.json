@@ -173,21 +173,9 @@
       ]
     },
     {
-      "id": "axis",
-      "label": "Axis",
-      "elements": [
-        {
-          "id": "enableXAxis",
-          "label": "Enable X Axis",
-          "defaultValue": "true",
-          "type": "CHECKBOX"
-        },
-        {
-          "id": "enableYAxis",
-          "label": "Enable Y Axis",
-          "defaultValue": "true",
-          "type": "CHECKBOX"
-        },
+      "id":"text",
+      "label":"Text",
+      "elements":[
         {
           "id": "axisFontColor",
           "label": "Font Color",
@@ -207,6 +195,24 @@
           "label": "Font",
           "type": "FONT_FAMILY",
           "defaultValue": "Arial"
+        }
+      ]
+    },
+    {
+      "id": "axis",
+      "label": "Axis",
+      "elements": [
+        {
+          "id": "enableXAxis",
+          "label": "Enable X Axis",
+          "defaultValue": "true",
+          "type": "CHECKBOX"
+        },
+        {
+          "id": "enableYAxis",
+          "label": "Enable Y Axis",
+          "defaultValue": "true",
+          "type": "CHECKBOX"
         }
       ]
     },
