@@ -379,6 +379,7 @@ export function populateStroke(lineColors: string[]): ApexStroke {
  * Takes lineColors and creates ApexLegend
  * @param lineColors
  */
+
 export function populateLegend(enableLegend: boolean, legendPosition: ApexLegend["position"], lineColors: string[],fontInfo:FontInfo): ApexLegend {
     const legend = {
         show: enableLegend,
