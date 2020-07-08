@@ -8,40 +8,58 @@ export const LOCAL = true;
 const dscc = require('@google/dscc');
 let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
 const previousData: Map<string, number> = new Map();
-const height = dscc.getHeight() - 25;
-const width = dscc.getWidth() - 25;
-
-const xScale = d3.scaleLinear()
-  .range([0, width - 105]);
-const yScale = d3.scaleBand<number>()
-  .rangeRound([0, height])
-  .padding(0.25);
+let height: number;
+let width: number;
+let resize: NodeJS.Timeout;
+let xScale: d3.ScaleLinear<number, number> | d3.AxisScale<d3.AxisDomain>;
+let yScale: d3.ScaleBand<number>;
 const chartSettings: common.chartSettings = {
   duration: 2000,
   bars: 5
 
 }
 
+function updateDimensions() {
+  height = dscc.getHeight() - 25;
+  width = dscc.getWidth() - 25;
+  xScale = d3.scaleLinear()
+    .range([0, width - 45]);
+  yScale = d3.scaleBand<number>()
+    .rangeRound([15, height - 10])
+    .padding(0.25);
+}
 // write viz code here
 const drawViz = async (data: ObjectFormat) => {
-  let terminated=false;
-  d3.select('body').selectAll('svg').remove()
+  updateDimensions();
+  let terminated = false;
+
+  window.addEventListener('resize', function (event) {
+    clearTimeout(resize);
+    resize = setTimeout(function () { previousData.clear(); terminated = true; drawViz(data); }, 500);
+  });
+
+  d3.select('body').selectAll('svg').remove();
   d3.select('body').selectAll('button').remove();
+
+
   d3.select('body')
     .append('button')
     .text('Replay')
     .on("click", function () {
       d3.select('body').selectAll('svg').remove()
       previousData.clear();
+      terminated = true;
       drawViz(data);
-      terminated=true;
     });
 
   svg = d3
     .select('body')
     .append('svg')
-    .attr('width', width)
-    .attr('height', height - 20);
+    .attr('width', width - 20)
+    .attr('height', height - 20)
+    .on("resize", function () {
+      console.log('testing')
+    });
 
   const dataInfo = common.processData(data.tables.DEFAULT);
   const dataMap = dataInfo.dataMap;
@@ -54,8 +72,8 @@ const drawViz = async (data: ObjectFormat) => {
 
   let i = firstDate;
   for (const data of dataMap.values()) {
-    if(terminated){break;}
-    
+    if (terminated) { break; }
+
     const transition = svg.transition()
       .duration(chartSettings.duration)
       .ease(d3.easeLinear);
@@ -134,11 +152,10 @@ function updateBars(data: Array<common.MotionChartData>, transition: d3.Transiti
 
 function updateLabels(data: Array<common.MotionChartData>, transition: d3.Transition<SVGSVGElement, unknown, HTMLElement, any>) {
   let labelG = svg.select('.labels');
-
   if (labelG.empty()) {
     labelG = svg.append("g")
       .attr('class', 'labels')
-      .style("font", "bold 12px var(--sans-serif)")
+      .style("font-size", yScale.bandwidth() / 6)
       .style("font-variant-numeric", "tabular-nums")
       .attr("text-anchor", "end");
   }
@@ -166,7 +183,7 @@ function updateLabels(data: Array<common.MotionChartData>, transition: d3.Transi
           .remove())
 
       .call(bar => bar.transition(transition)
-        .attr("transform", (d) => `translate(${xScale(d.value)}, ${yScale(d.rank) || height + 50})`)
+        .attr("transform", (d) => `translate(${xScale(d.value)}, ${yScale(d.rank) || height})`)
         .attr("y", yScale.bandwidth() / 2)
         .call(g => g.select("tspan").tween("text", d => common.textTween((previousData.get(d.name) || d.value), d.value))));
 
@@ -178,12 +195,12 @@ function updateTitle(date: number) {
     .select('.title')
     .remove();
   svg
-    .append("text")
-    .attr("transform", "translate(" + (width - 230) + "," + (height - 50) + ")")
+    .append("g")
     .attr('class', 'title')
-    .attr("x", 0)
-    .attr("y", 25)
-    .attr("font-size", "100px")
+    .append('text')
+    .attr("transform", "translate(" + (width * .85) + "," + (height * .95) + ")")
+    .attr("font-size", "5vmax")
+    .attr('opacity', '60%')
     .text(date)
 }
 
