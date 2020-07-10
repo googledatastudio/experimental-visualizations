@@ -1,33 +1,35 @@
 import {
-    ObjectFormat,
-    RowEntry,
     ObjectRow,
-    FieldsByConfigId,
-    StyleById,
-    getHeight,
-    getWidth,
-    Row
 } from '@google/dscc';
 import * as d3 from 'd3';
 
 export interface MotionChartData {
     name: string,
     value: number,
-    rank: number
+    rank: number,
 }
-export interface chartSettings {
+export interface ChartSettings {
     duration: number,
     bars: number,
 }
+
+/**
+ * Intakes vizData as ObjectRow and processes it into a DataMap.
+ * DataMap maps year to an array of MotionCharData.
+ * @param vizData
+ */
 export function processData(vizData: ObjectRow[]) {
     const dataMap: Map<number, Array<MotionChartData>> = new Map();
-    let firstDate = 0;
+    const dateArr: Array<number> = new Array();
+    let firstDate: number = null;
 
     const allDims = new Set(vizData.map(row => row.dimID[0] as string));
 
-    vizData.forEach(function (row) {
-        if (firstDate === 0 || firstDate > +row.dimID[1]) {
-            firstDate = +row.dimID[1];
+
+    for(const row of vizData) {
+        const currentDate = +row.dateID[0];
+        if (firstDate === null || firstDate > currentDate) {
+            firstDate = currentDate;
         }
 
         const data: MotionChartData = {
@@ -36,15 +38,15 @@ export function processData(vizData: ObjectRow[]) {
             rank: -1
         }
 
-        if (dataMap.has(+row.dimID[1])) {
-            dataMap.get(+row.dimID[1]).push(data);
-            // heapSort(dataMap.get(+row.dimID[1]));
-            dataMap.get(+row.dimID[1]).forEach(element => element.rank = dataMap.get(+row.dimID[1]).indexOf(element))
+        if (dataMap.has(currentDate)) {
+            dataMap.get(currentDate).push(data);
+            for(const element of dataMap.get(currentDate)){element.rank = dataMap.get(currentDate).indexOf(element)}
         }
         else {
-            dataMap.set(+row.dimID[1], [data])
+            dateArr.push(currentDate);
+            dataMap.set(currentDate, [data])
         }
-    });
+    };
 
     // Populate remaining dims with dummy data
     for (const data of dataMap.values()) {
@@ -58,50 +60,15 @@ export function processData(vizData: ObjectRow[]) {
                 });
             }
         }
-        //data.sort((a, b) => a.name.localeCompare(b.name));
+        data.sort((a, b) => d3.descending(a.name, b.name))
     }
-
-    return { dataMap, firstDate };
+    dateArr.sort();
+    return { dataMap, dateArr };
 }
 
-function heap_root(arr: MotionChartData[], i: number, n: number) {
-    var left = 2 * i + 1;
-    var right = 2 * i + 2;
-    var max = i;
-
-    if (left < n && arr[left].value < arr[max].value) {
-        max = left;
-    }
-
-    if (right < n && arr[right].value < arr[max].value) {
-        max = right;
-    }
-
-    if (max != i) {
-        swap(arr, i, max);
-        heap_root(arr, max, n);
-    }
-}
-
-function swap(arr: MotionChartData[], A: number, B: number) {
-    const temp: MotionChartData = arr[A];
-    arr[A] = arr[B];
-    arr[B] = temp;
-}
-
-function heapSort(arr: MotionChartData[]) {
-    let n = arr.length;
-
-    for (let i = Math.floor(n / 2); i >= 0; i -= 1) {
-        heap_root(arr, i, n);
-    }
-    for (let i = arr.length - 1; i > 0; i--) {
-        swap(arr, 0, i);
-        n--;
-        heap_root(arr, 0, n);
-    }
-}
-
+/**
+ * Returns a randomly generated 6 character hex color code.
+ */
 export function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -111,12 +78,15 @@ export function getRandomColor() {
     return color;
 }
 
+/** 
+ * Given two numbers, returns the d3 inerpolation to generate the 'ticker' effect of counting up/down
+*/
 export function textTween(a: number, b: number) {
     const i = d3.interpolateNumber(a, b);
     const formatNumber = d3.format(",d");
 
     return function (t: number) {
-      this.textContent = formatNumber(i(t));
+        this.textContent = formatNumber(i(t));
     };
-  }
+}
 
