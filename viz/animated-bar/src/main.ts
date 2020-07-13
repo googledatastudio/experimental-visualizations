@@ -7,8 +7,9 @@ const previousData: Map<string, number> = new Map();
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleBand<number>();
 const chartSettings: common.ChartSettings = {
-    duration: 2000,
+    duration: 200,
     bars: 7,
+    keyframes:20,
 }
 const PAD_SVG = 25, PAD_YAXIS = 15;
 
@@ -46,27 +47,31 @@ export async function drawViz(data: ObjectFormat) {
         .attr('width', width - 20)
         .attr('height', height - 20);
 
-    const dataInfo = common.processData(data.tables.DEFAULT);
-    const dataMap = dataInfo.dataMap;
-    const firstDate = dataInfo.dateArr[0];
-    transition = svg.transition().duration(0).ease(d3.easeLinear);
-    updateGraph(dataMap.get(firstDate), firstDate);
+    //Process data
+    const dataInfo = common.processData(data.tables.DEFAULT,chartSettings.keyframes);
+    const keyframes = dataInfo.keyframes;
+    const firstDate = dataInfo.firstDate;
 
-    for (const date of dataInfo.dateArr) {
+    //Initialize Graph
+    transition = svg.transition().duration(0).ease(d3.easeLinear);
+    updateGraph(keyframes.get(firstDate), firstDate);
+
+    //Iterate through keyframes
+    for(const keyframe of keyframes){
         if (terminated) { break; }
         transition = svg.transition().duration(chartSettings.duration).ease(d3.easeLinear)
-        updateGraph(dataMap.get(date), date);
+        updateGraph(keyframe[1],keyframe[0]);
         await transition.end();
 
-        for (const d of dataMap.get(date)) {
+        for (const d of keyframe[1]) {
             previousData.set(d.name, d.value);
         }
     }
-
+    console.log(keyframes);
 };
 
 function updateYAxis(data: Array<common.MotionChartData>) {
-    yScale.domain(d3.range(chartSettings.bars));
+    yScale.domain([...data].filter(a => a.value !== null).sort((a, b) => d3.descending(a.value, b.value)).map((d) => d.rank).slice(0,chartSettings.bars));
     let yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown> = svg.select('.axis--y');
     if (yAxis.empty()) {
         yAxis = svg.append('g')
@@ -90,7 +95,6 @@ function updateXAxis(data: Array<common.MotionChartData>) {
 };
 
 function updateBars(data: Array<common.MotionChartData>) {
-    //console.log(data);
     let barsG = svg.select('.bars-g');
 
     if (barsG.empty()) {

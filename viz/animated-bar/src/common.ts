@@ -11,6 +11,11 @@ export interface MotionChartData {
 export interface ChartSettings {
     duration: number,
     bars: number,
+    keyframes:number,
+}
+interface YearFrame{
+    year:number,
+    keyframe:MotionChartData[],
 }
 
 /**
@@ -18,15 +23,12 @@ export interface ChartSettings {
  * DataMap maps year to an array of MotionCharData.
  * @param vizData
  */
-export function processData(vizData: ObjectRow[]) {
+export function processData(vizData: ObjectRow[],k:number) {
     const dataMap: Map<number, Array<MotionChartData>> = new Map();
-    const dateArr: Array<number> = new Array();
     let firstDate: number = null;
-
     const allDims = new Set(vizData.map(row => row.dimID[0] as string));
 
-
-    for(const row of vizData) {
+    for (const row of vizData) {
         const currentDate = +row.dateID[0];
         if (firstDate === null || firstDate > currentDate) {
             firstDate = currentDate;
@@ -40,10 +42,9 @@ export function processData(vizData: ObjectRow[]) {
 
         if (dataMap.has(currentDate)) {
             dataMap.get(currentDate).push(data);
-            for(const element of dataMap.get(currentDate)){element.rank = dataMap.get(currentDate).indexOf(element)}
+            for (const element of dataMap.get(currentDate)) { element.rank = dataMap.get(currentDate).indexOf(element) }
         }
         else {
-            dateArr.push(currentDate);
             dataMap.set(currentDate, [data])
         }
     };
@@ -60,10 +61,10 @@ export function processData(vizData: ObjectRow[]) {
                 });
             }
         }
-        data.sort((a, b) => d3.descending(a.name, b.name))
     }
-    dateArr.sort();
-    return { dataMap, dateArr };
+
+    const keyframes = processKeyFrames(dataMap, k);
+    return { keyframes, firstDate };
 }
 
 /**
@@ -90,3 +91,52 @@ export function textTween(a: number, b: number) {
     };
 }
 
+/** 
+ * Given the dataMap and desired k number of frames,
+ * turns each array in map, into k interpolated arrays
+*/
+export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: number) {
+    const keyframes = new Map<number, MotionChartData[]>();
+    const yearFrame = new Array<YearFrame>();
+    for (const data of dataMap) {
+        yearFrame.push({year:data[0],keyframe:data[1]});
+    }
+    yearFrame.sort((a: YearFrame, b: YearFrame) => d3.ascending(a.year, b.year))
+
+    for (const data of d3.pairs(yearFrame)) {
+        for (let i = 0; i < k + 1; ++i) {
+            keyframes.set(
+                dateInterpolate(data[0].year, data[1].year, i, k),
+                valueInterpolate(data[0].keyframe, data[1].keyframe, i, k)
+            )
+        }
+    }
+    return keyframes;
+}
+
+/**
+ * Given two dates, interpolates k values between them 
+ * */
+function dateInterpolate(d1: number, d2: number, i: number, k: number) {
+    const interval = (d2 - d1) / (k);
+    return (d1 + (i * interval));
+}
+
+/**
+ * Given two arrays of MotionChartData, interpolates the k values between them
+*/
+function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>, i: number, k: number) {
+    const copy = new Array<MotionChartData>();
+    const sortedA1=[...a1].sort((a, b) => d3.descending(a.name, b.name));
+    const sortedA2=[...a2].sort((a, b) => d3.descending(a.name, b.name));
+    for (let j = 0; j < a1.length; ++j) { 
+        const interval = ((sortedA2[j].value - sortedA1[j].value)) / (k);
+        copy.push({
+            name:sortedA1[j].name,
+            value:(sortedA1[j].value + (i * interval)),
+            rank:sortedA1[j].rank
+        })
+        
+     }
+    return copy;
+}
