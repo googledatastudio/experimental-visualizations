@@ -34,5 +34,56 @@
       ]
     }
   ],
-  "style": []
+  "style": [
+    {
+      "id": "barInfo",
+      "label": "Chart Configuration",
+      "elements": [
+        {
+          "id": "bars",
+          "label": "Bars",
+          "type": "INTERVAL",
+          "defaultValue": "5"
+        },
+        {
+          "id": "keyframes",
+          "label": "Interpolated Frames Per Given Frame",
+          "type": "INTERVAL",
+          "defaultValue": "10"
+        },
+        {
+          "id": "duration",
+          "label": "Frame Duration (sec)",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "0.5",
+          "options":[
+            {
+              "label":"0.25",
+              "value":"0.25"
+            },
+            {
+              "label":"0.5",
+              "value":"0.5"
+            },
+            {
+              "label":".75",
+              "value":".75"
+            },
+            {
+              "label":"1.0",
+              "value":"1.0"
+            },
+            {
+              "label":"1.25",
+              "value":"1.25"
+            },
+            {
+              "label":"2.0",
+              "value":"2.0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
