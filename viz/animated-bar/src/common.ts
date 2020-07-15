@@ -11,11 +11,13 @@ export interface MotionChartData {
 export interface ChartSettings {
     duration: number,
     bars: number,
+
     keyframes:number,
 }
 interface YearFrame{
     year:number,
     keyframe:MotionChartData[],
+
 }
 
 /**
@@ -23,6 +25,7 @@ interface YearFrame{
  * DataMap maps year to an array of MotionCharData.
  * @param vizData
  */
+
 export function processData(vizData: ObjectRow[],k:number) {
     const dataMap: Map<number, Array<MotionChartData>> = new Map();
     let firstDate: number = null;
@@ -45,6 +48,7 @@ export function processData(vizData: ObjectRow[],k:number) {
             for (const element of dataMap.get(currentDate)) { element.rank = dataMap.get(currentDate).indexOf(element) }
         }
         else {
+
             dataMap.set(currentDate, [data])
         }
     };
@@ -61,10 +65,12 @@ export function processData(vizData: ObjectRow[],k:number) {
                 });
             }
         }
+
     }
 
     const keyframes = processKeyFrames(dataMap, k);
     return { keyframes, firstDate };
+
 }
 
 /**
@@ -90,6 +96,7 @@ export function textTween(a: number, b: number) {
         this.textContent = formatNumber(i(t));
     };
 }
+
 
 /** 
  * Given the dataMap and desired k number of frames,
@@ -140,3 +147,4 @@ function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>
      }
     return copy;
 }
+
