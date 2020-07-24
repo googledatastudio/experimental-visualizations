@@ -71,7 +71,12 @@ export async function drawViz(data: ObjectFormat) {
 };
 
 function updateYAxis(data: Array<common.MotionChartData>) {
-    yScale.domain([...data].filter(a => a.value !== null).sort((a, b) => d3.descending(a.value, b.value)).map((d) => d.rank).slice(0,chartSettings.bars));
+   /*This will take keyframe's data, remove null points for current frame, and determine the position of the top n bars
+   According to their name and rank*/
+    yScale.domain([...data]  
+        .filter(a => a.value !== null)
+        .sort((a, b) => d3.descending(a.value, b.value))
+        .map((d) => d.rank).slice(0,chartSettings.bars));
     let yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown> = svg.select('.axis--y');
     if (yAxis.empty()) {
         yAxis = svg.append('g')

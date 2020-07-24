@@ -20,7 +20,8 @@ interface YearFrame{
 
 /**
  * Intakes vizData as ObjectRow and processes it into a DataMap.
- * DataMap maps year to an array of MotionCharData.
+ * DataMap maps year to an array of MotionCharData. K received
+ * is the amount of interpolated frames generated per frame given
  * @param vizData
  */
 export function processData(vizData: ObjectRow[],k:number) {
@@ -101,14 +102,14 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
     for (const data of dataMap) {
         yearFrame.push({year:data[0],keyframe:data[1]});
     }
-    yearFrame.sort((a: YearFrame, b: YearFrame) => d3.ascending(a.year, b.year))
+    yearFrame.sort((a: YearFrame, b: YearFrame) => d3.ascending(a.year, b.year));
 
     for (const data of d3.pairs(yearFrame)) {
         for (let i = 0; i < k + 1; ++i) {
             keyframes.set(
                 dateInterpolate(data[0].year, data[1].year, i, k),
                 valueInterpolate(data[0].keyframe, data[1].keyframe, i, k)
-            )
+            );
         }
     }
     return keyframes;
@@ -135,7 +136,7 @@ function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>
             name:sortedA1[j].name,
             value:(sortedA1[j].value + (i * interval)),
             rank:sortedA1[j].rank
-        })
+        });
         
      }
     return copy;
