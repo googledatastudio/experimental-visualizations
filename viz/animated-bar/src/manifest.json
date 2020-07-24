@@ -11,8 +11,8 @@
   "devMode": "DEVMODE_BOOL",
   "components": [
     {
-      "name": "myViz",
-      "description": "My first Community Visualization",
+      "name": "Animated Bar Chart",
+      "description": "Bar chart tace",
       "iconUrl": "https://url",
       "resource": {
         "js": "YOUR_GCS_BUCKET/index.js",

@@ -21768,7 +21768,7 @@ export const message:ObjectFormat= {
       "defaultValue": 5
     },
     "duration": {
-      "value": 1,
+      "value": .25,
       "defaultValue": 1
     },
     "keyframes": {
