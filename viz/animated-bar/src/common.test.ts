@@ -1,0 +1,81 @@
+import * as common from './common';
+import * as main from './main';
+import * as expected from './expectedResults';
+import * as local from './localMessage';
+import * as d3 from 'd3';
+
+
+describe('Date Interpolation', () => {
+    test('Mid-point', () => {
+        expect(common.dateInterpolate(2001, 2002, 5, 10)
+        ).toStrictEqual(2001.5)
+    });
+    test('Last value', () => {
+        expect(common.dateInterpolate(2001, 2002, 10, 10)
+        ).toStrictEqual(2002)
+    });
+    test('No inbetween', () => {
+        expect(common.dateInterpolate(2001, 2002, 1, 1)
+        ).toStrictEqual(2002)
+    });
+});
+
+describe('Value Interpolation', () => {
+    test('Mid-point', () => {
+        expect(common.valueInterpolate(expected.motionChartDataArr1, expected.motionChartDataArr2, 5, 10)
+        ).toStrictEqual(expected.expectedInterpolatedArr.sort((a, b) => d3.descending(a.name, b.name)))
+    });
+});
+
+describe('Random Color', () => {
+    test('Random', () => {
+        const value = common.getRandomColor();
+        expect(value.charAt(0)).toStrictEqual('#');
+        expect(value.length).toStrictEqual(7);
+    });
+});
+
+describe('Data Processing', () => {
+    test('KeyFrames', () => {
+        const data = common.processData(expected.sampleInputData.tables.DEFAULT, 2).keyframes;
+        for (const key of data.keys()) {
+            data.get(key).sort((a, b) => d3.ascending(a.rank, b.rank));
+            expected.expectedKeyFrame.get(key).sort((a, b) => d3.ascending(a.rank, b.rank));
+        }
+        expect(data).toStrictEqual(expected.expectedKeyFrame);
+    });
+    test('Missing items', () => {
+        const data = common.processData(local.message.tables.DEFAULT, 5).keyframes;
+        const cardinality = data.get(20190101).length;
+        for (const key of data.keys()) {
+            expect(data.get(key).length).toStrictEqual(cardinality);
+        }
+    });
+});
+
+describe('DOM Elements', () => {
+    main.drawViz(expected.sampleInputData);
+    test('Y Axis', () => {
+        const yAxis = d3.select('body').select('svg').select('.axis--y');
+        expect(yAxis.attr('transform')).toStrictEqual("translate(15,0)");
+    });
+    test('X Axis', () => {
+        const xAxis = d3.select('body').select('svg').select('.axis--x');
+        expect(xAxis.attr('transform')).toStrictEqual("translate(15,25)");
+    });
+    test('Bars', () => {
+        const barsG = d3.select('body').select('svg').select('.bars-g');
+        expect(barsG.selectAll('.bar').size()).toStrictEqual(4);
+        expect(barsG.select('.bar').attr('transform')).toStrictEqual('translate(15, 25)');
+    });
+    test('Labels', () => {
+        const labelG = d3.select('body').select('svg').select('.labels');
+        expect(labelG.selectAll("text").size()).toStrictEqual(4);
+        expect(labelG.select('text').text()).toStrictEqual('Google');
+    });
+    test('Title', () => {
+        const title = d3.select('body').select('svg').select('.title');
+        expect(title.text()).toStrictEqual('2001');
+    })
+
+});
