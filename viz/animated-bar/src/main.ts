@@ -1,4 +1,4 @@
-import { ObjectFormat } from '@google/dscc';
+import { ObjectFormat, ObjectRow, StyleById } from '@google/dscc';
 import * as d3 from 'd3'
 import * as common from './common'
 
@@ -6,11 +6,8 @@ const dscc = require('@google/dscc');
 const previousData: Map<string, number> = new Map();
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleBand<number>();
-const chartSettings: common.ChartSettings = {
-    duration: 200,
-    bars: 7,
-    keyframes:20,
-}
+let chartSettings: common.ChartSettings;
+
 const PAD_SVG = 25, PAD_YAXIS = 15;
 
 let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, unknown>;
@@ -21,6 +18,7 @@ let resize: NodeJS.Timeout;
 
 // write viz code here
 export async function drawViz(data: ObjectFormat) {
+    updateChartSettings(data.style);
     updateDimensions();
     let terminated = false;
 
@@ -48,7 +46,7 @@ export async function drawViz(data: ObjectFormat) {
         .attr('height', height - 20);
 
     //Process data
-    const dataInfo = common.processData(data.tables.DEFAULT,chartSettings.keyframes);
+    const dataInfo = common.processData(data.tables.DEFAULT, chartSettings.keyframes);
     const keyframes = dataInfo.keyframes;
     const firstDate = dataInfo.firstDate;
 
@@ -57,10 +55,10 @@ export async function drawViz(data: ObjectFormat) {
     updateGraph(keyframes.get(firstDate), firstDate);
 
     //Iterate through keyframes
-    for(const keyframe of keyframes){
+    for (const keyframe of keyframes) {
         if (terminated) { break; }
         transition = svg.transition().duration(chartSettings.duration).ease(d3.easeLinear)
-        updateGraph(keyframe[1],keyframe[0]);
+        updateGraph(keyframe[1], keyframe[0]);
         await transition.end();
 
         for (const d of keyframe[1]) {
@@ -202,3 +200,11 @@ function updateDimensions() {
         .rangeRound([PAD_YAXIS, height - PAD_YAXIS])
         .padding(0.25);
 };
+
+function updateChartSettings(style: StyleById) {
+    chartSettings = {
+        duration: (+style.duration.value * 1000),
+        bars: +style.bars.value,
+        keyframes:+style.keyframes.value,
+    }
+}

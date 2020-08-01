@@ -21762,7 +21762,20 @@ export const message:ObjectFormat= {
       }
     ]
   },
-  "style": {},
+  "style": {
+    "bars": {
+      "value": 6,
+      "defaultValue": 5
+    },
+    "duration": {
+      "value": 1,
+      "defaultValue": 1
+    },
+    "keyframes": {
+      "value": 10,
+      "defaultValue": 5
+    },
+  },
   "theme": {
     "themeFillColor": {
       "color": "#ffffff",
