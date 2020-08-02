@@ -26,12 +26,12 @@ interface YearFrame{
  */
 export function processData(vizData: ObjectRow[],k:number) {
     const dataMap: Map<number, Array<MotionChartData>> = new Map();
-    let firstDate: number = null;
+    let firstDate: number=0;
     const allDims = new Set(vizData.map(row => row.dimID[0] as string));
 
     for (const row of vizData) {
         const currentDate = +row.dateID[0];
-        if (firstDate === null || firstDate > currentDate) {
+        if (firstDate === 0 || firstDate > currentDate) {
             firstDate = currentDate;
         }
 
@@ -40,10 +40,10 @@ export function processData(vizData: ObjectRow[],k:number) {
             value: +row.metricID[0],
             rank: -1
         }
-
-        if (dataMap.has(currentDate)) {
-            dataMap.get(currentDate).push(data);
-            for (const element of dataMap.get(currentDate)) { element.rank = dataMap.get(currentDate).indexOf(element) }
+        const arr =dataMap.get(currentDate);
+        if (arr!=undefined) {
+            arr.push(data);
+            for (const element of arr) { element.rank = arr.indexOf(element) }
         }
         else {
             dataMap.set(currentDate, [data])
@@ -57,7 +57,7 @@ export function processData(vizData: ObjectRow[],k:number) {
             if (!foundDims.has(dim)) {
                 data.push({
                     name: dim,
-                    value: null,
+                    value: 0,
                     rank: -1,
                 });
             }
@@ -65,7 +65,7 @@ export function processData(vizData: ObjectRow[],k:number) {
     }
 
     const keyframes = processKeyFrames(dataMap, k);
-    return { keyframes, firstDate };
+    return { keyframes};
 }
 
 /**
@@ -87,8 +87,8 @@ export function textTween(a: number, b: number) {
     const i = d3.interpolateNumber(a, b);
     const formatNumber = d3.format(",d");
 
-    return function (t: number) {
-        this.textContent = formatNumber(i(t));
+    return function (this:HTMLElement,t: number) {
+        this.textContent= formatNumber(i(t));
     };
 }
 
@@ -118,7 +118,7 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
 /**
  * Given two dates, interpolates k values between them 
  * */
-function dateInterpolate(d1: number, d2: number, i: number, k: number) {
+export function dateInterpolate(d1: number, d2: number, i: number, k: number) {
     const interval = (d2 - d1) / (k);
     return (d1 + (i * interval));
 }

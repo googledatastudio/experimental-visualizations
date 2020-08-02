@@ -10,71 +10,47 @@ let chartSettings: common.ChartSettings;
 
 const PAD_SVG = 25, PAD_YAXIS = 15;
 
-let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, unknown>;
-let transition: d3.Transition<SVGSVGElement, unknown, HTMLElement, unknown>;
+let svg: d3.Selection<any, unknown, HTMLElement, unknown>;
+let transition: d3.Transition<any, unknown, HTMLElement, unknown>;
 let height: number;
 let width: number;
 let resize: NodeJS.Timeout;
+let isPaused: boolean = false;
 
 // write viz code here
 export async function drawViz(data: ObjectFormat) {
     updateChartSettings(data.style);
     updateDimensions();
-    let terminated = false;
-
-    window.addEventListener('resize', () => {
-        clearTimeout(resize);
-        resize = setTimeout(() => { previousData.clear(); terminated = true; drawViz(data); }, 500);
-    });
-
-    d3.select('body').selectAll('svg').remove();
-    d3.select('body').selectAll('button').remove();
-    d3.select('body')
-        .append('button')
-        .text('Replay')
-        .on("click", () => {
-            d3.select('body').selectAll('svg').remove()
-            previousData.clear();
-            terminated = true;
-            drawViz(data);
-        });
-
-    svg = d3
-        .select('body')
-        .append('svg')
-        .attr('width', width - 20)
-        .attr('height', height - 20);
+    if (!svg) { initializeSVG(data); }
 
     //Process data
     const dataInfo = common.processData(data.tables.DEFAULT, chartSettings.keyframes);
     const keyframes = dataInfo.keyframes;
-    const firstDate = dataInfo.firstDate;
+    const dates = Array.from(keyframes.keys());
 
-    //Initialize Graph
-    transition = svg.transition().duration(0).ease(d3.easeLinear);
-    updateGraph(keyframes.get(firstDate), firstDate);
-
-    //Iterate through keyframes
-    for (const keyframe of keyframes) {
-        if (terminated) { break; }
-        transition = svg.transition().duration(chartSettings.duration).ease(d3.easeLinear)
-        updateGraph(keyframe[1], keyframe[0]);
+    //Iterate through keyframe
+    let i = 0;
+    let iterate = true;
+    while (iterate) {
+        const tDuration = i ? chartSettings.duration : 0
+        transition = svg.transition().duration(tDuration).ease(d3.easeLinear)
+        updateGraph(keyframes.get(dates[i])!, dates[i]);
         await transition.end();
-
-        for (const d of keyframe[1]) {
+        for (const d of keyframes.get(dates[i])!) {
             previousData.set(d.name, d.value);
         }
+        if (!isPaused) { i++; }
+        if (i === dates.length - 1) { iterate = false; }
     }
-    console.log(keyframes);
 };
 
 function updateYAxis(data: Array<common.MotionChartData>) {
-   /*This will take keyframe's data, remove null points for current frame, and determine the position of the top n bars
-   According to their name and rank*/
-    yScale.domain([...data]  
+    /* This will take keyframe's data, remove null points for current frame, and determine the position of the top n bars
+    According to their name and rank */ 
+    yScale.domain([...data]
         .filter(a => a.value !== null)
         .sort((a, b) => d3.descending(a.value, b.value))
-        .map((d) => d.rank).slice(0,chartSettings.bars));
+        .map((d) => d.rank).slice(0, chartSettings.bars));
     let yAxis: d3.Selection<SVGGElement, unknown, HTMLElement, unknown> = svg.select('.axis--y');
     if (yAxis.empty()) {
         yAxis = svg.append('g')
@@ -98,7 +74,7 @@ function updateXAxis(data: Array<common.MotionChartData>) {
 };
 
 function updateBars(data: Array<common.MotionChartData>) {
-    let barsG = svg.select('.bars-g');
+    let barsG = svg.select('.bars-g') as d3.Selection<SVGGElement, unknown, HTMLElement, unknown>;
 
     if (barsG.empty()) {
         barsG = svg.append('g')
@@ -132,11 +108,11 @@ function updateBars(data: Array<common.MotionChartData>) {
 };
 
 function updateLabels(data: Array<common.MotionChartData>) {
-    let labelG = svg.select('.labels');
+    let labelG = svg.select('.labels') as d3.Selection<SVGGElement, unknown, HTMLElement, unknown>;
     if (labelG.empty()) {
         labelG = svg.append("g")
             .attr('class', 'labels')
-            .style("font-size", yScale.bandwidth() / 6)
+            .style("font-size", `${yScale.bandwidth() / 5}px`)
             .style("font-variant-numeric", "tabular-nums")
             .attr("text-anchor", "end");
     }
@@ -164,9 +140,11 @@ function updateLabels(data: Array<common.MotionChartData>) {
                     .remove())
 
             .call(bar => bar.transition(transition)
-                .attr("transform", (d) => `translate(${xScale(d.value)}, ${yScale(d.rank) || height})`)
+                .attr("transform", (d: common.MotionChartData) => `translate(${xScale(d.value)}, ${yScale(d.rank) || height})`)
                 .attr("y", yScale.bandwidth() / 2)
-                .call(g => g.select("tspan").tween("text", d => common.textTween((previousData.get(d.name) || d.value), d.value))));
+                .attr("font-size", `${yScale.bandwidth() / 5}px`)
+                .call(g => g.select("tspan").attr("font-size", `${yScale.bandwidth() / 6}px`)
+                    .tween("text", d => common.textTween((previousData.get(d.name) || d.value), d.value))));
 };
 
 function updateTitle(date: number) {
@@ -177,7 +155,7 @@ function updateTitle(date: number) {
         .append("g")
         .attr('class', 'title')
         .append('text')
-        .attr("transform", "translate(" + (width * .85) + "," + (height * .95) + ")")
+        .attr("transform", "translate(" + ((width - 20) * .85) + "," + ((height - 20) * .95) + ")")
         .attr("font-size", "5vmax")
         .attr('opacity', '60%')
         .text(date.toString().slice(0, 4))
@@ -199,12 +177,46 @@ function updateDimensions() {
     yScale
         .rangeRound([PAD_YAXIS, height - PAD_YAXIS])
         .padding(0.25);
+    d3.select('body')
+        .select('svg')
+        .attr('width', width - 20)
+        .attr('height', height - 20);
 };
 
 function updateChartSettings(style: StyleById) {
     chartSettings = {
         duration: (+style.duration.value * 1000),
         bars: +style.bars.value,
-        keyframes:+style.keyframes.value,
+        keyframes: +style.keyframes.value,
     }
 }
+
+function initializeSVG(data: ObjectFormat) {
+    window.addEventListener('resize', () => {
+        clearTimeout(resize);
+        resize = global.setTimeout(() => { updateDimensions(); }, 500);
+    });
+
+    d3.select('body').selectAll('svg').remove();
+    d3.select('body').selectAll('button').remove();
+
+    svg = d3
+        .select('body')
+        .append('svg')
+        .attr('width', width - 20)
+        .attr('height', height - 20);
+    d3.select('body')
+        .append('button')
+        .attr('class', '.replay')
+        .text('Replay')
+        .on("click", () => {
+            drawViz(data);
+        });
+    d3.select('body')
+        .append('button')
+        .text('Play/Pause')
+        .attr('class', '.play')
+        .on("click", () => {
+            isPaused = !isPaused;
+        });
+};
