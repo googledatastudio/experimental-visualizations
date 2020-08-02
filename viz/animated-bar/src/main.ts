@@ -1,6 +1,6 @@
 import { ObjectFormat, ObjectRow, StyleById } from '@google/dscc';
-import * as d3 from 'd3'
-import * as common from './common'
+import * as d3 from 'd3';
+import * as common from './common';
 
 const dscc = require('@google/dscc');
 const previousData: Map<string, number> = new Map();
@@ -189,7 +189,7 @@ function updateChartSettings(style: StyleById) {
         bars: +style.bars.value,
         keyframes: +style.keyframes.value,
     }
-}
+};
 
 function initializeSVG(data: ObjectFormat) {
     window.addEventListener('resize', () => {

@@ -1,22 +1,20 @@
-import {
-    ObjectRow,
-} from '@google/dscc';
+import {ObjectRow} from '@google/dscc';
 import * as d3 from 'd3';
 
 export interface MotionChartData {
     name: string,
     value: number,
     rank: number,
-}
+};
 export interface ChartSettings {
     duration: number,
     bars: number,
     keyframes:number,
-}
+};
 interface YearFrame{
     year:number,
     keyframe:MotionChartData[],
-}
+};
 
 /**
  * Intakes vizData as ObjectRow and processes it into a DataMap.
@@ -66,7 +64,8 @@ export function processData(vizData: ObjectRow[],k:number) {
 
     const keyframes = processKeyFrames(dataMap, k);
     return { keyframes};
-}
+};
+
 
 /**
  * Returns a randomly generated 6 character hex color code.
@@ -78,7 +77,7 @@ export function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-}
+};
 
 /** 
  * Given two numbers, returns the d3 inerpolation to generate the 'ticker' effect of counting up/down
@@ -90,7 +89,7 @@ export function textTween(a: number, b: number) {
     return function (this:HTMLElement,t: number) {
         this.textContent= formatNumber(i(t));
     };
-}
+};
 
 /** 
  * Given the dataMap and desired k number of frames,
@@ -113,7 +112,7 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
         }
     }
     return keyframes;
-}
+};
 
 /**
  * Given two dates, interpolates k values between them 
@@ -121,12 +120,12 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
 export function dateInterpolate(d1: number, d2: number, i: number, k: number) {
     const interval = (d2 - d1) / (k);
     return (d1 + (i * interval));
-}
+};
 
 /**
  * Given two arrays of MotionChartData, interpolates the k values between them
 */
-function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>, i: number, k: number) {
+export function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>, i: number, k: number) {
     const copy = new Array<MotionChartData>();
     const sortedA1=[...a1].sort((a, b) => d3.descending(a.name, b.name));
     const sortedA2=[...a2].sort((a, b) => d3.descending(a.name, b.name));
@@ -140,4 +139,4 @@ function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>
         
      }
     return copy;
-}
+};

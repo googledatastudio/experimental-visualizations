@@ -1,7 +1,7 @@
 import {subscribeToData, objectTransform } from '@google/dscc';
 import * as local from './localMessage';
-import * as main from './main'
-export const LOCAL = true;
+import * as main from './main';
+export const LOCAL = false;
 
 
 // renders locally
