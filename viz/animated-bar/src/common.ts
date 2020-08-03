@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {ObjectRow} from '@google/dscc';
+import { ObjectRow } from '@google/dscc';
 import * as d3 from 'd3';
 
 export interface MotionChartData {
@@ -25,11 +25,11 @@ export interface MotionChartData {
 export interface ChartSettings {
     duration: number,
     bars: number,
-    keyframes:number,
+    keyframes: number,
 };
-interface YearFrame{
-    year:number,
-    keyframe:MotionChartData[],
+interface YearFrame {
+    year: number,
+    keyframe: MotionChartData[],
 };
 
 /**
@@ -38,9 +38,9 @@ interface YearFrame{
  * is the amount of interpolated frames generated per frame given
  * @param vizData
  */
-export function processData(vizData: ObjectRow[],k:number) {
+export function processData(vizData: ObjectRow[], k: number) {
     const dataMap: Map<number, Array<MotionChartData>> = new Map();
-    let firstDate: number=0;
+    let firstDate: number = 0;
     const allDims = new Set(vizData.map(row => row.dimID[0] as string));
 
     for (const row of vizData) {
@@ -54,8 +54,8 @@ export function processData(vizData: ObjectRow[],k:number) {
             value: +row.metricID[0],
             rank: -1
         }
-        const arr =dataMap.get(currentDate);
-        if (arr!=undefined) {
+        const arr = dataMap.get(currentDate);
+        if (arr != undefined) {
             arr.push(data);
             for (const element of arr) { element.rank = arr.indexOf(element) }
         }
@@ -70,7 +70,7 @@ export function processData(vizData: ObjectRow[],k:number) {
         for (const dim of allDims) {
             if (!foundDims.has(dim)) {
                 data.push({
-                    name: dim,
+                    name: dim.toString(),
                     value: 0,
                     rank: -1,
                 });
@@ -79,7 +79,7 @@ export function processData(vizData: ObjectRow[],k:number) {
     }
 
     const keyframes = processKeyFrames(dataMap, k);
-    return { keyframes};
+    return { keyframes };
 };
 
 /**
@@ -101,8 +101,8 @@ export function textTween(a: number, b: number) {
     const i = d3.interpolateNumber(a, b);
     const formatNumber = d3.format(",d");
 
-    return function (this:HTMLElement,t: number) {
-        this.textContent= formatNumber(i(t));
+    return function (this: HTMLElement, t: number) {
+        this.textContent = formatNumber(i(t));
     };
 };
 
@@ -114,7 +114,7 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
     const keyframes = new Map<number, MotionChartData[]>();
     const yearFrame = new Array<YearFrame>();
     for (const data of dataMap) {
-        yearFrame.push({year:data[0],keyframe:data[1]});
+        yearFrame.push({ year: data[0], keyframe: data[1] });
     }
     yearFrame.sort((a: YearFrame, b: YearFrame) => d3.ascending(a.year, b.year));
 
@@ -133,6 +133,7 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
  * Given two dates, interpolates k values between them 
  * */
 export function dateInterpolate(d1: number, d2: number, i: number, k: number) {
+    if (k < 1) { return d1; }
     const interval = (d2 - d1) / (k);
     return (d1 + (i * interval));
 };
@@ -142,16 +143,17 @@ export function dateInterpolate(d1: number, d2: number, i: number, k: number) {
 */
 export function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionChartData>, i: number, k: number) {
     const copy = new Array<MotionChartData>();
-    const sortedA1=[...a1].sort((a, b) => d3.descending(a.name, b.name));
-    const sortedA2=[...a2].sort((a, b) => d3.descending(a.name, b.name));
-    for (let j = 0; j < a1.length; ++j) { 
+    const sortedA1 = [...a1].sort((a, b) => d3.descending(a.name, b.name));
+    const sortedA2 = [...a2].sort((a, b) => d3.descending(a.name, b.name));
+    if (k < 1) { return sortedA1; }
+    for (let j = 0; j < a1.length; ++j) {
         const interval = ((sortedA2[j].value - sortedA1[j].value)) / (k);
         copy.push({
-            name:sortedA1[j].name,
-            value:(sortedA1[j].value + (i * interval)),
-            rank:sortedA1[j].rank
+            name: sortedA1[j].name,
+            value: (sortedA1[j].value + (i * interval)),
+            rank: sortedA1[j].rank
         });
-        
-     }
+
+    }
     return copy;
 };
