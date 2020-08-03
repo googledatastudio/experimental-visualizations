@@ -149,6 +149,18 @@ export const sampleInputData: ObjectFormat = {
             "value": 2,
             "defaultValue": 5
         },
+        "colorOption": {
+            "value": "theme",
+            "defaultValue": "theme"
+        },
+        "selectedColor": {
+            "value": {
+                "color": "#4682b4"
+            },
+            "defaultValue": {
+                "color": "#4682b4"
+            }
+        }
     },
     "theme": {
         "themeFillColor": {
