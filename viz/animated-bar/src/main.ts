@@ -19,7 +19,7 @@ import * as d3 from 'd3';
 import * as common from './common';
 
 const dscc = require('@google/dscc');
-const previousData: Map<string, number> = new Map();
+let previousData: ObjectFormat;
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleBand<number>();
 let chartSettings: common.ChartSettings;
@@ -37,23 +37,26 @@ let isPaused: boolean = false;
 export async function drawViz(data: ObjectFormat) {
     updateChartSettings(data.style);
     updateDimensions();
-    if (!svg) { initializeSVG(data); }
+    if (!svg || previousData.tables.DEFAULT != data.tables.DEFAULT) { initializeSVG(data); }
+    previousData = data;
 
     //Process data
     const dataInfo = common.processData(data.tables.DEFAULT, chartSettings.keyframes);
     const keyframes = dataInfo.keyframes;
     const dates = Array.from(keyframes.keys());
-
+    const previousKeyframe: Map<string, number> = new Map();
+    
     //Iterate through keyframe
     let i = 0;
     let iterate = true;
     while (iterate) {
+        if (previousData != data) { break; }
         const tDuration = i ? chartSettings.duration : 0
         transition = svg.transition().duration(tDuration).ease(d3.easeLinear)
-        updateGraph(keyframes.get(dates[i])!, dates[i]);
+        updateGraph(keyframes.get(dates[i])!, dates[i], previousKeyframe);
         await transition.end();
         for (const d of keyframes.get(dates[i])!) {
-            previousData.set(d.name, d.value);
+            previousKeyframe.set(d.name, d.value);
         }
         if (!isPaused) { i++; }
         if (i === dates.length - 1) { iterate = false; }
@@ -62,7 +65,7 @@ export async function drawViz(data: ObjectFormat) {
 
 function updateYAxis(data: Array<common.MotionChartData>) {
     /* This will take keyframe's data, remove null points for current frame, and determine the position of the top n bars
-    According to their name and rank */ 
+    According to their name and rank */
     yScale.domain([...data]
         .filter(a => a.value !== null)
         .sort((a, b) => d3.descending(a.value, b.value))
@@ -123,7 +126,7 @@ function updateBars(data: Array<common.MotionChartData>) {
 
 };
 
-function updateLabels(data: Array<common.MotionChartData>) {
+function updateLabels(data: Array<common.MotionChartData>, previousKeyframe: Map<string, number>) {
     let labelG = svg.select('.labels') as d3.Selection<SVGGElement, unknown, HTMLElement, unknown>;
     if (labelG.empty()) {
         labelG = svg.append("g")
@@ -160,7 +163,7 @@ function updateLabels(data: Array<common.MotionChartData>) {
                 .attr("y", yScale.bandwidth() / 2)
                 .attr("font-size", `${yScale.bandwidth() / 5}px`)
                 .call(g => g.select("tspan").attr("font-size", `${yScale.bandwidth() / 6}px`)
-                    .tween("text", d => common.textTween((previousData.get(d.name) || d.value), d.value))));
+                    .tween("text", d => common.textTween((previousKeyframe.get(d.name) || d.value), d.value))));
 };
 
 function updateTitle(date: number) {
@@ -177,11 +180,11 @@ function updateTitle(date: number) {
         .text(date.toString().slice(0, 4))
 };
 
-function updateGraph(data: Array<common.MotionChartData>, date: number) {
+function updateGraph(data: Array<common.MotionChartData>, date: number, previousKeyframe: Map<string, number>) {
     updateYAxis(data);
     updateXAxis(data);
     updateBars(data);
-    updateLabels(data);
+    updateLabels(data, previousKeyframe);
     updateTitle(date);
 };
 
