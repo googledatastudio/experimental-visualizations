@@ -138,16 +138,20 @@ export const sampleInputData: ObjectFormat = {
     },
     "style": {
         "bars": {
-            "value": 6,
+            "value": 8,
             "defaultValue": 5
-        },
-        "duration": {
-            "value": .25,
-            "defaultValue": 1
         },
         "keyframes": {
             "value": 2,
-            "defaultValue": 5
+            "defaultValue": 10
+        },
+        "dataGranularity": {
+            "value": "d",
+            "defaultValue": "y"
+        },
+        "duration": {
+            "value": 0.25,
+            "defaultValue": 0.25
         },
         "colorOption": {
             "value": "theme",
@@ -155,7 +159,7 @@ export const sampleInputData: ObjectFormat = {
         },
         "selectedColor": {
             "value": {
-                "color": "#4682b4"
+                "color": "#E64A19"
             },
             "defaultValue": {
                 "color": "#4682b4"
@@ -409,7 +413,7 @@ export const expectedInterpolatedArr: common.MotionChartData[] = [
 ];
 export const expectedKeyFrame: Map<number, common.MotionChartData[]> = new Map();
 expectedKeyFrame.set(20010101, motionChartDataArr1);
-expectedKeyFrame.set(20015101, expectedInterpolatedArr);
+expectedKeyFrame.set(20010702, expectedInterpolatedArr);
 expectedKeyFrame.set(20020101, motionChartDataArr2);
 
 

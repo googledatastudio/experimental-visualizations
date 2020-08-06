@@ -19,7 +19,7 @@ import * as d3 from 'd3';
 import * as common from './common';
 
 const dscc = require('@google/dscc');
-let previousData: ObjectFormat;
+let previousData: ObjectRow[];
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleBand<number>();
 let chartSettings: common.ChartSettings;
@@ -32,34 +32,32 @@ let height: number;
 let width: number;
 let resize: NodeJS.Timeout;
 let isPaused: boolean = false;
-
 // write viz code here
 export async function drawViz(data: ObjectFormat) {
     updateChartSettings(data.style);
     updateDimensions();
-    if (!svg || previousData.tables.DEFAULT != data.tables.DEFAULT) { initializeSVG(data); }
-    previousData = data;
+    if (!svg || previousData != data.tables.DEFAULT) { initializeSVG(data); }
+    previousData = data.tables.DEFAULT;
 
     //Process data
-    const dataInfo = common.processData(data.tables.DEFAULT, chartSettings.keyframes);
-    const keyframes = dataInfo.keyframes;
+    const keyframes = common.processData(data.tables.DEFAULT,chartSettings.keyframes);
     const dates = Array.from(keyframes.keys());
     const previousKeyframe: Map<string, number> = new Map();
-
+    
     //Iterate through keyframe
     let i = 0;
     let iterate = true;
     while (iterate) {
-        if (previousData != data) { break; }
+        if (previousData != data.tables.DEFAULT) { break; }
         const tDuration = i ? chartSettings.duration : 0
         transition = svg.transition().duration(tDuration).ease(d3.easeLinear)
-        updateGraph(keyframes.get(dates[i])!, dates[i], previousKeyframe, data.theme);
+        updateGraph(keyframes.get(dates[i])!, dates[i], previousKeyframe, data.theme, chartSettings.kvalue);
         await transition.end();
         for (const d of keyframes.get(dates[i])!) {
             previousKeyframe.set(d.name, d.value);
         }
         if (!isPaused) { i++; }
-        if (i === dates.length - 1) { iterate = false; }
+        if (i === dates.length ) { iterate = false; }
     }
 };
 
@@ -166,7 +164,18 @@ function updateLabels(data: Array<common.MotionChartData>, previousKeyframe: Map
                     .tween("text", d => common.textTween((previousKeyframe.get(d.name) || d.value), d.value))));
 };
 
-function updateTitle(date: number) {
+function updateTitle(date: number, k: string) {
+    const enumMonth = [undefined, 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let text = '';
+    if (k === 'y') {
+        text = date.toString().slice(0, 4);
+    }
+    else if (k === 'm') {
+        text = enumMonth[+date.toString().slice(4, 6)] + ' ' + date.toString().slice(0, 4);
+    }
+    else {
+        text = date.toString().slice(6, 8) + ' ' + enumMonth[+date.toString().slice(4, 6)] + ' ' + date.toString().slice(0, 4);
+    }
     svg
         .select('.title')
         .remove();
@@ -174,18 +183,19 @@ function updateTitle(date: number) {
         .append("g")
         .attr('class', 'title')
         .append('text')
-        .attr("transform", "translate(" + ((width - 20) * .85) + "," + ((height - 20) * .95) + ")")
-        .attr("font-size", "5vmax")
+        .attr("transform", "translate(" + ((width - 20) * .95) + "," + ((height - 20) * .95) + ")")
+        .attr("font-size", "3.5vmax")
         .attr('opacity', '60%')
-        .text(date.toString().slice(0, 4))
+        .attr("text-anchor", 'end')
+        .text(text);
 };
 
-function updateGraph(data: Array<common.MotionChartData>, date: number, previousKeyframe: Map<string, number>, theme: ThemeStyle) {
+function updateGraph(data: Array<common.MotionChartData>, date: number, previousKeyframe: Map<string, number>, theme: ThemeStyle, k: string) {
     updateYAxis(data);
     updateXAxis(data);
     updateBars(data, theme);
     updateLabels(data, previousKeyframe);
-    updateTitle(date);
+    updateTitle(date, k);
 };
 
 function updateDimensions() {
@@ -206,7 +216,8 @@ function updateChartSettings(style: StyleById) {
     chartSettings = {
         duration: (+style.duration.value * 1000),
         bars: +style.bars.value,
-        keyframes: +style.keyframes.value,
+        kvalue: style.dataGranularity.value,
+        keyframes: style.keyframes.value,
         colorOption: style.colorOption.value,
         colorSelected: style.selectedColor.value.color
     }
@@ -231,7 +242,8 @@ function initializeSVG(data: ObjectFormat) {
         .attr('class', '.replay')
         .text('Replay')
         .on("click", () => {
-            drawViz(data);
+            previousData = undefined;
+            setTimeout(() => { drawViz(data); }, 100);
         });
     d3.select('body')
         .append('button')

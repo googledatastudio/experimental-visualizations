@@ -25,7 +25,8 @@ export interface MotionChartData {
 export interface ChartSettings {
     duration: number,
     bars: number,
-    keyframes: number,
+    kvalue: string,
+    keyframes:number,
     colorOption: string,
     colorSelected: string,
 };
@@ -40,9 +41,10 @@ interface YearFrame {
  * is the amount of interpolated frames generated per frame given
  * @param vizData
  */
-export function processData(vizData: ObjectRow[], k: number) {
+export function processData(vizData: ObjectRow[], numFrames: number) {
     const dataMap: Map<number, Array<MotionChartData>> = new Map();
     let firstDate: number = 0;
+    let lastDate: number = 0;
     const allDims = new Set(vizData.map(row => row.dimID[0] as string));
 
     for (const row of vizData) {
@@ -50,6 +52,10 @@ export function processData(vizData: ObjectRow[], k: number) {
         if (firstDate === 0 || firstDate > currentDate) {
             firstDate = currentDate;
         }
+        if (lastDate === 0 || lastDate < currentDate) {
+            lastDate = currentDate;
+        }
+
 
         const data: MotionChartData = {
             name: row.dimID[0].toString(),
@@ -59,10 +65,10 @@ export function processData(vizData: ObjectRow[], k: number) {
         const arr = dataMap.get(currentDate);
         if (arr != undefined) {
             arr.push(data);
-            for (const element of arr) { element.rank = arr.indexOf(element) }
+            for (const element of arr) { element.rank = arr.indexOf(element); }
         }
         else {
-            dataMap.set(currentDate, [data])
+            dataMap.set(currentDate, [data]);
         }
     };
 
@@ -79,9 +85,13 @@ export function processData(vizData: ObjectRow[], k: number) {
             }
         }
     }
-
-    const keyframes = processKeyFrames(dataMap, k);
-    return { keyframes };
+    //TODO: Granularity algorithm is fully built as show below, however there are some performace issues
+    //The viz slows down when resizing and when play/paused. In order to enable it, 'k' needs to be passed into this processData function.
+    /*const first = new Date(+firstDate.toString().slice(0, 4), +firstDate.toString().slice(4, 6) - 1, +firstDate.toString().slice(6, 8));
+    const last = new Date(+lastDate.toString().slice(0, 4), +lastDate.toString().slice(4, 6) - 1, +lastDate.toString().slice(6, 8));
+    const keyframes = processGranularity(dataMap, fetchDateArray(first, last, k));*/
+    const keyframes = processKeyFrames(dataMap, numFrames);
+    return keyframes;
 };
 
 /**
@@ -134,10 +144,26 @@ export function processKeyFrames(dataMap: Map<number, MotionChartData[]>, k: num
 /**
  * Given two dates, interpolates k values between them 
  * */
-export function dateInterpolate(d1: number, d2: number, i: number, k: number) {
-    if (k < 1) { return d1; }
-    const interval = (d2 - d1) / (k);
-    return (d1 + (i * interval));
+export function dateInterpolate(date1: number, date2: number, i: number, k: number) {
+    if (k < 1) { return date1; }
+    const distance = Math.floor(daysBetweenDates(date1, date2) * i / k);
+    const currentDate = new Date(+date1.toString().slice(0, 4), +date1.toString().slice(4, 6) - 1, +date1.toString().slice(6, 8))
+    currentDate.setDate(currentDate.getUTCDate() + distance);
+    let dateString = currentDate.getFullYear().toString();
+
+    if (currentDate.getMonth() < 9) {
+        dateString += '0' + (currentDate.getMonth() + 1);
+    }
+    else {
+        dateString += currentDate.getMonth() + 1;
+    }
+    if (currentDate.getDate() < 10) {
+        dateString += '0' + currentDate.getDate();
+    }
+    else {
+        dateString += currentDate.getDate();
+    }
+    return +dateString;
 };
 
 /**
@@ -177,4 +203,94 @@ export function getBarColor(option: string, d: number, theme: ThemeStyle, select
     else {
         return getRandomColor()
     }
+};
+
+/** 
+ * Given a dataMap and an array of dates, it will return a Map<number, MotionChartData[]>
+ * mapping each date in the date array to a corresponding MCD[] using interpolation
+ * @param dataMap dataMap from user inputted data
+ * @param dates array of the desired dates to be interpolated for
+*/
+export function processGranularity(dataMap: Map<number, MotionChartData[]>, dates: Array<number>) {
+    const keyframes = new Map<number, MotionChartData[]>();
+    const yearFrame = new Array<YearFrame>();
+    for (const data of dataMap) {
+        yearFrame.push({ year: data[0], keyframe: data[1] });
+    }
+    yearFrame.sort((a: YearFrame, b: YearFrame) => d3.ascending(a.year, b.year));
+    for (const d of dates) {
+        if (dataMap.has(d)) {
+            const sortedData = [...dataMap.get(d)].sort((a, b) => d3.descending(a.name, b.name));
+            keyframes.set(d, sortedData);
+        }
+        else {
+            for (const data of d3.pairs(yearFrame)) {
+                if (d >= data[0].year && d <= data[1].year) {
+                    const i = daysBetweenDates(data[0].year, d); //distance between lower and given date
+                    const k = daysBetweenDates(data[0].year, data[1].year); //distance between upper and lower dates
+                    keyframes.set(
+                        d,
+                        valueInterpolate(data[0].keyframe, data[1].keyframe, i, k)
+                    );
+                    break;
+                }
+            }
+        }
+    }
+    return keyframes;
+
+};
+
+/** 
+ * Given a starting and ending date, this function returns every date in the range iterating by the
+ * input paramter k. 
+ * Ex; If k is 'w', for week, it will return every 7th day in between the two dates
+ * @param first The starting date
+ * @param last The ending date
+ * @param k User inputted granularity option (i.e y=year, m=month, w=week, d=day)
+*/
+export function fetchDateArray(first: Date, last: Date, k: string) {
+    const numDates = new Array<number>();
+    let currentDate: Date = new Date(first);
+    while (currentDate <= last) {
+        let dateString = currentDate.getFullYear().toString();
+        if (currentDate.getMonth() < 9) {
+            dateString += '0' + (currentDate.getMonth() + 1);
+        }
+        else {
+            dateString += currentDate.getMonth() + 1;
+        }
+        if (currentDate.getDate() < 10) {
+            dateString += '0' + currentDate.getDate();
+        }
+        else {
+            dateString += currentDate.getDate();
+        }
+        numDates.push(+dateString)
+
+        if (k === 'y') {
+            currentDate.setFullYear(currentDate.getFullYear() + 1);
+        }
+        else if (k === 'm') {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+        }
+        else if (k === 'w') {
+            currentDate.setDate(currentDate.getDate() + 7);
+        }
+        else {
+            currentDate.setDate(currentDate.getDate() + 1);
+        }
+    }
+    return numDates;
+};
+
+/**
+ * Given two dates, returns the number of days between the two dates
+ * @param date1 Starting date
+ * @param date2 Ending date
+ */
+export function daysBetweenDates(date1: number, date2: number) {
+    const a = new Date(+date1.toString().slice(0, 4), +date1.toString().slice(4, 6) - 1, +date1.toString().slice(6, 8));
+    const b = new Date(+date2.toString().slice(0, 4), +date2.toString().slice(4, 6) - 1, +date2.toString().slice(6, 8));
+    return Math.abs(b.getTime() - a.getTime()) / (1000 * 3600 * 24);
 };

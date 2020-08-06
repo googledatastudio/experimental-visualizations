@@ -52,11 +52,43 @@
           "defaultValue": "10"
         },
         {
+          "id": "dataGranularity",
+          "label": "Title",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "y",
+          "options": [
+            {
+              "label": "Year",
+              "value": "y"
+            },
+            {
+              "label": "Month Year",
+              "value": "m"
+            },
+            {
+              "label": "Day Month Year",
+              "value": "d"
+            }
+          ]
+        },
+        {
           "id": "duration",
           "label": "Frame Duration (sec)",
           "type": "SELECT_SINGLE",
-          "defaultValue": "0.5",
+          "defaultValue": "0.25",
           "options": [
+            {
+              "label": "0.0025",
+              "value": "0.0025"
+            },
+            {
+              "label": "0.0125",
+              "value": "0.0125"
+            },
+            {
+              "label": "0.125",
+              "value": "0.125"
+            },
             {
               "label": "0.25",
               "value": "0.25"
