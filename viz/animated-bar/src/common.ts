@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { ObjectRow } from '@google/dscc';
+import { ObjectRow, ThemeStyle } from '@google/dscc';
 import * as d3 from 'd3';
 
 export interface MotionChartData {
@@ -26,6 +26,8 @@ export interface ChartSettings {
     duration: number,
     bars: number,
     keyframes: number,
+    colorOption: string,
+    colorSelected: string,
 };
 interface YearFrame {
     year: number,
@@ -156,4 +158,23 @@ export function valueInterpolate(a1: Array<MotionChartData>, a2: Array<MotionCha
 
     }
     return copy;
+};
+
+/**
+ * Given the color option selected, returns the appropriate color for the bar
+ * Returns randomized color if option is not recognized
+ */
+export function getBarColor(option: string, d: number, theme: ThemeStyle, selectedColor: string) {
+    if (option === 'theme') {
+        let i = d;
+        const limit = theme.themeSeriesColor.length;
+        if (d < 0) { i = Math.floor(Math.random() * limit) }
+        return theme.themeSeriesColor[i % limit].color;
+    }
+    else if (option === 'selected') {
+        return selectedColor;
+    }
+    else {
+        return getRandomColor()
+    }
 };

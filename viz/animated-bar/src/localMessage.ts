@@ -22,7 +22,7 @@ import { ObjectFormat, FieldType, ConceptType } from '@google/dscc';
  * locally.
  *
  */
-export const message:ObjectFormat= {
+export const message: ObjectFormat = {
   "tables": {
     "DEFAULT": [
       {
@@ -21791,6 +21791,18 @@ export const message:ObjectFormat= {
       "value": 10,
       "defaultValue": 5
     },
+    "colorOption": {
+      "value": "theme",
+      "defaultValue": "theme"
+    },
+    "selectedColor": {
+      "value": {
+        "color": "#4682b4"
+      },
+      "defaultValue": {
+        "color": "#4682b4"
+      }
+    }
   },
   "theme": {
     "themeFillColor": {

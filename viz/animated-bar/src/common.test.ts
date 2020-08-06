@@ -95,3 +95,21 @@ describe('DOM Elements', () => {
     })
 
 });
+
+describe('Color Selection', () => {
+    test('Theme in bound', () => {
+        expect(common.getBarColor('theme', 1, expected.sampleInputData.theme, "#4682b4")).toStrictEqual(
+            "#00b6cb"
+        );
+    });
+    test('Theme out of bound', () => {
+        expect(common.getBarColor('theme', 50, expected.sampleInputData.theme, "#4682b4")).toStrictEqual(
+            "#737373"
+        );
+    });
+    test('Selected Color', () => {
+        expect(common.getBarColor('selected', 50, expected.sampleInputData.theme, "#4682b4")).toStrictEqual(
+            "#4682b4"
+        );
+    });
+})

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { ObjectFormat, ObjectRow, StyleById } from '@google/dscc';
+import { ObjectFormat, ObjectRow, StyleById, ThemeStyle } from '@google/dscc';
 import * as d3 from 'd3';
 import * as common from './common';
 
@@ -45,7 +45,7 @@ export async function drawViz(data: ObjectFormat) {
     const keyframes = dataInfo.keyframes;
     const dates = Array.from(keyframes.keys());
     const previousKeyframe: Map<string, number> = new Map();
-    
+
     //Iterate through keyframe
     let i = 0;
     let iterate = true;
@@ -53,7 +53,7 @@ export async function drawViz(data: ObjectFormat) {
         if (previousData != data) { break; }
         const tDuration = i ? chartSettings.duration : 0
         transition = svg.transition().duration(tDuration).ease(d3.easeLinear)
-        updateGraph(keyframes.get(dates[i])!, dates[i], previousKeyframe);
+        updateGraph(keyframes.get(dates[i])!, dates[i], previousKeyframe, data.theme);
         await transition.end();
         for (const d of keyframes.get(dates[i])!) {
             previousKeyframe.set(d.name, d.value);
@@ -92,7 +92,7 @@ function updateXAxis(data: Array<common.MotionChartData>) {
         .call(d3.axisTop(xScale));
 };
 
-function updateBars(data: Array<common.MotionChartData>) {
+function updateBars(data: Array<common.MotionChartData>, theme: ThemeStyle) {
     let barsG = svg.select('.bars-g') as d3.Selection<SVGGElement, unknown, HTMLElement, unknown>;
 
     if (barsG.empty()) {
@@ -108,7 +108,7 @@ function updateBars(data: Array<common.MotionChartData>) {
                 .attr("class", "bar")
                 .attr("height", yScale.bandwidth())
                 .attr("width", (d) => xScale(d.value))
-                .attr('fill', (d) => common.getRandomColor()),
+                .attr('fill', (d) => common.getBarColor(chartSettings.colorOption, d.rank, theme, chartSettings.colorSelected)),
 
             (update) => update,
 
@@ -180,10 +180,10 @@ function updateTitle(date: number) {
         .text(date.toString().slice(0, 4))
 };
 
-function updateGraph(data: Array<common.MotionChartData>, date: number, previousKeyframe: Map<string, number>) {
+function updateGraph(data: Array<common.MotionChartData>, date: number, previousKeyframe: Map<string, number>, theme: ThemeStyle) {
     updateYAxis(data);
     updateXAxis(data);
-    updateBars(data);
+    updateBars(data, theme);
     updateLabels(data, previousKeyframe);
     updateTitle(date);
 };
@@ -207,6 +207,8 @@ function updateChartSettings(style: StyleById) {
         duration: (+style.duration.value * 1000),
         bars: +style.bars.value,
         keyframes: +style.keyframes.value,
+        colorOption: style.colorOption.value,
+        colorSelected: style.selectedColor.value.color
     }
 };
 
