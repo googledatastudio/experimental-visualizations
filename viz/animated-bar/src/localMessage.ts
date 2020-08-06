@@ -21780,16 +21780,20 @@ export const message: ObjectFormat = {
   },
   "style": {
     "bars": {
-      "value": 6,
+      "value": 8,
       "defaultValue": 5
-    },
-    "duration": {
-      "value": .25,
-      "defaultValue": 1
     },
     "keyframes": {
       "value": 10,
-      "defaultValue": 5
+      "defaultValue": 10
+    },
+    "dataGranularity": {
+      "value": "d",
+      "defaultValue": "y"
+    },
+    "duration": {
+      "value": 0.25,
+      "defaultValue": 0.25
     },
     "colorOption": {
       "value": "theme",
@@ -21797,7 +21801,7 @@ export const message: ObjectFormat = {
     },
     "selectedColor": {
       "value": {
-        "color": "#4682b4"
+        "color": "#E64A19"
       },
       "defaultValue": {
         "color": "#4682b4"

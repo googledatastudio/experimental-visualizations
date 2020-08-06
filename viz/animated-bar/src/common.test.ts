@@ -20,19 +20,18 @@ import * as expected from './expectedResults';
 import * as local from './localMessage';
 import * as d3 from 'd3';
 
-
 describe('Date Interpolation', () => {
     test('Mid-point', () => {
-        expect(common.dateInterpolate(2001, 2002, 5, 10)
-        ).toStrictEqual(2001.5)
+        expect(common.dateInterpolate(20010101, 20020101, 5, 10)
+        ).toStrictEqual(20010702)
     });
     test('Last value', () => {
-        expect(common.dateInterpolate(2001, 2002, 10, 10)
-        ).toStrictEqual(2002)
+        expect(common.dateInterpolate(20010101, 20020101, 10, 10)
+        ).toStrictEqual(20020101)
     });
     test('No inbetween', () => {
-        expect(common.dateInterpolate(2001, 2002, 1, 1)
-        ).toStrictEqual(2002)
+        expect(common.dateInterpolate(20010101, 20020101, 1, 1)
+        ).toStrictEqual(20020101)
     });
 });
 
@@ -53,7 +52,7 @@ describe('Random Color', () => {
 
 describe('Data Processing', () => {
     test('KeyFrames', () => {
-        const data = common.processData(expected.sampleInputData.tables.DEFAULT, 2).keyframes;
+        const data = common.processData(expected.sampleInputData.tables.DEFAULT, 2);
         for (const key of data.keys()) {
             data.get(key).sort((a, b) => d3.ascending(a.rank, b.rank));
             expected.expectedKeyFrame.get(key).sort((a, b) => d3.ascending(a.rank, b.rank));
@@ -61,7 +60,7 @@ describe('Data Processing', () => {
         expect(data).toStrictEqual(expected.expectedKeyFrame);
     });
     test('Missing items', () => {
-        const data = common.processData(local.message.tables.DEFAULT, 5).keyframes;
+        const data = common.processData(local.message.tables.DEFAULT, 5);
         const cardinality = data.get(20190101).length;
         for (const key of data.keys()) {
             expect(data.get(key).length).toStrictEqual(cardinality);
@@ -91,7 +90,7 @@ describe('DOM Elements', () => {
     });
     test('Title', () => {
         const title = d3.select('body').select('svg').select('.title');
-        expect(title.text()).toStrictEqual('2001');
+        expect(title.text()).toStrictEqual('01 Jan 2001');
     })
 
 });
