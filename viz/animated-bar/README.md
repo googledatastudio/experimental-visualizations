@@ -15,6 +15,14 @@ Component ID of the deployed version of this visualization:
 gs://animatedbar-test/prod
 ```
 
+## Future Work
+
+* Implement the granularity algorithm found in `common.ts`
+* Add additional styling options
+    * Legend, vertical bars, axis switching
+* Add scrub bar for animation control
+* Rework labels to be on side of the bar if bar is too small
+
 ### Authors
 
 This code was written by Duncan Ross.
