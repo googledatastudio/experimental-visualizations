@@ -1,0 +1,35 @@
+{
+  "dsccViz": {
+    "gcsDevBucket": "gs://duncanross-test/dev",
+    "gcsProdBucket": "gs://duncanross-test/radar-prod",
+    "tsFile": "index.ts",
+    "jsonFile": "index.json",
+    "cssFile": "index.css",
+    "print": "printMessage.js"
+  },
+  "scripts": {
+    "build:dev": "dscc-scripts viz build -d dev",
+    "build:prod": "dscc-scripts viz build -d prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
+    "update_message": "dscc-scripts viz update_message -f object",
+    "start": "dscc-scripts viz start",
+    "test": "jest",
+    "test:watch":"jest --watchAll" 
+  },
+  "devDependencies": {
+    "@google/dscc": "^0.3.17",
+    "@google/dscc-scripts": "^1.0.16",
+    "@types/jest": "^25.2.3",
+    "copy-webpack-plugin": "^4.6.0",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "ts-loader": "^7.0.4",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {
+    "apexcharts": "^3.19.2",
+    "yarn": "^1.22.4"
+  },
+  "version": "0.0.0"
+}
