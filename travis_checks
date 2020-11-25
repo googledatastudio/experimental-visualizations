@@ -3,4 +3,6 @@
 set -ex
 
 (cd viz/sunburst && yarn && yarn run tsc:check)
-yarn prettier:check
+(cd viz/Apex-Radar && npm ci && npm run test)
+(cd viz/animated-bar && npm ci && npm run test)
+(yarn && yarn prettier:check)

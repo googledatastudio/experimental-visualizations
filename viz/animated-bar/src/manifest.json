@@ -1,0 +1,24 @@
+{
+  "name": "Animated Bar Chart",
+  "organization": "Duncan Ross",
+  "description": "Animated bar chart race for unique data visualization",
+  "logoUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/animated-bar/resources/icon.png",
+  "organizationUrl": "https://datastudio.google.com",
+  "supportUrl": "https://github.com/googledatastudio/experimental-visualizations/issues",
+  "privacyPolicyUrl": "https://docs.google.com/document/d/1b80nGcl4VlRDLeE8FIajLmgDh3knidwAAOVu93n_bic/edit?usp=sharing",
+  "termsOfServiceUrl": "https://docs.google.com/document/d/1b80nGcl4VlRDLeE8FIajLmgDh3knidwAAOVu93n_bic/edit?usp=sharing",
+  "packageUrl": "https://github.com/googledatastudio/experimental-visualizations",
+  "devMode": "DEVMODE_BOOL",
+  "components": [
+    {
+      "name": "Animated Bar Chart",
+      "description": "Animated bar chart race for unique data visualization",
+      "iconUrl": "https://raw.githubusercontent.com/googledatastudio/experimental-visualizations/master/viz/animated-bar/resources/icon.png",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}

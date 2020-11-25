@@ -1,0 +1,254 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "Concepts",
+      "elements": [
+        {
+          "id": "dimID",
+          "label": "Dimension",
+          "type": "DIMENSION",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "metricID",
+          "label": "Metric",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 5
+          }
+        },
+        {
+          "id": "maxResults",
+          "label": "Max Results",
+          "type":"MAX_RESULTS",
+          "options":{
+            "max":100
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "fill",
+      "label": "Fill",
+      "elements": [
+        {
+          "id": "fillRadar",
+          "label": "Fill",
+          "type": "CHECKBOX",
+          "defaultValue": "true"
+        },
+        {
+          "id": "fillOpacity",
+          "label": "Opacity",
+          "defaultValue": "0.2",
+          "type": "OPACITY"
+        }
+      ]
+    },
+    {
+      "id": "markers",
+      "label": "Markers",
+      "elements": [
+        {
+          "id": "showMarkers",
+          "label": "Show Markers",
+          "type": "CHECKBOX",
+          "defaultValue": "true"
+        },
+        {
+          "id": "markerType",
+          "label": "Marker Type",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "default",
+          "options": [
+            {
+              "label": "Default",
+              "value": "default"
+            },
+            {
+              "label": "Data",
+              "value": "data"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colorPalette1",
+      "label": "Line Color 1",
+      "elements": [
+        {
+          "id": "fillColor1",
+          "label": "Line Color 1",
+          "defaultValue": {
+            "color": "#008FFB"
+          },
+          "type": "FILL_COLOR"
+        }
+      ]
+    },
+    {
+      "id": "colorPalette2",
+      "label": "Line Color 2",
+      "elements": [
+        {
+          "id": "fillColor2",
+          "label": "Line Color 2",
+          "defaultValue": {
+            "color": "#00E396"
+          },
+          "type": "FILL_COLOR"
+        }
+      ]
+    },
+    {
+      "id": "colorPalette3",
+      "label": "Line Color 3",
+      "elements": [
+        {
+          "id": "fillColor3",
+          "label": "Line Color 3",
+          "defaultValue": {
+            "color": "#FEB019"
+          },
+          "type": "FILL_COLOR"
+        }
+      ]
+    },
+    {
+      "id": "colorPalette4",
+      "label": "Line Color 4",
+      "elements": [
+        {
+          "id": "fillColor4",
+          "label": "Line Color 4",
+          "defaultValue": {
+            "color": "#FF4560"
+          },
+          "type": "FILL_COLOR"
+        }
+      ]
+    },
+    {
+      "id": "colorPalette5",
+      "label": "Line Color 5",
+      "elements": [
+        {
+          "id": "fillColor5",
+          "label": "Line Color 5",
+          "defaultValue": {
+            "color": "#775DD0"
+          },
+          "type": "FILL_COLOR"
+        }
+      ]
+    },
+    {
+      "id": "plot",
+      "label": "Grid",
+      "elements": [
+        {
+          "id": "plotColor1",
+          "label": "Plot Color #1",
+          "type": "FILL_COLOR",
+          "defaultValue": {
+            "color": "#EDEDED"
+          }
+        },
+        {
+          "id": "plotColor2",
+          "label": "Plot Color #2",
+          "type": "FILL_COLOR",
+          "defaultValue": {
+            "color": "#FFFFFF"
+          }
+        }
+      ]
+    },
+    {
+      "id": "text",
+      "label": "Text",
+      "elements":[{
+        "id": "axisFontColor",
+        "label": "Font Color",
+        "type": "FONT_COLOR",
+        "defaultValue":{
+          "color": "#000000"
+        }
+      },
+      {
+        "id": "axisFontSize",
+        "label": "Font Size",
+        "type": "FONT_SIZE",
+        "defaultValue": "10"
+      },
+      {
+        "id": "axisFontFamily",
+        "label": "Font",
+        "type": "FONT_FAMILY",
+        "defaultValue": "Arial"
+      }]
+    },
+    {
+      "id": "axis",
+      "label": "Axis",
+      "elements": [
+        {
+          "id": "enableXAxis",
+          "label": "Enable X Axis",
+          "defaultValue": "true",
+          "type": "CHECKBOX"
+        },
+        {
+          "id": "enableYAxis",
+          "label": "Enable Y Axis",
+          "defaultValue": "true",
+          "type": "CHECKBOX"
+        }
+      ]
+    },
+    {
+      "id": "legend",
+      "label": "Legend",
+      "elements": [
+        {
+          "id": "enableLegend",
+          "label": "Enable Legend",
+          "defaultValue": "true",
+          "type": "CHECKBOX"
+        },
+        {
+          "id": "legendPosition",
+          "label": "Legend Position",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "bottom",
+          "options": [
+            {
+              "label": "Bottom",
+              "value": "bottom"
+            },
+            {
+              "label": "Top",
+              "value": "top"
+            },
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

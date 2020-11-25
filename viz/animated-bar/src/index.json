@@ -1,0 +1,155 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "Concepts",
+      "elements": [
+        {
+          "id": "dimID",
+          "label": "Primary Dimension",
+          "type": "DIMENSION",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "dateID",
+          "label": "Date Dimension",
+          "type": "DIMENSION",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        },
+        {
+          "id": "metricID",
+          "label": "Metric",
+          "type": "METRIC",
+          "options": {
+            "min": 1,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "barInfo",
+      "label": "Chart Configuration",
+      "elements": [
+        {
+          "id": "bars",
+          "label": "Bars",
+          "type": "INTERVAL",
+          "defaultValue": "5"
+        },
+        {
+          "id": "keyframes",
+          "label": "Interpolated Frames Per Given Frame",
+          "type": "INTERVAL",
+          "defaultValue": "10"
+        },
+        {
+          "id": "dataGranularity",
+          "label": "Title",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "y",
+          "options": [
+            {
+              "label": "Year",
+              "value": "y"
+            },
+            {
+              "label": "Month Year",
+              "value": "m"
+            },
+            {
+              "label": "Day Month Year",
+              "value": "d"
+            }
+          ]
+        },
+        {
+          "id": "duration",
+          "label": "Frame Duration (sec)",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "0.25",
+          "options": [
+            {
+              "label": "0.0025",
+              "value": "0.0025"
+            },
+            {
+              "label": "0.0125",
+              "value": "0.0125"
+            },
+            {
+              "label": "0.125",
+              "value": "0.125"
+            },
+            {
+              "label": "0.25",
+              "value": "0.25"
+            },
+            {
+              "label": "0.5",
+              "value": "0.5"
+            },
+            {
+              "label": ".75",
+              "value": ".75"
+            },
+            {
+              "label": "1.0",
+              "value": "1.0"
+            },
+            {
+              "label": "1.25",
+              "value": "1.25"
+            },
+            {
+              "label": "2.0",
+              "value": "2.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colors",
+      "label": "Bar Colors",
+      "elements": [
+        {
+          "id": "colorOption",
+          "label": "Color Option",
+          "type": "SELECT_SINGLE",
+          "defaultValue": "theme",
+          "options": [
+            {
+              "label": "Use theme colors",
+              "value": "theme"
+            },
+            {
+              "label": "Use selected color",
+              "value": "selected"
+            },
+            {
+              "label": "Use randomized colors",
+              "value": "random"
+            }
+          ]
+        },
+        {
+          "id": "selectedColor",
+          "label": "Selected Color",
+          "defaultValue": {
+            "color": "#4682b4"
+          },
+          "type": "FILL_COLOR"
+        }
+      ]
+    }
+  ]
+}

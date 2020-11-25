@@ -1,0 +1,25 @@
+{
+  "name": "Draw SVG",
+  "organization": "Data Studio Developer Relations",
+  "description": "This visualization will use SVG XML text input to render an image.",
+  "logoUrl": "https://storage.googleapis.com/lego-devrel-testing/readSVGFile/svg.jpg",
+  "supportUrl": "https://issuetracker.google.com//issues/new?component=801069&template=1385925",
+  "privacyPolicyUrl": "",
+  "termsOfServiceUrl": "",
+  "packageUrl": "https://datastudio.google.com/open/15pJmbAJMCyPBFWYICz_XQlU_nKjSjwqD",
+  "organizationUrl":"",
+  "devMode": false,
+  "components": [
+    {
+      "id":"svgFile",
+      "name": "Draw SVG",
+      "description": "This visualization will use SVG XML text input to render an image.",
+      "iconUrl": "https://storage.googleapis.com/lego-devrel-testing/readSVGFile/svg.jpg",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}
