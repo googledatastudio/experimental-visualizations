@@ -28,7 +28,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "apexcharts": "^3.19.2",
+    "apexcharts": "^3.24.0",
     "yarn": "^1.22.4"
   },
   "version": "0.0.0"
