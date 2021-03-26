@@ -1,0 +1,139 @@
+{
+  "data": [{
+    "id": "concepts",
+    "label": "Concepts",
+    "elements": [{
+        "id": "Date",
+        "label": "Date Dimension",
+        "type": "DIMENSION",
+        "options": {
+          "min": 1,
+          "max": 1
+        }
+      },
+      {
+        "id": "Temperature",
+        "label": "Temperature Dimension",
+        "type": "DIMENSION",
+        "options": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    ]
+  }],
+  "style": [{
+    "id": "datapoints",
+    "label": "Data Point Marker Settings",
+    "elements": [{
+        "type": "CHECKBOX",
+        "id": "byCategoryColor",
+        "label": "Select custom color",
+        "defaultValue": "true"
+    }, {
+        "type": "FONT_COLOR",
+        "id": "minScale",
+        "label": "Min Scale color",
+        "defaultValue": {"color":"#dee8eb"}
+    }, {
+        "type": "FONT_COLOR",
+        "id": "maxScale",
+        "label": "Max Scale color",
+        "defaultValue": {"color":"#7ea4b3"}
+    }]
+  }, {
+    "id": "Aggregate",
+    "label": "Aggregation Settings",
+    "elements": [{
+        "type": "SELECT_SINGLE",
+        "id": "aggregation",
+        "label": "Select Aggregation type for data",
+        "defaultValue": "max",
+        "options":[
+        {
+          "label":"Sum",
+          "value":"sum"
+        },
+        {
+          "label":"Distinct",
+          "value":"distinct"
+        },
+        {
+          "label":"Mean",
+          "value":"mean"
+        },
+        {
+          "label":"Average",
+          "value":"average"
+        },
+        {
+          "label":"Variance",
+          "value":"variance"
+        },
+        {
+          "label":"Median",
+          "value":"median"
+        },
+        {
+          "label":"Maximum",
+          "value":"max"
+        },
+        {
+          "label":"Minimum",
+          "value":"min"
+        }]
+      }]
+  }, {
+    "id": "orient",
+    "label": "Legend Settings",
+    "elements": [
+    {
+      "id": "alignment",
+      "label" : "Position",
+      "type": "SELECT_SINGLE",
+      "defaultValue": "top",
+      "options":[
+      {
+        "label":"None",
+        "value":""
+      },{
+        "label":"Top",
+        "value":"top"
+      },
+      {
+        "label":"Bottom",
+        "value":"bottom"
+      },
+      {
+        "label":"Left",
+        "value":"left"
+      },
+      {
+        "label":"Right",
+        "value":"right"
+      }]
+    }]
+  }, {
+    "id": "fontSettings",
+    "label":"Font Settings",
+    "elements": [{
+      "type": "FONT_SIZE",
+      "id": "fontSize",
+      "label": "Font Size",
+      "defaultValue": "12"
+    }, {
+      "type": "FONT_COLOR",
+      "id": "baseFontColor",
+      "label": "Font Color"
+    }, {
+      "type": "FONT_FAMILY",
+      "id": "fontFamily",
+      "label": "Font Family"
+    }, {
+        "type": "CHECKBOX",
+        "id": "boldLabelFont",
+        "label": "Bold Label",
+        "defaultValue": "false"
+    }]
+  }]
+}
