@@ -1,0 +1,31 @@
+{
+  "dsccViz": {
+    "gcsDevBucket": "gs://histogram_heatmap",
+    "gcsProdBucket": "gs://histogram_heatmap",
+    "jsFile": "index.js",
+    "jsonFile": "index.json",
+    "cssFile": "index.css"
+  },
+  "scripts": {
+    "build:dev": "dscc-scripts viz build -d dev",
+    "build:prod": "dscc-scripts viz build -d prod",
+    "push:dev": "dscc-scripts viz push -d dev",
+    "push:prod": "dscc-scripts viz push -d prod",
+    "update_message": "dscc-scripts viz update_message -f object",
+    "start": "dscc-scripts viz start"
+  },
+  "devDependencies": {
+    "@google/dscc-scripts": "^1.1.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "style-loader": "^2.0.0"
+  },
+  "dependencies": {
+    "@google/dscc": "^0.3.17",
+    "@google/dscc-validation": "^1.0.4",
+    "jquery": "^3.6.0",
+    "serialize-javascript": "^2.1.1",
+    "vega": "^5.19.1",
+    "vega-embed": "^6.15.2",
+    "vega-lite": "^5.0.0"
+  }
+}

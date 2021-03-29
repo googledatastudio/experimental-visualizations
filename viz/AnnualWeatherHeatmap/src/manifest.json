@@ -1,0 +1,25 @@
+{
+  "name": "Annual Weather HeatMap",
+  "organization": "Lakshmi Praveena Pappu",
+  "description": "This Visualization allows you to view annual weather data in HeatMap view.",
+  "logoUrl": "https://storage.googleapis.com/weather_chart/heatmap.png",
+  "organizationUrl":"",
+  "supportUrl": "https://groups.google.com/forum/#!forum/community-viz-for-data-studio",
+  "privacyPolicyUrl": "",
+  "termsOfServiceUrl": "",
+  "packageUrl": "https://datastudio.google.com/open/759ec879-c51f-457a-9e9f-60108b5ef752",
+  "devMode": false,
+  "components": [
+    {
+      "id":"heatmap",
+      "name": "Annual Weather HeatMap",
+      "description": "Annual weather data in HeatMap view.",
+      "iconUrl": "https://storage.googleapis.com/weather_chart/heatmap.png",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}
