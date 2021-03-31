@@ -1,0 +1,140 @@
+{
+  "data": [{
+    "id": "concepts",
+    "label": "Concepts",
+    "elements": [{
+        "id": "dimension",
+        "label": "Dimension",
+        "type": "DIMENSION",
+        "options": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    ]
+  }],
+  "style": [{
+    "id": "datapoints",
+    "label": "Custom color settings",
+    "elements": [{
+        "type": "CHECKBOX",
+        "id": "byCategoryColor",
+        "label": "Select custom color (Uncheck to color by Data Studio theme)",
+        "defaultValue": "true"
+    }, {
+        "type": "FONT_COLOR",
+        "id": "minScale",
+        "label": "Min Scale color",
+        "defaultValue": {"color":"#dee8eb"}
+    }, {
+        "type": "FONT_COLOR",
+        "id": "maxScale",
+        "label": "Max Scale color",
+        "defaultValue": {"color":"#7ea4b3"}
+    }]
+  },  {
+    "id": "bin",
+    "label": "Binning Parameter",
+    "elements": [{
+      "type": "TEXTINPUT",
+      "id": "xbin",
+      "label": "Count of bins for X-axis (Max - 40)",
+      "defaultValue": "10"
+    },{
+      "type": "TEXTINPUT",
+      "id": "ybin",
+      "label": "Count of bins for Y-axis (Max - 60)",
+      "defaultValue": "10"
+    }]
+  }, {
+    "id": "orient",
+    "label": "Legend Settings",
+    "elements": [
+    {
+      "id": "alignment",
+      "label" : "Position",
+      "type": "SELECT_SINGLE",
+      "defaultValue": "top",
+      "options":[
+      {
+        "label":"None",
+        "value":""
+      },{
+        "label":"Top",
+        "value":"top"
+      },
+      {
+        "label":"Bottom",
+        "value":"bottom"
+      },
+      {
+        "label":"Left",
+        "value":"left"
+      },
+      {
+        "label":"Right",
+        "value":"right"
+      }]
+    }]
+  }, {
+    "id": "axisSettings",
+    "label": "X-Axis Settings",
+    "elements": [{
+        "type": "CHECKBOX",
+        "id": "hideXAxis",
+        "label": "Hide X Axis",
+        "defaultValue": "false"
+    }, {
+        "type": "CHECKBOX",
+        "id": "hideXAxisBaseline",
+        "label": "Hide X Axis Baseline",
+        "defaultValue": "false"
+    }, {
+        "type": "CHECKBOX",
+        "id": "hideXAxisTitle",
+        "label": "Hide X Axis Title",
+        "defaultValue": "false"
+    }]
+  }, {
+    "id": "axisSettings",
+    "label": "Y-Axis Settings",
+    "elements": [{
+        "type": "CHECKBOX",
+        "id": "hideYAxis",
+        "label": "Hide Y Axis",
+        "defaultValue": "false"
+    }, {
+        "type": "CHECKBOX",
+        "id": "hideYAxisBaseline",
+        "label": "Hide Y Axis Baseline",
+        "defaultValue": "false"
+    }, {
+        "type": "CHECKBOX",
+        "id": "hideYAxisTitle",
+        "label": "Hide Y Axis Title",
+        "defaultValue": "false"
+    }]
+  }, {
+    "id": "general",
+    "label": "Font Settings",
+    "elements": [{
+      "type": "FONT_SIZE",
+      "id": "fontSize",
+      "label": "Font Size",
+      "defaultValue": "12"
+    }, {
+      "type": "FONT_COLOR",
+      "id": "baseFontColor",
+      "label": "Font Color"
+    }, {
+        "type": "CHECKBOX",
+        "id": "boldLabelFont",
+        "label": "Bold Font",
+        "defaultValue": "false"
+    }, {
+      "type": "FONT_FAMILY",
+      "id": "fontFamily",
+      "label": "Font Family"
+    }]
+  }]
+}

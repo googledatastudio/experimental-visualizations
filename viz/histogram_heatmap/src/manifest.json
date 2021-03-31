@@ -1,0 +1,25 @@
+{
+  "name": "Histogram Heatmap",
+  "organization": "Lakshmi Praveena Pappu",
+  "description": "This Visualization allows you to view the data as binned data/grouped data in Histogram Heatmap view.",
+  "logoUrl": "https://storage.googleapis.com/histogram_heatmap/histogram_heatmap.png",
+  "organizationUrl":"",
+  "supportUrl": "https://groups.google.com/forum/#!forum/community-viz-for-data-studio",
+  "privacyPolicyUrl": "https://datastudio.google.com/u/1/reporting/977b3742-7520-446e-a5d2-16b0173d5ef5/page/lBT0B",
+  "termsOfServiceUrl": "https://datastudio.google.com/u/1/reporting/977b3742-7520-446e-a5d2-16b0173d5ef5/page/jBT0B",
+  "packageUrl": "https://datastudio.google.com/u/1/reporting/977b3742-7520-446e-a5d2-16b0173d5ef5/page/KKnzB",
+  "devMode": false,
+  "components": [
+    {
+      "id":"histogram",
+      "name": "Histogram Heatmap",
+      "description": "View the data in smaller bins(groups) using Histogram Heatmap",
+      "iconUrl": "https://storage.googleapis.com/histogram_heatmap/histogram_heatmap.png",
+      "resource": {
+        "js": "YOUR_GCS_BUCKET/index.js",
+        "config": "YOUR_GCS_BUCKET/index.json",
+        "css": "YOUR_GCS_BUCKET/index.css"
+      }
+    }
+  ]
+}
