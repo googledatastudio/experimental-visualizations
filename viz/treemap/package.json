@@ -20,6 +20,6 @@
     "@google/dscc-scripts": "^1.0.6"
   },
   "dependencies": {
-    "d3": "^5.9.2"
+    "d3": "^7.6.1"
   }
 }
