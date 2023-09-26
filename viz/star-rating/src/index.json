@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "id": "concepts",
+      "label": "Concepts",
+      "elements": [
+       {
+          "id": "starDimension",
+          "label": "Dimension",
+          "type": "DIMENSION",
+          "options": {
+            "min": 0,
+            "max": 1
+          }
+        },
+        {
+          "id": "starMetric",
+          "label": "Metric",
+          "type": "METRIC",
+          "options": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      ]
+    }
+  ],
+  "style": [
+    {
+      "id": "color",
+      "label": "Colors",
+      "elements": [
+        {
+          "type": "FONT_COLOR",
+          "id": "starColor",
+          "label": "Star Color",
+          "defaultValue": "orange"
+        }
+      ]
+    }
+  ]
+}
